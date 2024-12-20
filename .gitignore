@@ -1,0 +1,30 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Django specific
+db.sqlite3          # SQLite DB file, if you use SQLite
+/static/            # Static files (should be managed by the build process or a CDN)
+*.log               # Log files
+*.pot               # Translation files
+settings_local.py
+
+# Virtual environment
+rasa_env/
+venv/
+
+# Ignore system files
+Thumbs.db
+# Ignore environment variable files
+.env
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# Media files (uploaded by users, usually don't need to be in version control)
+media/
+
+chatbot.log
+
