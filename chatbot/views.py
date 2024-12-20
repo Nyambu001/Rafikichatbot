@@ -27,9 +27,6 @@ def save_chat_record(user, user_message, bot_response):
     logger.info("Chat record saved successfully!")
 
 
-from chatbot.models import User, ChatRecord
-from mongoengine import DoesNotExist
-
 def save_chat_record(user, user_message, bot_response):
     logger.info("Saving chat record for user: %s", user)
     chat_record = ChatRecord(
@@ -78,19 +75,19 @@ def chatbot_view(request):
                     logger.info("No bot responses received.")
                     return JsonResponse({'responses': ["I'm sorry, I didn't understand that."]})
 
-                # If user is authenticated (logged in), save the chat record
+
                 if user_id:
                     try:
-                        # Try to get the user, if not exist create a new one
+
                         user = User.objects(username=user_id).first()
 
                         if not user:
-                            # Create the user if it doesn't exist
+
                             user = User(username=user_id, email=f"{user_id}@example.com", password_hash="default")
                             user.save()
 
                         for bot_message in bot_messages:
-                            if bot_message['type'] == 'text':  # Only save text responses
+                            if bot_message['type'] == 'text':
                                 save_chat_record(user, user_message, bot_message['content'])
 
                     except DoesNotExist:
