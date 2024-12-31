@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: slateblue;
+}
+
+.form {
+    width: 30vw;
+    margin: 15vh auto 0 auto;
+    padding: 20px;
+    background-color: aliceblue;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.form h1 {
+    color: dimgray;
+    text-align: center;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box label {
+    margin-left: 7px;
+}
+
+.input-box input {
+    border: 2px solid silver;
+    border-radius: 4px;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    width: 94%;
+    margin-left: 7px;
+}
+
+.input-box input:focus {
+    outline: 0;
+}
+
+.form button {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    width: 94%;
+    color: white;
+    background-color: saddlebrown;
+    border: none;
+    font-size: 16px;
+    margin-left: 7px;
+}
+
+.remember-forgot {
+    display:flex;
+    justify-content: space-between;
+    font-size: 16px;
+    margin: 10px 0 5px;
+}
+
+.remember-forgot label input {
+    margin-left: 7px;
+    margin-right: 3px;
+    font-size: 16px;
+}
+
+.remember-forgot a{
+    font-size: 16px;
+    text-decoration: none;
+    margin-right: 12px;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.register-link {
+    font-size: 16px;
+    text-align: center;
+}
+
+.register-link p a{
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.input-control.box input {
+    border-color: green
+}
+
+.input-control.box input {
+    border-color: red;
+}
+
+.input-box .error {
+    color: red;
+    font-size: 12px;
+    height: 13px;
+    margin-left: 7px;
+}
+
+.error-message {
+    font-size: 14px;
+    color: red;
+    margin-left: 7px;
+}

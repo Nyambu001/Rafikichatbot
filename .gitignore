@@ -1,0 +1,7 @@
+node_js/
+dist/
+build/
+.vs_code
+DS_Store
+logs/
+*.log
