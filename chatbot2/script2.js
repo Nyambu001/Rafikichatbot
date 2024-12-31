@@ -1,25 +1,18 @@
+//simple chatbot
+function chatbot(input) {
+    let output = "Hello";
+    return output;
+}
+
+// send user message and get bot response
 function sendMessage() {
-    const input = document.getElementById("input").value.trim();
+    let input = document.getElementById("input").value;
     if (input) {
         displayUserMessage(input); // Display user message in chat
-
-        fetch("/chatbot/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: `message=${encodeURIComponent(input)}`,
-        })
-        .then(response => response.json())
-        .then(data => {
-            displayBotMessage(data.response);
-            saveToHistory(); // Save chat after a bot response
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            displayBotMessage("Error communicating with chatbot.");
-        });
-
+        let output = chatbot(input);
+        setTimeout(function() {
+            displayBotMessage(output);
+        }, 1000);
         document.getElementById("input").value = "";
     }
 }
