@@ -28,3 +28,8 @@ media/
 
 chatbot.log
 
+node_modules/
+dist/
+.DS_Store
+logs/
+*.log
