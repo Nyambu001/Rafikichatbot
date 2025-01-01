@@ -6,7 +6,7 @@ import datetime
 class User(Document):
     username = StringField(required=True, unique=True)
     email = EmailField(required=True)
-    password_hash = StringField(required=True)  
+    password_hash = StringField(required=True)
     created_at = DateTimeField(default=datetime.datetime.utcnow)
 
     def __str__(self):
