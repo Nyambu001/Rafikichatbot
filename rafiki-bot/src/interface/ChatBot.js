@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Message from './Message';
 import InputField from './InputField';
 
@@ -7,6 +8,7 @@ function Chatbot({ isDarkMode }) {
   const [newMessage, setNewMessage] = useState(''); // New user input
   const [chats, setChats] = useState([]); // Array of all chats
   const messagesEndRef = useRef(null);
+  const navigate = useNavigate();
 
   // Load chat history from localStorage when the component mounts
   useEffect(() => {
@@ -66,10 +68,30 @@ function Chatbot({ isDarkMode }) {
     setNewMessage(''); // Clear input field
   };
 
+  // Logout function
+  const handleLogout = () => {
+    // Remove user-related data from localStorage
+    localStorage.removeItem('isSignedUp');
+    localStorage.removeItem('username');
+    localStorage.removeItem('email');
+    // Redirect to login page
+    navigate('/login');
+  };
+
   return (
     <div className={`flex flex-col h-screen ${isDarkMode ? 'dark' : ''}`}>
-      {/* Start New Conversation button */}
+      {/* Logout button */}
       <div className="absolute z-50 top-4 left-4">
+        <button
+          onClick={handleLogout}
+          className="px-4 py-2 text-white bg-red-500 rounded-lg shadow-md hover:bg-red-400 focus:outline-none"
+        >
+          Log Out
+        </button>
+      </div>
+
+      {/* Start New Conversation button */}
+      <div className="absolute z-50 top-4 left-20">
         <button
           onClick={startNewConversation}
           className="px-4 py-2 text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-400 focus:outline-none"

@@ -1,37 +1,54 @@
 import { useState, useEffect } from 'react';
 import Chatbot from './interface/ChatBot';
-import { MoonIcon, SunIcon } from '@heroicons/react/20/solid'; // Import Heroicons
+import { MoonIcon, SunIcon } from '@heroicons/react/20/solid'; 
 import SignUp from './Signup/Login/SignUp';
+import Login from './Signup/Login/Login';
+import ForgotPassword from './Signup/Login/ForgotPassword';
+import LogOut from './Signup/Login/Logout';
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, Navigate } from 'react-router-dom';
+
 function App() {
-  // Initialize dark mode state from localStorage
+  const [isLoggedIn, setIsLoggedIn] = useState(() => localStorage.getItem('isLoggedIn') === 'true');
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
 
-  // Handle theme toggle and save to localStorage
+  // Dark mode logic
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
     localStorage.setItem('theme', darkMode ? 'dark' : 'light');
   }, [darkMode]);
 
-  const toggleTheme = () => {
-    setDarkMode((prev) => !prev); // Toggle dark mode state
-  };
+  const toggleTheme = () => setDarkMode((prev) => !prev);
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        {/* Define route for signup */}
+        <Route path="/signup" element={isLoggedIn ? <Navigate to="/" /> : <SignUp />} />
+        {/* Define route for login */}
+        <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <Login />} />
+        {/* Define route for forgot password */}
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/logout" element={<LogOut/>} />
+        {/* Define route for home that checks if user is logged in */}
+        <Route path="/" element={isLoggedIn ? <Chatbot /> : <Navigate to="/login" />} />
+      </>
+    )
+  );
 
   return (
     <div className="relative flex flex-col w-full min-h-screen bg-white dark:bg-gray-900">
-      {/* Header with centered title */}
       <header className="sticky top-0 z-10 flex items-center justify-center w-full gap-2 p-4 bg-white shadow-md dark:bg-gray-900">
         <h1 className="font-urbanist text-[1.65rem] font-semibold text-center text-black dark:text-white">
           Rafiki Bot
         </h1>
       </header>
 
-      {/* Chatbot content section */}
+      {/* Main Content - Only renders the Chatbot if logged in */}
       <div className="flex flex-col justify-between flex-grow">
-        <Chatbot isDarkMode={darkMode} /> {/* Pass dark mode state to Chatbot */}
+        {/* Navigate to login if user is not logged in */}
+        <RouterProvider router={router} />
       </div>
-<div>
-  <SignUp/>
-</div>
+
       {/* Dark mode toggle button */}
       <button
         onClick={toggleTheme}
