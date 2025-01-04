@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Chatbot from './interface/ChatBot';
 import { MoonIcon, SunIcon } from '@heroicons/react/20/solid'; // Import Heroicons
-
+import SignUp from './Signup/Login/SignUp';
 function App() {
   // Initialize dark mode state from localStorage
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
@@ -29,7 +29,9 @@ function App() {
       <div className="flex flex-col justify-between flex-grow">
         <Chatbot isDarkMode={darkMode} /> {/* Pass dark mode state to Chatbot */}
       </div>
-
+<div>
+  <SignUp/>
+</div>
       {/* Dark mode toggle button */}
       <button
         onClick={toggleTheme}
