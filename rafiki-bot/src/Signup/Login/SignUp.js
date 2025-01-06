@@ -27,7 +27,6 @@ const SignUp = () => {
     localStorage.setItem('emails', JSON.stringify(existingEmails)); // Store updated emails
 
     localStorage.setItem('isSignedUp', 'true');
-    localStorage.setItem('username', data.username);
     localStorage.setItem('email', data.email);
 
     setSignedUp(true); // Update state to show the success message

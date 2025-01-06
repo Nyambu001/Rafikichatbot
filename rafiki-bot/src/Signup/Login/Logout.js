@@ -7,14 +7,11 @@ const LogOut = () => {
   const handleLogout = useCallback(() => {
     // Remove user-related data from localStorage
     localStorage.removeItem('isSignedUp');
-    localStorage.removeItem('username');
     localStorage.removeItem('email');
 
-    // Optionally, clear session data or token if needed
-    // sessionStorage.removeItem('token');
 
     // Redirect the user to the login page
-    navigate('/login');
+    navigate('/');
   }, [navigate]); // We only need navigate as a dependency for memoization
 
   useEffect(() => {

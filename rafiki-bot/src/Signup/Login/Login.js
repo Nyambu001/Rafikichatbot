@@ -29,7 +29,7 @@ const Login = ({ onLogin }) => {
             placeholder="Enter your Gmail"
             {...register('email', { required: 'Email is required' })}
           />
-           <p className="text-sm text-red-500">{errors.email?.message}</p>
+          <p className="text-sm text-red-500">{errors.email?.message}</p>
         </div>
 
         <div>
@@ -41,7 +41,7 @@ const Login = ({ onLogin }) => {
             placeholder="Enter your password"
             {...register('password', { required: 'Password is required' })}
           />
-           <p className="text-sm text-red-500">{errors.password?.message}</p>
+          <p className="text-sm text-red-500">{errors.password?.message}</p>
         </div>
 
         <div className="flex items-center justify-between">
@@ -51,7 +51,7 @@ const Login = ({ onLogin }) => {
       </form>
 
       <p className="mt-4 text-center">
-        Don't have an account?  <Link to="/signup" className="text-blue-600"> Sign up</Link> 
+        Don't have an account? <Link to="/signup" className="text-blue-600">Sign up</Link>
       </p>
     </div>
   );

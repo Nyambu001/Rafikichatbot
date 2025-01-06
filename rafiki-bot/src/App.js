@@ -19,18 +19,25 @@ function App() {
 
   const toggleTheme = () => setDarkMode((prev) => !prev);
 
+  // Handle login state change
+  const handleLogin = (status) => {
+    setIsLoggedIn(status);
+    localStorage.setItem('isLoggedIn', status ? 'true' : 'false');
+  };
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
         {/* Define route for signup */}
         <Route path="/signup" element={isLoggedIn ? <Navigate to="/" /> : <SignUp />} />
         {/* Define route for login */}
-        <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <Login />} />
+        <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <Login onLogin={handleLogin} />} />
         {/* Define route for forgot password */}
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/logout" element={<LogOut/>} />
+        <Route path="/chatbot" element={<Chatbot />} />
+        <Route path="/logout" element={<LogOut onLogin={handleLogin}/>} />
         {/* Define route for home that checks if user is logged in */}
-        <Route path="/" element={isLoggedIn ? <Chatbot /> : <Navigate to="/login" />} />
+        <Route path="/" element={isLoggedIn ? <Chatbot/> : <Navigate to="/login" />} />
       </>
     )
   );
