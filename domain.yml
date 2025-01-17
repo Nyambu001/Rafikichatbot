@@ -1,0 +1,93 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - emotional_support
+  - family_concerns
+  - inquire_about_therapy
+  - fear_of_failure
+  - personal_growth
+  - mindfulness_techniques
+  - life_changes
+  - work_related_stress
+  - substance_abuse
+  - financial_struggles
+  - share_experience
+
+
+responses:
+  utter_greet:
+    - text: "Habari! Niko hapa kusaidia. Unahitaji msaada gani leo?"
+    - text: "Vipi ndugu? Nafurahi kukuona. Je, kuna jambo lolote unataka kuzungumzia?"
+    - text: "Mambo vipi? Ni vipi naweza kusaidia leo?"
+    - text: "Shikamoo! Niko hapa, uko vipi?"
+
+  utter_goodbye:
+    - text: "Kwaheri! Usisahau kurudi tena."
+    - text: "Tutaonana baadaye! Nenda salama."
+    - text: "Kwaheri! Ninakutakia kila la heri."
+    - text: "Tutaonana kesho, ni furaha yangu kukusaidia."
+
+  utter_emotional_support:
+    - text: "Niko hapa kwa ajili yako. Ni vipi unaweza kujisikia bora?"
+    - text: "Ninaweza kukusikiliza. Tafadhali nijulishe unavyojisikia."
+    - text: "Unajisikia peke yako, naelewa. Je, ungependa kuzungumza zaidi?"
+    - text: "Ni sawa kujisikia hivi. Niko hapa kukusaidia."
+
+  utter_family_concerns:
+    - text: "Familia inaweza kuwa na changamoto. Je, unataka kujadili zaidi?"
+    - text: "Niko hapa kusaidia. Ni nini kinachokusumbua kuhusu familia yako?"
+    - text: "Ni muhimu kuzungumza kuhusu familia. Tafadhali niambie zaidi."
+    - text: "Ninaweza kusaidia na masuala ya kifamilia. Je, ungependa kuzungumza kuhusu nini?"
+
+  utter_inquire_about_therapy:
+    - text: "Therapy inaweza kuwa njia nzuri. Unataka kujua vipi kuhusu mchakato?"
+    - text: "Ninaweza kusaidia katika kuelewa matibabu. Ni nini unachotaka kujua?"
+    - text: "Ni vizuri kuuliza maswali kuhusu matibabu. Je, una maswali maalum?"
+    - text: "Niko hapa kutoa habari kuhusu matibabu. Tafadhali niambie unachohitaji kujua."
+
+  utter_fear_of_failure:
+    - text: "Ni kawaida kuwa na hofu ya kufeli. Je, unahitaji ushauri?"
+    - text: "Watu wengi wanahisi hivyo. Ni vipi naweza kusaidia?"
+    - text: "Ni vigumu sana kukabiliana na hisia hizi. Je, kuna jambo unalotaka kulizungumza?"
+    - text: "Unahitaji kujua kuwa hofu ni ya kawaida. Tafadhali niambie jinsi ninavyoweza kusaidia."
+
+  utter_personal_growth:
+    - text: "Kujifunza zaidi kuhusu nafsi yako ni muhimu. Je, kuna malengo unayotaka kufikia?"
+    - text: "Ninafurahi kusikia unataka kuboresha maisha yako. Tafadhali niambie zaidi."
+    - text: "Kila mtu anaweza kubadilika. Ni vipi naweza kusaidia katika safari yako?"
+    - text: "Ni vizuri kutafuta ukuaji wa kibinafsi. Unahitaji msaada katika eneo gani?"
+
+  utter_mindfulness_techniques:
+    - text: "Mindfulness inaweza kusaidia sana. Unataka kujifunza mazoea gani?"
+    - text: "Kuna mbinu nyingi za kutafakari. Ni vipi naweza kusaidia?"
+    - text: "Je, unataka kujifunza jinsi ya kuwa na akili wazi? Niko hapa kusaidia."
+    - text: "Ni vizuri kujifunza kuhusu mindfulness. Je, kuna mbinu unayotaka kujua?"
+
+  utter_life_changes:
+    - text: "Mabadiliko yanaweza kuwa magumu. Je, kuna jambo fulani unahitaji kusaidia nacho?"
+    - text: "Ni vigumu kushughulikia mabadiliko. Tafadhali niambie unavyojisikia."
+    - text: "Kuhisi huzuni ni kawaida wakati wa mabadiliko. Je, unahitaji msaada?"
+    - text: "Niko hapa kusaidia. Je, kuna mabadiliko unayotaka kuzungumza?"
+
+  utter_work_related_stress:
+    - text: "Ni kawaida kuhisi msongo wa kazi. Je, unahitaji mbinu za kukabiliana?"
+    - text: "Niko hapa kusaidia. Tafadhali niambie zaidi kuhusu wasiwasi wako kazini."
+    - text: "Je, unajisikia vipi kuhusu kazi yako? Ninahitaji kuelewa zaidi."
+
+
+
+actions:
+  - utter_greet
+  - utter_goodbye
+  - utter_emotional_support
+  - utter_family_concerns
+  - utter_inquire_about_therapy
+  - utter_fear_of_failure
+  - utter_personal_growth
+  - utter_mindfulness_techniques
+  - utter_life_changes
+  - utter_work_related_stress
+
+
