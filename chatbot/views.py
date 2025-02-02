@@ -4,8 +4,7 @@ import requests
 import json
 import logging
 from datetime import datetime
-from chatbot.models import User, ChatRecord  # Import MongoDB models
-from mongoengine import DoesNotExist
+from chatbot.models import ChatRecord
 
 # Set up logging
 logger = logging.getLogger('chatbot')
@@ -15,10 +14,9 @@ handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)
 logger.addHandler(handler)
 
 
-def save_chat_record(user, user_message, bot_response):
-    logger.info("Saving chat record for user: %s", user)
+def save_chat_record(user_message, bot_response):
+    logger.info("Saving chat record")
     chat_record = ChatRecord(
-        user=user,
         user_message=user_message,
         bot_response=bot_response,
         timestamp=datetime.utcnow()
@@ -26,17 +24,6 @@ def save_chat_record(user, user_message, bot_response):
     chat_record.save()
     logger.info("Chat record saved successfully!")
 
-
-def save_chat_record(user, user_message, bot_response):
-    logger.info("Saving chat record for user: %s", user)
-    chat_record = ChatRecord(
-        user=user,
-        user_message=user_message,
-        bot_response=bot_response,
-        timestamp=datetime.utcnow()
-    )
-    chat_record.save()
-    logger.info("Chat record saved successfully!")
 
 @csrf_exempt
 def chatbot_view(request):
@@ -44,7 +31,6 @@ def chatbot_view(request):
         try:
             data = json.loads(request.body)
             user_message = data.get('message')
-            user_id = data.get('user_id', None)  # Default to None if no user_id is provided
 
             if not isinstance(user_message, str) or not user_message.strip():
                 logger.warning('Invalid message received: %s', data)
@@ -57,7 +43,7 @@ def chatbot_view(request):
             return JsonResponse({'error': 'Invalid JSON format'}, status=400)
 
         rasa_url = "http://localhost:5005/webhooks/rest/webhook"
-        payload = {"sender": user_id if user_id else 'anonymous', "message": user_message}
+        payload = {"sender": 'anonymous', "message": user_message}
 
         try:
             rasa_response = requests.post(rasa_url, json=payload, timeout=5)
@@ -75,25 +61,10 @@ def chatbot_view(request):
                     logger.info("No bot responses received.")
                     return JsonResponse({'responses': ["I'm sorry, I didn't understand that."]})
 
-
-                if user_id:
-                    try:
-
-                        user = User.objects(username=user_id).first()
-
-                        if not user:
-
-                            user = User(username=user_id, email=f"{user_id}@example.com", password_hash="default")
-                            user.save()
-
-                        for bot_message in bot_messages:
-                            if bot_message['type'] == 'text':
-                                save_chat_record(user, user_message, bot_message['content'])
-
-                    except DoesNotExist:
-                        logger.error("User does not exist and failed to create")
-                    except Exception as e:
-                        logger.error("Failed to save chat record: %s", str(e))
+                # Save conversation history
+                for bot_message in bot_messages:
+                    if bot_message['type'] == 'text':
+                        save_chat_record(user_message, bot_message['content'])
 
                 logger.info('Rasa response: %s', bot_responses)
                 return JsonResponse({'responses': bot_messages})
@@ -108,4 +79,3 @@ def chatbot_view(request):
             return JsonResponse({'error': f'Failed to connect to Rasa server: {str(e)}'}, status=500)
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
-
