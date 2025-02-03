@@ -18,8 +18,8 @@ function InputField({ newMessage, isLoading, setNewMessage, submitNewMessage, is
   }
 
   return (
-    <div className="p-1 bg-white py- dark:bg-gray-900">
-      <div className="p-0 font-mono origin-bottom z-250 bg-primary-blue/35 rounded-3xl animate-chat duration-400">
+    <div className="sticky bottom-0 py-4 bg-white py- dark:bg-gray-900">
+      <div className="p-1.5 font-mono origin-bottom z-250 bg-primary-blue/35 rounded-3xl animate-chat duration-400">
         <div
           className={`pr-0.5 relative shrink-0 rounded-3xl overflow-hidden 
             ring-primary-blue ring-1 focus-within:ring-2 transition-all 
