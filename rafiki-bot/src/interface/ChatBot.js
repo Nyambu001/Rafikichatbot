@@ -104,7 +104,7 @@ function Chatbot({ isDarkMode }) {
         <div className="flex-grow col-span-2 p-4 overflow-auto bg-white dark:bg-gray-900">
           {messages.length === 0 && (
             <div className="mt-3 space-y-2 text-xl font-light text-primary-blue dark:text-gray-300">
-              <p>👋 Welcome! I'm here to help. Ask me anything.</p>
+              <p>👋 Hey, how can I help?</p>
             </div>
           )}
           <Message messages={messages} />
