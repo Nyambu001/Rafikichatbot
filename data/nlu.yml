@@ -1,0 +1,26 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - Vipi?
+      - Salama?
+      - Mambo vipi?
+      - Habari
+      - Niaje?
+      - Mambo safi?
+      - Shikamoo
+      - Vipi leo?
+
+  - intent: goodbye
+    examples: |
+      - Kwaheri rafiki
+      - Tutaonana baadaye
+      - Badaaye
+      - Kwaheri
+      - Nimechoka, nenda salama
+      - Tutaonana kesho
+      - Niko na safari, nitatoka sasa
+      - Nenda salama, usisahau kunipigia simu
+
+

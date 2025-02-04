@@ -1,0 +1,26 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+
+
+
+responses:
+  utter_greet:
+    - text: "Habari! Niko hapa kusaidia. Unahitaji msaada gani leo?"
+    - text: "Vipi ndugu? Nafurahi kukuona. Je, kuna jambo lolote unataka kuzungumzia?"
+    - text: "Mambo vipi? Ni vipi naweza kusaidia leo?"
+    - text: "Shikamoo! Niko hapa, uko vipi?"
+
+  utter_goodbye:
+    - text: "Kwaheri! Usisahau kurudi tena."
+    - text: "Tutaonana baadaye! Nenda salama."
+    - text: "Kwaheri! Ninakutakia kila la heri."
+    - text: "Tutaonana kesho, ni furaha yangu kukusaidia."
+
+
+actions:
+  - utter_greet
+  - utter_goodbye
+
