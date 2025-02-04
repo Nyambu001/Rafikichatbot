@@ -23,7 +23,7 @@ REACT_APP_DIR = os.path.join(BASE_DIR, 'static', 'build')
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*cce=th-emq53i^n6^zn_ftsl29rxed-ebtwm00saw=)u69n#2'
+SECRET_KEY = '$tr0ng_r@nd0m_k3y_#987'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
