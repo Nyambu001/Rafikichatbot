@@ -5,6 +5,9 @@ import json
 import logging
 from datetime import datetime
 from chatbot.models import ChatRecord
+import os
+from django.shortcuts import render
+from django.conf import settings
 
 # Set up logging
 logger = logging.getLogger('chatbot')
@@ -12,6 +15,10 @@ logger.setLevel(logging.INFO)
 handler = logging.FileHandler('chatbot.log')
 handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
 logger.addHandler(handler)
+
+
+def index(request):
+    return render(request, os.path.join(settings.REACT_APP_DIR, "index.html"))
 
 
 def save_chat_record(user_message, bot_response):
@@ -79,3 +86,25 @@ def chatbot_view(request):
             return JsonResponse({'error': f'Failed to connect to Rasa server: {str(e)}'}, status=500)
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+
+def chat_history(request):
+    if request.method == 'GET':
+        try:
+            # Retrieve all chat records, ordered by timestamp (most recent first)
+            chats = ChatRecord.objects.all().order_by('-timestamp')
+            chat_data = [
+                {
+                    "user_message": chat.user_message,
+                    "bot_response": chat.bot_response,
+                    "timestamp": chat.timestamp.strftime("%Y-%m-%d %H:%M:%S")
+                }
+                for chat in chats
+            ]
+            return JsonResponse({"chats": chat_data}, safe=False)
+        except Exception as e:
+            # Log error in case of failure
+            logger.error("Error fetching chat history: %s", str(e))
+            return JsonResponse({"error": "Failed to fetch chat history"}, status=500)
+
+    return JsonResponse({"error": "Invalid request method"}, status=405)

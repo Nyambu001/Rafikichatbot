@@ -21,4 +21,5 @@ import chatbot.urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(chatbot.urls)),
+
 ]

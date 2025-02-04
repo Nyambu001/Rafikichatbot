@@ -8,18 +8,29 @@ function Chatbot({ isDarkMode }) {
   const [chats, setChats] = useState([]); // Array of all chats
   const messagesEndRef = useRef(null);
 
-  // Load chat history from localStorage when the component mounts
-  useEffect(() => {
-    const savedChats = JSON.parse(localStorage.getItem('chats')) || [];
-    setChats(savedChats); // Load past chats from localStorage
-  }, []);
 
-  // Update localStorage whenever the chats array is updated
   useEffect(() => {
-    if (chats.length > 0) {
-      localStorage.setItem('chats', JSON.stringify(chats)); // Save chat history
-    }
-  }, [chats]);
+    const fetchChats = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/chat-history/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setChats(data.chats); // Set chat history
+        } else {
+          console.error('Failed to fetch chat history');
+        }
+      } catch (error) {
+        console.error('Error fetching chat history:', error);
+      }
+    };
+
+    fetchChats();
+  }, []);
 
   // Scroll to bottom whenever new message is added
   useEffect(() => {
@@ -29,28 +40,44 @@ function Chatbot({ isDarkMode }) {
   }, [messages]);
 
   // Function to handle new message submission
-  const submitNewMessage = async () => {
-    const trimmedMessage = newMessage.trim();
-    if (!trimmedMessage) return;
+const submitNewMessage = async () => {
+  const trimmedMessage = newMessage.trim();
+  if (!trimmedMessage) return;
 
-    // If it is the start of a new conversation, initialize a new chat entry
-    if (messages.length === 0) {
-      setMessages([{ role: 'user', content: trimmedMessage }]); // Add user’s first message
+  // Add the user's message to the current conversation
+  setMessages(prevMessages => [...prevMessages, { role: 'user', content: trimmedMessage }]);
+  setNewMessage(''); // Clear the input field
+
+  try {
+    // Send the user's message to the Django
+    const response = await fetch('http://localhost:8000/chatbot/', {
+      method: 'POST',
+      headers: {
+
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: trimmedMessage }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Received response from Django:", data); // Log to inspect the data
+      if (data.responses && data.responses.length > 0) {
+        setMessages(prevMessages => [
+          ...prevMessages,
+          { role: 'assistant', content: data.responses[0].content },
+        ]);
+      } else {
+        console.error("No responses received from Rasa/Django.");
+      }
     } else {
-      setMessages(prevMessages => [...prevMessages, { role: 'user', content: trimmedMessage }]); // Add to existing conversation
+      console.error('Failed to get response from chatbot');
     }
+  } catch (error) {
+    console.error('Error sending message to Django API:', error);
+  }
+};
 
-    setNewMessage(''); // Clear the input field
-
-    // Simulate generating the assistant's response after a delay
-    setTimeout(() => {
-      setMessages(prevMessages => {
-        const updatedMessages = [...prevMessages];
-        updatedMessages.push({ role: 'assistant', content: `Here's the assistant's response to: ${trimmedMessage}` });
-        return updatedMessages;
-      });
-    }, 1000); // Simulated delay for assistant's response
-  };
 
   // Function to start a new conversation
   const startNewConversation = () => {
@@ -80,7 +107,7 @@ function Chatbot({ isDarkMode }) {
 
       {/* Chat Layout - Grid */}
       <div className="relative grid h-full grid-cols-1 gap-4 p-4 md:grid-cols-3">
-        
+
         {/* Chat History Grid */}
         <div className="col-span-1 overflow-y-auto bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg max-h-[90vh]">
           <ul className="text-sm font-medium text-gray-900">
