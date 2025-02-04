@@ -101,7 +101,7 @@ const submitNewMessage = async () => {
           onClick={startNewConversation}
           className="px-4 py-2 text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-400 focus:outline-none"
         >
-          Start New Conversation
+          +
         </button>
       </div>
 
