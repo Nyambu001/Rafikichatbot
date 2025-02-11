@@ -1,15 +1,64 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { FaEye, FaEyeSlash, FaLock } from 'react-icons/fa';
-import {Link} from 'react-router-dom'
-const SignUp = () => {
-    const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm();
-    const [showPassword, setShowPassword] = useState(false); // State to manage password visibility
+import { FaEye, FaEyeSlash, FaLock, FaUser } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-    const onSubmit = (data) => {
-        console.log(data);
-        reset(); // Reset the form after successful submission
+const SignUp = () => {
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const [showPassword, setShowPassword] = useState(false);
+    const [signUpError, setSignUpError] = useState('');
+
+const onSubmit = async (data) => {
+   console.log("Form Data:", data);
+    setSignUpError('');
+
+    // Fetch the CSRF token
+    const getCSRFToken = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/get_csrf_token/');
+            const data = await response.json();
+            return data.csrf_token;
+        } catch (error) {
+            console.error("Error fetching CSRF token:", error);
+            setSignUpError("Could not fetch CSRF token");
+            return null;
+        }
     };
+
+    const csrfToken = await getCSRFToken();
+    if (!csrfToken) {
+        console.error("CSRF token is not available.");
+        setSignUpError("CSRF token not found.");
+        return;
+    }
+
+    try {
+        const response = await fetch('http://127.0.0.1:8000/register/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            },
+            body: JSON.stringify({
+                username: data.username,
+                password: data.password,
+                email: data.email,
+            }),
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            alert('Registration successful!');
+            reset();
+        } else {
+            setSignUpError(result.error || 'Registration failed');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        setSignUpError('An error occurred. Please try again later.');
+    }
+};
+
 
     return (
         <div className="flex items-center justify-center h-screen">
@@ -17,14 +66,34 @@ const SignUp = () => {
                 <h2 className="mb-6 text-2xl font-bold text-center">Sign Up</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
-                    {/* Email */}
+                    {/* Username */}
+                    <div className="mb-6">
+                        <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-700">Username</label>
+                        <div className="relative">
+                            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                                <FaUser />
+                            </span>
+                            <input
+                                type="text"
+                                id="username"
+                                {...register('username', {
+                                    required: 'Username is required',
+                                    minLength: { value: 3, message: 'Username must be at least 3 characters' },
+                                    maxLength: { value: 20, message: 'Username cannot exceed 20 characters' }
+                                })}
+                                className="w-full px-10 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        {errors.username && <p className="text-xs text-red-500">{errors.username.message}</p>}
+                    </div>
+
+                    {/* Email (Optional) */}
                     <div className="mb-6">
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">Email</label>
                         <input
                             type="email"
                             id="email"
                             {...register('email', {
-                                required: 'Email is required',
                                 pattern: {
                                     value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/,
                                     message: 'Invalid email format'
@@ -39,89 +108,48 @@ const SignUp = () => {
                     <div className="mb-4">
                         <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password">Password</label>
                         <div className="relative">
-                            
-                            <span className="absolute top-0 mt-2 text-gray-500 left-3">
+                            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
                                 <FaLock />
                             </span>
-
-                            {/* Input field */}
                             <input
-                                {...register("password", { required: true, minLength: 5, maxLength: 12 })}
-                                className="w-full px-10 py-2 mb-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                {...register("password", {
+                                    required: 'Password is required',
+                                    minLength: { value: 5, message: 'Must be at least 5 characters' },
+                                    maxLength: { value: 12, message: 'Cannot exceed 12 characters' }
+                                })}
+                                className="w-full px-10 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 type={showPassword ? "text" : "password"}
                                 id="password"
                                 placeholder="Password"
                             />
-
-                            
                             <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                className="absolute top-0 right-0 mt-3 mr-4"
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2"
                             >
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </button>
                         </div>
-                        {errors.password && <p className="text-xs italic text-red-500">Password should be between 5 and 12 characters</p>}
+                        {errors.password && <p className="text-xs text-red-500">{errors.password.message}</p>}
                     </div>
 
-                    {/* Confirm Password */}
-                    <div className="mb-6">
-                        <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-700">
-                            Confirm Password
-                        </label>
-                        <div className="relative">
-                            
-                            <span className="absolute text-gray-500 -translate-y-1/2 top-1/2 left-3">
-                                <FaLock />
-                            </span>
-
-                            {/* Input field */}
-                            <input
-                                {...register("confirmPassword", {
-                                    required: "Confirm password is required",
-                                    validate: value => value === getValues("password") || "Passwords do not match"
-                                })}
-                                className="w-full py-2 pl-10 pr-10 leading-tight text-gray-700 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                type={showPassword ? "text" : "password"}
-                                id="confirmPassword"
-                                placeholder="Confirm Password"
-                            />
-
-                            
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute -translate-y-1/2 top-1/2 right-3"
-                            >
-                                {showPassword ? <FaEyeSlash /> : <FaEye />}
-                            </button>
-                        </div>
-                        {errors.confirmPassword && <p className="text-xs text-red-500">{errors.confirmPassword.message}</p>}
-                    </div>
+                    {/* Error Message */}
+                    {signUpError && <p className="text-red-500 text-center">{signUpError}</p>}
 
                     {/* Sign Up Button */}
-                    <button
-                        type="submit"
-                        className="w-full py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
-                    >
+                    <button type="submit" className="w-full py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none">
                         Sign Up
                     </button>
 
-                  {/* Forgot Password & Sign Up Links */}
-                  <div className="flex justify-between mt-4 text-sm">
+                    {/* Links */}
+                    <div className="flex justify-between mt-4 text-sm">
                         <button type="button" className="text-blue-500 hover:underline">Forgot Password?</button>
-                        <Link 
-                            to="/" 
-                            className="text-blue-500 cursor-pointer hover:underline"
-                        >
-                            Login
-                        </Link>
+                        <Link to="/" className="text-blue-500 cursor-pointer hover:underline">Login</Link>
                     </div>
                 </form>
             </div>
         </div>
     );
-}
+};
 
 export default SignUp;
