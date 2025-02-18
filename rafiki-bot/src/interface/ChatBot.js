@@ -1,155 +1,283 @@
 import { useState, useEffect, useRef } from 'react';
-import Message from './Message';
-import InputField from './InputField';
+import { useNavigate } from 'react-router-dom';
+import { FaBars, FaTrash, FaTimes, FaPlus,FaEdit } from 'react-icons/fa';
+import { PaperAirplaneIcon } from '@heroicons/react/20/solid';
 
-function Chatbot({ isDarkMode }) {
-  const [messages, setMessages] = useState([]); // Current chat's messages
-  const [newMessage, setNewMessage] = useState(''); // New user input
-  const [chats, setChats] = useState([]); // Array of all chats
+function  Chatbot ({ isDarkMode }){
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
+  const [chats, setChats] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [selectedChatId, setSelectedChatId] = useState(null);
   const messagesEndRef = useRef(null);
-
+  const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const fetchChats = async () => {
-      try {
-        const response = await fetch('http://localhost:8000/chat-history/', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setChats(data.chats); // Set chat history
-        } else {
-          console.error('Failed to fetch chat history');
-        }
-      } catch (error) {
-        console.error('Error fetching chat history:', error);
-      }
-    };
-
-    fetchChats();
+    fetchChatHistory();
   }, []);
 
-  // Scroll to bottom whenever new message is added
-  useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  const fetchChatHistory = async () => {
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      setError('User ID not found');
+      return;
     }
-  }, [messages]);
-
-  // Function to handle new message submission
-const submitNewMessage = async () => {
-  const trimmedMessage = newMessage.trim();
-  if (!trimmedMessage) return;
-
-  // Add the user's message to the current conversation
-  setMessages(prevMessages => [...prevMessages, { role: 'user', content: trimmedMessage }]);
-  setNewMessage(''); // Clear the input field
-
-  try {
-    // Send the user's message to the Django
-    const response = await fetch('http://localhost:8000/chatbot/', {
-      method: 'POST',
-      headers: {
-
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ message: trimmedMessage }),
-    });
-
-    if (response.ok) {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/chat_history/?user_id=${userId}`);
       const data = await response.json();
-      console.log("Received response from Django:", data); // Log to inspect the data
-      if (data.responses && data.responses.length > 0) {
-        setMessages(prevMessages => [
-          ...prevMessages,
-          { role: 'assistant', content: data.responses[0].content },
-        ]);
+      if (response.ok) {
+        setChats(data.chats || []);
+        if (data.chats?.length > 0) {
+          setSelectedChatId(data.chats[0].conversation_id);
+          setMessages(data.chats[0].messages || []);
+        }
       } else {
-        console.error("No responses received from Rasa/Django.");
+        setError(data.error || 'Failed to fetch chat history');
       }
-    } else {
-      console.error('Failed to get response from chatbot');
+    } catch {
+      setError('Error fetching chat history');
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error('Error sending message to Django API:', error);
-  }
-};
-
-
-  // Function to start a new conversation
-  const startNewConversation = () => {
-    // Save the current conversation to the chat history before starting a new one
-    if (messages.length > 0) {
-      setChats(prevChats => [
-        ...prevChats,
-        { name: `Chat ${prevChats.length + 1}`, history: [...messages] },
-      ]);
-    }
-
-    setMessages([]); // Clear current messages for a new conversation
-    setNewMessage(''); // Clear input field
   };
 
+  function handleKeyDown(e) {
+    if (e.keyCode === 13 && !e.shiftKey && !loading) {
+      e.preventDefault();
+      submitNewMessage();
+    }
+  }
+
+  const startNewConversation = () => {
+    setMessages([]);
+    setNewMessage('');
+    setSelectedChatId(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userId');
+    navigate('/login');
+  };
+
+  const submitNewMessage = async () => {
+    const trimmedMessage = newMessage.trim();
+    if (!trimmedMessage) return;
+    setMessages(prev => [...prev, { role: 'user', content: trimmedMessage }]);
+    setNewMessage('');
+    try {
+      const token = localStorage.getItem('authToken');
+      if (!token) return;
+      const response = await fetch('http://localhost:8000/chatbot/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ message: trimmedMessage, conversation_id: selectedChatId || null }),
+      });
+      if (!response.ok) throw new Error('Error sending message to Django API');
+      const data = await response.json();
+      setMessages(prev => [...prev, ...data.responses.map(resp => ({ role: 'assistant', content: resp.content || 'No response' }))]);
+      fetchChatHistory();
+    } catch {
+      alert('There was an error sending the message.');
+    }
+  };
+
+  const handleChatSelect = (chat) => {
+    setSelectedChatId(chat.conversation_id);
+    setMessages(chat.messages.map(entry => ({ role: entry.role, content: entry.message || entry.content })));
+  };
+  //delete chat
+  const deleteChatHistory = async (chatId) => {
+    const token = localStorage.getItem('authToken');
+    if (!token) return;
+  
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/delete_chat/${chatId}/`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to delete chat');
+      }
+  
+      // Update state after deletion
+      setChats(chats.filter(chat => chat.conversation_id !== chatId));
+  
+      // If the deleted chat was selected, reset the messages
+      if (selectedChatId === chatId) {
+        setSelectedChatId(null);
+        setMessages([]);
+      }
+    } catch (error) {
+      alert('Error deleting chat history.');
+    }
+  };
+  
+
   return (
-    <div className={`flex flex-col h-screen ${isDarkMode ? 'dark' : ''}`}>
-      {/* Start New Conversation button */}
-      <div className="absolute z-50 top-4 left-4">
-        <button
-          onClick={startNewConversation}
-          className="px-4 py-2 text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-400 focus:outline-none"
-        >
-          Start New Conversation
-        </button>
-      </div>
-
-      {/* Chat Layout - Grid */}
-      <div className="relative grid h-full grid-cols-1 gap-4 p-4 md:grid-cols-3">
-
-        {/* Chat History Grid */}
-        <div className="col-span-1 overflow-y-auto bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg max-h-[90vh]">
-          <ul className="text-sm font-medium text-gray-900">
-            {chats.map((chat, index) => (
-              <li key={index}>
-                <button
-                  onClick={() => {
-                    setMessages(chat.history); // Load the entire conversation history
-                    setNewMessage(''); // Clear the input field
-                  }}
-                  className="block px-4 py-2 mt-1 bg-gray-100 rounded-md dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
-                >
-                  {chat.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Messages container with scrolling */}
-        <div className="flex-grow col-span-2 p-4 overflow-auto bg-white dark:bg-gray-900">
-          {messages.length === 0 && (
-            <div className="mt-3 space-y-2 text-xl font-light text-primary-blue dark:text-gray-300">
-              <p>👋 Hey, how can I help?</p>
-            </div>
-          )}
+    <div className={`grid grid-cols-1 md:grid-cols-4 h-screen ${isDarkMode ? 'dark' : ''}`}>
+      <Sidebar chats={chats} onSelect={handleChatSelect} isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} deleteChatHistory={deleteChatHistory} />
+      <div className="flex flex-col h-screen overflow-hidden bg-white md:col-span-3 dark:bg-gray-900">
+        <div className="flex-grow p-4 overflow-auto">
+          {messages.length === 0 && <div className="mt-3 space-y-2 text-xl font-light text-primary-blue dark:text-gray-300"><p>👋 Hey, how can I help?</p></div>}
           <Message messages={messages} />
           <div ref={messagesEndRef} />
         </div>
-      </div>
-
-      {/* Input field section at the bottom */}
-      <div className="p-4 bg-white dark:bg-gray-800 dark:border-gray-700">
-        <InputField
-          newMessage={newMessage}
-          setNewMessage={setNewMessage}
-          submitNewMessage={submitNewMessage}
-          isDarkMode={isDarkMode}
-        />
+        <InputField 
+        newMessage={newMessage} 
+        setNewMessage={setNewMessage} 
+        submitNewMessage={submitNewMessage} 
+        isDarkMode={isDarkMode} 
+        startNewConversation={startNewConversation}
+        handleKeyDown={handleKeyDown} />
       </div>
     </div>
   );
+}
+
+function Sidebar({ chats, onSelect, isOpen, onClose, deleteChatHistory }) {
+  return (
+    <div className={`fixed md:relative top-0 left-0 h-full w-64 bg-gray-100 dark:bg-gray-800 transition-transform duration-300 ease-in-out z-50 overflow-auto ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+      <div className="flex flex-col h-full p-4">
+        <div className="flex items-center justify-between mb-4">
+          <div className="font-semibold">Rafiki Bot</div>
+          <button onClick={onClose} className="p-2 rounded-full md:hidden hover:bg-gray-800">
+            <FaTimes className="w-5 h-5" />
+          </button>
+        </div>
+        <ul className="flex-1 overflow-auto">
+          {chats.length > 0 ? chats.map((chat, index) => (
+            <li key={chat.conversation_id} className="flex items-center justify-between px-4 py-2 mt-1 bg-gray-200 rounded-md dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
+              <button onClick={() => onSelect(chat)} className="flex-grow text-left">{`Conversation ${index + 1}`}</button>
+              {/* Delete Button */}
+           <button onClick={() => deleteChatHistory(chat.conversation_id)} className="ml-2 text-red-500 hover:text-red-700">
+            <FaTrash className="w-4 h-4" />
+        </button>
+            </li>
+          )) : <div>No conversations found</div>}
+        </ul>
+      </div>
+    </div>
+  );
+}
+function InputField({ newMessage, setNewMessage, submitNewMessage, isDarkMode, startNewConversation, handleKeyDown }) {
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "40px"; // Reset height to default
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Adjust height based on content
+    }
+  }, [newMessage]);
+
+  return (
+    <div className='p-4'>
+      <div className='relative'>
+        <textarea
+          ref={textareaRef}
+          className="w-full p-2 rounded-2xl resize-none h-auto min-h-[90px] max-h-[150px] overflow-y-auto dark:bg-gray-800"
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          onKeyDown={handleKeyDown}
+        placeholder="Type a message..."
+      />
+      {/* Start New Conversation Button */}
+      <button
+  onClick={startNewConversation}
+  className="absolute flex items-center w-6 h-6 text-white transition-all -translate-y-1/2 border-r rounded-full shadow-lg left-2 top-3/4 hover:bg-gray-300"
+>
+  <FaPlus className="w-5 h-5 " />
+</button>
+
+        <button onClick={submitNewMessage} className="absolute transform -translate-y-1/2 right-3 top-1/2">
+          <PaperAirplaneIcon className="w-6 h-6 text-primary-blue rounded-" />
+        </button>
+       
+      </div>
+    </div>
+  );
+}
+function Message({ messages }) {
+  const [hoveredMessage, setHoveredMessage] = useState(null);
+  const [editingMessageId, setEditingMessageId] = useState(null);
+  const [editText, setEditText] = useState('');
+
+  const handleEditClick = (idx, content) => {
+    setEditingMessageId(idx);
+    setEditText(content);
+  };
+
+  const handleEditSubmit = (id) => {
+    console.log(`Updating message ${id} to: ${editText}`);
+    setEditingMessageId(null);
+  };
+
+  return messages.map(({ role, content }, idx) => {
+    const isUser = role === 'user';
+
+    return (
+      <div
+        key={idx}
+        className={`flex items-start gap-2 py-3 px-4 rounded-xl ${
+          isUser
+            ? 'bg-primary-blue/10 justify-end text-right text-primary-blue dark:text-white'
+            : 'justify-start text-left bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-200'
+        }`}
+        onMouseEnter={() => setHoveredMessage(idx)}
+        onMouseLeave={() => setHoveredMessage(null)}
+      >
+        {/* Edit Icon (Left of the Message) */}
+        {hoveredMessage === idx && !editingMessageId && (
+          <button
+            onClick={() => handleEditClick(idx, content)}
+            className="mr-8 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+          >
+            <FaEdit />
+          </button>
+        )}
+
+        {/* Message Content or Edit Input */}
+        <div className="w-full message-content">
+          {editingMessageId === idx ? (
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={editText}
+                onChange={(e) => setEditText(e.target.value)}
+                className="w-full p-1 border rounded-md dark:bg-gray-800"
+              />
+              {/* Send Button */}
+              <button
+                onClick={() => handleEditSubmit(idx)}
+                className="text-green-500 hover:text-green-700"
+              >
+                send
+              </button>
+              {/* Cancel Button */}
+              <button
+                onClick={() => setEditingMessageId(null)}
+                className="text-red-500 hover:text-red-700"
+              >
+                cancel
+              </button>
+            </div>
+          ) : (
+            <div className="whitespace-pre-line">{content}</div>
+          )}
+        </div>
+      </div>
+    );
+  });
 }
 
 export default Chatbot;

@@ -1,31 +1,67 @@
+from datetime import datetime
 from mongoengine import Document, StringField, EmailField, DateTimeField, ReferenceField
 from werkzeug.security import generate_password_hash, check_password_hash
-import datetime
+from mongoengine import ListField, DictField
+from mongoengine.queryset.visitor import Q
 
 
 class User(Document):
     username = StringField(required=True, unique=True)
-    email = EmailField(required=True, unique=True)
-    password = StringField(required=True)  # Hashed password is stored here
-    created_at = DateTimeField(default=datetime.datetime.utcnow)
+    email = EmailField(unique= False, required=False, null=True)
+    password = StringField(required=True)
+    created_at = DateTimeField(default=datetime.utcnow)
 
     def set_password(self, password):
-        """Hashes the password before saving."""
-        self.password = generate_password_hash(password)  # Hashing is done but stored in 'password'
+        self.password = generate_password_hash(password)
 
     def check_password(self, password):
-        """Verifies if the given password matches the stored hash."""
-        return check_password_hash(self.password, password)  # Checking against the hashed password
+        return check_password_hash(self.password, password)
 
     def __str__(self):
         return f"User(username={self.username}, email={self.email})"
 
 
 class ChatRecord(Document):
-    user = ReferenceField(User, required=True)  # Use User directly
-    user_message = StringField(required=True)  # User's message
-    bot_response = StringField(required=True)  # Bot's response
-    timestamp = DateTimeField(default=datetime.datetime.utcnow)  # Time of the message
+    user = ReferenceField('User', required=True)
+    conversation = ListField(DictField())
+    timestamp = DateTimeField(default=datetime.utcnow)
+
+    def add_message(self, user_message, bot_response):
+        self.conversation.append({
+            'role': 'user',
+            'content': user_message,
+            'timestamp': datetime.utcnow()
+        })
+        self.conversation.append({
+            'role': 'assistant',
+            'content': bot_response,
+            'timestamp': datetime.utcnow()
+        })
+        self.save()
+
+    @classmethod
+    def start_new_conversation(cls, user):
+        new_conversation = cls(user=user, conversation=[], timestamp=datetime.utcnow())
+        new_conversation.save()
+        return new_conversation
+
+    @classmethod
+    def get_conversations(cls, user):
+        """Fetches all conversations for a user."""
+        return cls.objects(user=user).order_by('-timestamp')
+
+    @classmethod
+    def get_conversation_by_id(cls, chat_id):
+        return cls.objects(id=chat_id).first()
 
     def __str__(self):
-        return f"User: {self.user.username}, Message: {self.user_message}, Response: {self.bot_response}"
+        if self.conversation:
+            last_message = self.conversation[-1]
+            role = last_message.get('role', 'unknown')
+            content = last_message.get('content', 'No content')
+            return f"User: {self.user.username}, Last {role}: {content}"
+        return f"User: {self.user.username}, No conversation history"
+
+
+
+
