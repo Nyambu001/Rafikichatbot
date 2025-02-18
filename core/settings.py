@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 try:
     mongoengine.connect(
         db='chatbotdb',
-        host='mongodb://localhost:27017'
+        host='mongodb://Serah:Serah-bobo@localhost:27017/chatbotdb?authSource=admin'
     )
     print("Successfully connected to MongoDB")
 except mongoengine.ConnectionError as e:
@@ -105,6 +105,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.dummy',  # Dummy engine for non-SQL databases
         'NAME': 'chatbotdb',
+'CLIENT': {
+            'host': 'mongodb://Serah:Serah-bobo@127.0.0.1:27017/chatbotdb?authSource=admin',
+            'authSource': 'admin'
+        }
     }
 }
 

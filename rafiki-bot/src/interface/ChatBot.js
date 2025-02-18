@@ -17,33 +17,46 @@ function  Chatbot ({ isDarkMode }){
   useEffect(() => {
     fetchChatHistory();
   }, []);
+//new
+useEffect(() => {
+  // Scroll to the bottom when messages update
+  if (messagesEndRef.current) {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
+}, [messages]);
+//new
+const fetchChatHistory = async () => {
+  const userId = localStorage.getItem('userId');
+  if (!userId) {
+    setError('User ID not found');
+    return;
+  }
+  setLoading(true);
+  setError(null);
 
-  const fetchChatHistory = async () => {
-    const userId = localStorage.getItem('userId');
-    if (!userId) {
-      setError('User ID not found');
-      return;
-    }
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(`http://127.0.0.1:8000/chat_history/?user_id=${userId}`);
-      const data = await response.json();
-      if (response.ok) {
-        setChats(data.chats || []);
-        if (data.chats?.length > 0) {
-          setSelectedChatId(data.chats[0].conversation_id);
-          setMessages(data.chats[0].messages || []);
-        }
-      } else {
-        setError(data.error || 'Failed to fetch chat history');
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/chat_history/?user_id=${userId}`);
+    const data = await response.json();
+
+    if (response.ok) {
+      setChats(data.chats || []);
+      if (data.chats?.length > 0) {
+        setSelectedChatId(data.chats[0].conversation_id);
+        setMessages(data.chats[0].messages || []);
       }
-    } catch {
-      setError('Error fetching chat history');
-    } finally {
-      setLoading(false);
+    } else {
+      setChats([]);
+      setSelectedChatId(null);
+      setMessages([]);
+      setError(data.error || 'Failed to fetch chat history');
     }
-  };
+  } catch {
+    setError('Error fetching chat history');
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   function handleKeyDown(e) {
     if (e.keyCode === 13 && !e.shiftKey && !loading) {
@@ -52,12 +65,35 @@ function  Chatbot ({ isDarkMode }){
     }
   }
 
-  const startNewConversation = () => {
+  const startNewConversation = async () => {
     setMessages([]);
     setNewMessage('');
     setSelectedChatId(null);
+  
+    const userId = localStorage.getItem('userId');
+    if (!userId) return;
+  
+    try {
+      const token = localStorage.getItem('authToken');
+      const response = await fetch('http://127.0.0.1:8000/start_chat/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ user_id: userId })
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        setSelectedChatId(data.conversation_id);
+        setChats(prev => [...prev, data]); // Add new chat to list
+      }
+    } catch (error) {
+      console.error('Error starting new chat:', error);
+    }
   };
-
+  
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userId');
@@ -67,27 +103,48 @@ function  Chatbot ({ isDarkMode }){
   const submitNewMessage = async () => {
     const trimmedMessage = newMessage.trim();
     if (!trimmedMessage) return;
+  
+    // Optimistically update UI before sending request
     setMessages(prev => [...prev, { role: 'user', content: trimmedMessage }]);
     setNewMessage('');
+    setLoading(true);
+  
     try {
       const token = localStorage.getItem('authToken');
       if (!token) return;
+  
       const response = await fetch('http://localhost:8000/chatbot/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ message: trimmedMessage, conversation_id: selectedChatId || null }),
+        body: JSON.stringify({ 
+          message: trimmedMessage, 
+          conversation_id: selectedChatId || null 
+        }),
       });
-      if (!response.ok) throw new Error('Error sending message to Django API');
+  
       const data = await response.json();
-      setMessages(prev => [...prev, ...data.responses.map(resp => ({ role: 'assistant', content: resp.content || 'No response' }))]);
-      fetchChatHistory();
-    } catch {
+      if (response.ok) {
+        setMessages(prev => [...prev, { role: 'assistant', content: data.responses[0].content }]);
+  
+        // Ensure selectedChatId is set properly
+        setChats(prev => [
+          ...prev,
+          { 
+            conversation_id: data.conversation_id, 
+            messages: [{ role: 'user', content: trimmedMessage }] // Initialize messages as an array
+          }
+        ]);
+      }
+    } catch (error) {
       alert('There was an error sending the message.');
+    } finally {
+      setLoading(false);
     }
   };
+  
 
   const handleChatSelect = (chat) => {
     setSelectedChatId(chat.conversation_id);
@@ -127,6 +184,9 @@ function  Chatbot ({ isDarkMode }){
   return (
     <div className={`grid grid-cols-1 md:grid-cols-4 h-screen ${isDarkMode ? 'dark' : ''}`}>
       <Sidebar chats={chats} onSelect={handleChatSelect} isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} deleteChatHistory={deleteChatHistory} />
+      <button onClick={() => setIsMenuOpen(true)} className="p-2 md:hidden">
+          <FaBars className="w-6 h-6 text-primary-blue" />
+        </button>
       <div className="flex flex-col h-screen overflow-hidden bg-white md:col-span-3 dark:bg-gray-900">
         <div className="flex-grow p-4 overflow-auto">
           {messages.length === 0 && <div className="mt-3 space-y-2 text-xl font-light text-primary-blue dark:text-gray-300"><p>👋 Hey, how can I help?</p></div>}
@@ -228,7 +288,7 @@ function Message({ messages }) {
     return (
       <div
         key={idx}
-        className={`flex items-start gap-2 py-3 px-4 rounded-xl ${
+        className={`flex items-start gap-2 py-3 px-4 my-2 rounded-xl ${
           isUser
             ? 'bg-primary-blue/10 justify-end text-right text-primary-blue dark:text-white'
             : 'justify-start text-left bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-200'
@@ -237,17 +297,17 @@ function Message({ messages }) {
         onMouseLeave={() => setHoveredMessage(null)}
       >
         {/* Edit Icon (Left of the Message) */}
-        {hoveredMessage === idx && !editingMessageId && (
+        {hoveredMessage === idx && isUser && !editingMessageId && (
           <button
             onClick={() => handleEditClick(idx, content)}
-            className="mr-8 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+            className="mr-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
           >
-            <FaEdit />
+            <FaEdit className="w-4 h-4" />
           </button>
         )}
 
         {/* Message Content or Edit Input */}
-        <div className="w-full message-content">
+        <div className={`w-full message-content ${isUser ? 'ml-auto max-w-[80%]' : 'mr-auto max-w-[80%]'}`}>
           {editingMessageId === idx ? (
             <div className="flex items-center gap-2">
               <input
@@ -261,18 +321,18 @@ function Message({ messages }) {
                 onClick={() => handleEditSubmit(idx)}
                 className="text-green-500 hover:text-green-700"
               >
-                send
+                <PaperAirplaneIcon className="w-5 h-5" />
               </button>
               {/* Cancel Button */}
               <button
                 onClick={() => setEditingMessageId(null)}
                 className="text-red-500 hover:text-red-700"
               >
-                cancel
+                <FaTimes className="w-4 h-4" />
               </button>
             </div>
           ) : (
-            <div className="whitespace-pre-line">{content}</div>
+            <div className="break-words whitespace-pre-line">{content}</div>
           )}
         </div>
       </div>
