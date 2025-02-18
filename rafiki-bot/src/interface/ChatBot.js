@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaBars, FaTrash, FaTimes, FaPlus,FaEdit } from 'react-icons/fa';
 import { PaperAirplaneIcon } from '@heroicons/react/20/solid';
-
+//
 function  Chatbot ({ isDarkMode }){
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
