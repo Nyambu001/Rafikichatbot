@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, Navigate } from 'react-router-dom';
 import SignUp from './Login/Signup/SignUp';
 import Login from './Login/Signup/Login';
-import Chatbot from './interface/ChatBot'; // Assuming this is your Chatbot component
+import Chatbot from './interface/ChatBot';
 import { MoonIcon, SunIcon } from '@heroicons/react/20/solid'; // Import Heroicons
 
 function App() {
