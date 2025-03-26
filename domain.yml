@@ -6,6 +6,8 @@ intents:
 
 
 
+
+
 responses:
   utter_greet:
     - text: "Habari! Niko hapa kusaidia. Unahitaji msaada gani leo?"
@@ -19,8 +21,8 @@ responses:
     - text: "Kwaheri! Ninakutakia kila la heri."
     - text: "Tutaonana kesho, ni furaha yangu kukusaidia."
 
-
 actions:
   - utter_greet
   - utter_goodbye
+  - action_handle_assessment
 

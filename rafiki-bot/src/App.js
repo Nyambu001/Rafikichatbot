@@ -33,35 +33,32 @@ function App() {
   };
 
   return (
-    <div className="relative flex flex-col w-full min-h-screen bg-white dark:bg-gray-900">
-      
-      <header className="sticky top-0 z-10 flex items-center justify-center w-full gap-2 p-4 bg-white shadow-md dark:bg-gray-900">
-        <h1 className="font-urbanist text-[1.65rem] font-semibold text-center text-black dark:text-white">
-          Rafiki Bot
-        </h1>
-      </header>
+   <div className="relative flex flex-col w-full h-screen bg-white dark:bg-gray-900 overflow-hidden">
+  <header className="sticky top-0 z-10 flex items-center justify-center w-full gap-2 p-2 bg-white shadow-md dark:bg-gray-900">
+    <h1 className="font-urbanist text-lg font-semibold text-center text-black dark:text-white">
+      Rafiki Bot
+    </h1>
+  </header>
 
-      {/* Chatbot content section */}
-      <div className="flex flex-col justify-between flex-grow">
-      
-      </div>
+  {/* Chatbot content section */}
+  <div className="flex flex-col justify-between flex-grow h-full">
+    <RouterProvider router={router} />
+  </div>
 
-      {/* Dark mode toggle button */}
-      <button
-        onClick={toggleTheme}
-        className="absolute z-20 p-2 transition duration-300 rounded-full top-4 right-4 hover:bg-gray-200 dark:hover:bg-gray-700"
-        aria-label="Toggle Theme"
-      >
-        {darkMode ? (
-          <SunIcon className="w-6 h-6 text-yellow-400" />
-        ) : (
-          <MoonIcon className="w-6 h-6 text-gray-800" />
-        )}
-      </button>
+  {/* Dark mode toggle button */}
+  <button
+    onClick={toggleTheme}
+    className="absolute z-20 p-2 transition duration-300 rounded-full top-4 right-4 hover:bg-gray-200 dark:hover:bg-gray-700"
+    aria-label="Toggle Theme"
+  >
+    {darkMode ? (
+      <SunIcon className="w-5 h-5 text-yellow-400" />
+    ) : (
+      <MoonIcon className="w-5 h-5 text-gray-800" />
+    )}
+  </button>
+</div>
 
-      {/* RouterProvider to render routes */}
-      <RouterProvider router={router} />
-    </div>
   );
 }
 
