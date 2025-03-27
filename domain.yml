@@ -1,26 +1,19 @@
 version: "3.1"
 
 intents:
-  - greet
-  - goodbye
+  - stress_management
+  - loneliness
 
 
 
 responses:
-  utter_greet:
-    - text: "Habari! Niko hapa kusaidia. Unahitaji msaada gani leo?"
-    - text: "Vipi ndugu? Nafurahi kukuona. Je, kuna jambo lolote unataka kuzungumzia?"
-    - text: "Mambo vipi? Ni vipi naweza kusaidia leo?"
-    - text: "Shikamoo! Niko hapa, uko vipi?"
-
-  utter_goodbye:
-    - text: "Kwaheri! Usisahau kurudi tena."
-    - text: "Tutaonana baadaye! Nenda salama."
-    - text: "Kwaheri! Ninakutakia kila la heri."
-    - text: "Tutaonana kesho, ni furaha yangu kukusaidia."
+    utter_stress_management:
+      - text: "Pole sana! Naweza kusaidiaje kupunguza msongo wa mawazo wako?"
+      - text: "Samahani kusikia hivyo. Je, ungependa kushiriki kinachosababisha msongo wako wa mawazo?"
+      - text: "Msongo wa mawazo ni jambo la kawaida, lakini kuna njia za kuudhibiti. Naweza kukupa ushauri?"
+      - text: "Niko hapa kusaidia. Je, kuna jambo lolote linalokutatiza ambalo ungependa kuzungumzia?"
 
 
 actions:
-  - utter_greet
-  - utter_goodbye
+  - utter_stress_management
 
