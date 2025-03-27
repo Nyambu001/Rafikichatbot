@@ -12,6 +12,60 @@ from django.conf import settings
 from django.middleware.csrf import get_token
 from bson import ObjectId
 
+@csrf_exempt
+def create_chat_session(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            chat_type = data.get("type")  
+            token = request.headers.get("Authorization", "").split("Bearer ")[-1]
+
+            if not token:
+                return JsonResponse({"error": "No token provided"}, status=401)
+
+            try:
+                decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
+                user_id = decoded_token.get("user_id")
+
+                if not user_id:
+                    return JsonResponse({"error": "User ID not found in token"}, status=401)
+
+                user = User.objects(id=user_id).first()
+                if not user:
+                    return JsonResponse({"error": "Invalid token or user not found"}, status=401)
+
+            except jwt.ExpiredSignatureError:
+                return JsonResponse({"error": "Token has expired"}, status=401)
+            except jwt.InvalidTokenError:
+                return JsonResponse({"error": "Invalid token"}, status=401)
+
+            if chat_type not in ["PHQ-9", "GAD-7","both", "skip"]:
+                return JsonResponse({"error": "Invalid selection"}, status=400)
+
+            # Create a new chat session
+            new_chat = ChatRecord(
+                user=user,
+                conversation=[],
+                timestamp=datetime.utcnow(),
+
+            )
+            new_chat.save()
+
+            return JsonResponse(
+                {
+                    "chat_id": str(new_chat.id),
+
+                },
+                status=201,
+            )
+
+        except Exception as e:
+            logger.error(f"Error creating chat session: {str(e)}")  # Log the error
+            return JsonResponse({"error": "An error occurred while creating the chat session."}, status=500)
+
+    return JsonResponse({"error": "Invalid request method"}, status=405)
+
+
 def csrf_token(request):
     csrf_token = get_token(request)
     return JsonResponse({'csrf_token': csrf_token})
@@ -20,6 +74,8 @@ def index(request):
     return render(request, os.path.join(settings.REACT_APP_DIR, "index.html"))
 
 def register(request):
+    if request.method == 'GET':
+        return JsonResponse({"message": "invalid request"})
     if request.method == 'POST':
         data = json.loads(request.body)
         username = data.get('username')
@@ -41,6 +97,8 @@ def register(request):
 
 @csrf_exempt
 def login(request):
+    if request.method == 'GET':
+        return JsonResponse({"message": 'invalid request'})
     if request.method == 'POST':
         data = json.loads(request.body)
         username = data.get('username')
@@ -59,6 +117,7 @@ def login(request):
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
+
 def save_chat_record(user, user_message, bot_messages, conversation):
     chat_record = ChatRecord(
         user=user,
@@ -66,6 +125,7 @@ def save_chat_record(user, user_message, bot_messages, conversation):
         timestamp=datetime.utcnow()
     )
     chat_record.save()
+
 
 @csrf_exempt
 def chatbot_view(request):
@@ -77,9 +137,11 @@ def chatbot_view(request):
             chat_id = data.get('conversation_id')
             token = data.get('token')
 
+            # Validate message
             if not isinstance(user_message, str) or not user_message.strip():
                 return JsonResponse({'error': 'Invalid or empty message provided'}, status=400)
 
+            # Validate token
             if not token:
                 token = request.headers.get('Authorization')
                 if token:
@@ -103,6 +165,7 @@ def chatbot_view(request):
             except jwt.InvalidTokenError:
                 return JsonResponse({'error': 'Invalid token'}, status=401)
 
+            # Start or retrieve existing conversation
             conversation = []
 
             if chat_id:
@@ -112,12 +175,20 @@ def chatbot_view(request):
                     conversation = existing_chat.conversation
                 else:
                     return JsonResponse({'error': 'Chat ID not found'}, status=404)
+            else:
+                # Start new conversation if no chat_id is provided
+                existing_chat = ChatRecord.start_new_conversation(user)
+                conversation = existing_chat.conversation
+
 
             rasa_url = "http://localhost:5005/webhooks/rest/webhook"
-            payload = {"sender": str(user.id), "message": user_message}
+            payload = {
+               "sender": str(user.id),
+                "message": user_message
+            }
 
             try:
-                rasa_response = requests.post(rasa_url, json=payload, timeout=5)
+                rasa_response = requests.post(rasa_url, json=payload, timeout=10)
                 if rasa_response.status_code == 200:
                     bot_responses = rasa_response.json()
                     bot_messages = []
@@ -129,8 +200,9 @@ def chatbot_view(request):
                             bot_messages.append({'type': 'image', 'content': resp['image']})
 
                     if not bot_messages:
-                        return JsonResponse({'responses': ["I'm sorry, I didn't understand that."]})
+                        return JsonResponse({'responses': ["pole lakini sijakuelewa."]})
 
+                    # Add user and bot messages to the conversation
                     conversation.append({
                         "role": "user",
                         "message": user_message,
@@ -144,12 +216,10 @@ def chatbot_view(request):
                             "timestamp": datetime.utcnow()
                         })
 
-                    if existing_chat:
-                        existing_chat.conversation = conversation
-                        existing_chat.timestamp = datetime.utcnow()
-                        existing_chat.save()
-                    else:
-                        save_chat_record(user, user_message, bot_messages, conversation)
+                    # Save the conversation record
+                    existing_chat.conversation = conversation
+                    existing_chat.timestamp = datetime.utcnow()
+                    existing_chat.save()
 
                     return JsonResponse({'responses': bot_messages, 'updated_conversation': conversation})
 
@@ -166,6 +236,8 @@ def chatbot_view(request):
             return JsonResponse({'error': 'Invalid JSON format'}, status=400)
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+
 
 @csrf_exempt
 def chat_history(request):

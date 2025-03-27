@@ -26,21 +26,20 @@ const Login = ({ onLogin }) => {
 
             const result = await response.json();
             if (response.ok) {
-                // Store the JWT token
+
                 localStorage.setItem('authToken', result.token);
 
-                // Directly store userId from the response
-                const userId = result.user_id;  // Assuming your backend sends user_id directly
+
+                const userId = result.user_id;
                 localStorage.setItem('userId', userId);
 
-                onLogin();  // Trigger login success callback
-                navigate('/');  // Navigate to the home page
+                onLogin();
+                navigate('/');
                 reset();
             } else {
                 setLoginError(result.error || 'Login failed');
             }
         } catch (error) {
-            console.error('Error:', error);
             setLoginError('An error occurred. Please try again later.');
         } finally {
             setIsLoading(false);
@@ -102,7 +101,7 @@ const Login = ({ onLogin }) => {
                     <button
                         type="submit"
                         className="w-full py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
-                        disabled={isLoading || Object.keys(errors).length > 0} // Disable button if loading or validation errors
+                        disabled={isLoading || Object.keys(errors).length > 0}
                     >
                         {isLoading ? (
                             <span>Loading...</span> // Show loading state text

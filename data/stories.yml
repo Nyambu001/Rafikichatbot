@@ -6,4 +6,3 @@ stories:
     - intent: stress_management
     - action: utter_stress_management
 
-g

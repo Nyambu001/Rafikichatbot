@@ -1,198 +1,26 @@
 version: "3.1"
+
 nlu:
-  - intent: stress_management
+  - intent: greet
     examples: |
-      - Nahisi [msongo](stress) wa mawazo kila siku
-      - Nina [wasiwasi](stress) kuhusu kazi yangu
-      - Nimechoka na maisha yangu, nahitaji msaada
-      - Nahisi [huzuni](stress) kila mara
-      - Sijui jinsi ya kushughulikia [msongo](stress) wa mawazo
-      - Nina mawazo mengi kuhusu [fedha](cause)
-      - Sina usingizi kwa sababu ya [shida](cause) za kifamilia
-      - Nahisi kama sina furaha kwa muda mrefu
-      - Kazi yangu inanipa [shinikizo](stress) kubwa
-      - Nahisi [huzuni](stress) na sijui kwa nini
-      - Mimi hupata [maumivu ya kichwa](symptom) kutokana na msongo
-      - Nahitaji njia za kupunguza [wasiwasi](stress)
-      - Nahisi kufinywa na [majukumu](cause) ya kila siku
-      - Sina hamu ya kula kwa sababu ya [shida](cause) za maisha
-      - Nimepoteza hamu ya kufanya mambo niliyopenda awali
-      - Nahisi kuchoka kila wakati bila sababu
-      - Nina hasira kila mara kwa sababu ya [shinikizo](stress) kazini
-      - Nashindwa kudhibiti [wasiwasi](stress) wangu
-      - Ninapokuwa na [msongo](stress) wa mawazo, mimi hulia sana
-      - Ninakosa nguvu ya kuendelea na maisha yangu
-      - Nahisi [kuchanganyikiwa](symptom) na sijui nifanye nini
-      - Niko na [maumivu ya mwili](symptom) bila sababu
-      - Nahitaji kupumzika ili kupunguza [msongo](stress) huu
-      - Nahisi huzuni na siwezi kuzungumza na mtu yeyote
-      - Nashindwa kulala kwa sababu ya [mawazo mengi](cause)
-      - [Shida](cause) za kifamilia zinanifanya nihisi vibaya
-      - Nina wasiwasi kila ninapokuwa katika hadhara
-      - Nimekuwa nikihisi [upweke](stress) kwa muda mrefu
-      - Nahisi kukata tamaa kwa sababu ya [fedha](cause)
-      - Nashindwa kuzingatia kazi yangu kwa sababu ya [wasiwasi](stress)
-      - Niko na [maumivu ya kifua](symptom) ninapokuwa na wasiwasi
-      - Ninahitaji ushauri wa kushughulikia [shinikizo](stress) la maisha
-      - Nahisi nimezidiwa na [majukumu](cause) kazini
-      - Ninahitaji kupunguza [wasiwasi](stress) wangu
-      - Nahisi [huzuni](stress) na sijui cha kufanya
-      - [Kazi](cause) yangu inanifanya nisiwe na amani
-      - Nahisi uchovu mkubwa wa kiakili
-      - Nahitaji kujifunza mbinu za kudhibiti [msongo](stress)
-      - Nahisi [kuchanganyikiwa](symptom) kwa sababu ya matatizo ya kifedha
-      - Sina nguvu hata ya kuzungumza na marafiki zangu
-      - Nahisi sina tumaini la maisha
-      - Nahitaji kufanya mazoezi ili kupunguza [msongo](stress)
-      - Ninahitaji mtu wa kunisikiliza kuhusu shida zangu
-      - Nimechoka na kazi yangu na nahitaji mabadiliko
-      - Nahisi [kufinywa](symptom) na maisha
-      - Ninajitenga na watu kwa sababu ya [msongo](stress)
-      - Nashindwa kushughulikia [shida](cause) za kila siku
-      - Nina wasiwasi kila mara bila sababu
-      - Nahitaji kujifunza mbinu za kupunguza [wasiwasi](stress)
-      - Mimi hupoteza hamu ya kula ninapokuwa na [msongo](stress)
-      - Nina usingizi hafifu kwa sababu ya [wasiwasi](stress)
-      - Nashindwa kuzingatia kazi kwa sababu ya [shida](cause) za kifamilia
-      - Nahisi kubanwa na [majukumu](cause) mengi
-      - Nahisi kupoteza udhibiti wa maisha yangu
-      - Nahitaji kuzungumza na mtu kuhusu [msongo](stress) wangu
-      - Nahisi [upweke](stress) na sina marafiki wa kuzungumza nao
-      - Nashindwa kuonyesha hisia zangu kwa wengine
-      - Mimi hupata [maumivu ya tumbo](symptom) kutokana na wasiwasi
-      - Nahitaji kujifunza jinsi ya kupumzika
-      - Ninahisi sina furaha kwa muda mrefu
-      - Nashindwa kuacha kufikiria kuhusu matatizo yangu
-      - Nahitaji kupunguza [shinikizo](stress) la maisha
-      - Sina usingizi mzuri kwa sababu ya [mawazo mengi](cause)
-      - Mimi huhisi kama sina thamani
-      - Nahitaji kufanya meditation ili kupunguza [msongo](stress)
-      - Ninahisi nikiwa na huzuni baada ya kila kazi
-      - Nahisi kufinywa na maisha
-      - Nahitaji ushauri wa kisaikolojia
-      - Nashindwa kuelewa hisia zangu mwenyewe
-      - Nahisi nimezidiwa na kila kitu
-      - Ninahisi kuwa na hasira kila mara
-      - Sina furaha kazini tena
-      - Nahisi kubanwa na [shinikizo](stress) la kifamilia
-      - Niko na [maumivu ya mgongo](symptom) kwa sababu ya msongo
-      - Nahisi kuchanganyikiwa kuhusu maisha yangu
-      - Sina hamu ya kuzungumza na watu wengine
-      - Nahisi kuwa na [mzio](symptom) wa hofu
-      - Nahitaji kuzungumza na mtu anayeweza kunielewa
-      - Ninahisi huzuni kwa sababu ya [fedha](cause)
-      - Nashindwa kuelewa sababu ya huzuni yangu
-      - Mimi hupata [kizunguzungu](symptom) ninapokuwa na msongo
-      - Nashindwa kudhibiti hasira yangu
-      - Nahisi sina nguvu ya kuendelea
-      - Ninahisi [huzuni](stress) kwa sababu ya kazi nyingi
-      - Nahisi kubanwa na [shida](cause) za kifedha
-      - Nahitaji kujifunza jinsi ya kushughulikia [wasiwasi](stress)
-      - Nahisi kuchoka kila siku bila sababu
-      - Mimi hupata [maumivu ya misuli](symptom) kutokana na msongo
-      - Nina matatizo ya kupumua ninapokuwa na [wasiwasi](stress)
-      - Nahitaji njia za kupunguza [shinikizo](stress)
-      - Nahisi huzuni ninapojaribu kuzungumza na watu
-      - Nashindwa kudhibiti [wasiwasi](stress) wangu
-      - Nahisi kuwa na [homa](symptom) ya msongo wa mawazo
-      - Nahitaji usaidizi wa kushughulikia [shida](cause) za maisha
-      - Nina [maumivu ya kifua](symptom) kila ninapokuwa na huzuni
-      - Ninajihisi kukosa tumaini la maisha
-      - Nahisi kuwa na [huzuni](stress) kila siku
-      - Nahisi [upweke](stress) na sina mtu wa kuzungumza naye
-      
-      
-      
-      nlu:
-        - intent: loneliness
-          examples: |
-            - Nahisi mpweke kwa sababu ya [kazi nyingi](cause)
-            - Sina mtu wa kuzungumza naye baada ya [shule](cause)
-            - Najihisi mpweke baada ya [kazi](cause)
-            - Nahisi upweke mwingi [usiku](time)
-            - Sina [rafiki](relation) wa karibu wa kuzungumza naye
-            - Nahisi huzuni kwa sababu sina [familia](relation) karibu
-            - Najihisi mpweke kila [wikendi](time)
-            - Nimechoka kuwa peke yangu baada ya [talaka](cause)
-            - Hakuna anayenijali, nimeachwa na [mpenzi](relation)
-            - Upweke wangu unazidi [mwezi huu](time)
-            - Nimehama mji mpya na sina [marafiki](relation)
-            - Natamani ningekuwa na mtu wa kushiriki naye mawazo yangu
-            - Sina mtu wa kushiriki [mafanikio](cause) yangu
-            - Watu wananitenga kwa sababu ya [hali yangu ya kifedha](cause)
-            - Sijui nifanye nini kupunguza upweke wangu
-            - Watu hawajali mimi kwa sababu ya [hali yangu ya afya](cause)
-            - Sina mtu wa kuzungumza naye kwa sababu ya [huzuni](cause)
-            - Hakuna mtu anayeweza kunielewa
-            - Najihisi mpweke kwa sababu [wazazi](relation) wangu hawapo tena
-            - Sijazungumza na mtu yeyote kwa muda wa [wiki moja](time)
-            - Wenzangu wanajihusisha na mambo yao, mimi sina mtu
-            - Sina jamii inayonikubali kwa sababu ya [utambulisho](cause) wangu
-            - Najihisi mpweke kwa sababu ya [uzoefu mbaya](cause) niliopitia
-            - Watu huniepuka kwa sababu ya [tabia yangu](cause)
-            - Siku zangu hupita bila kuzungumza na mtu yeyote
-            - Najihisi mpweke baada ya [kifo cha rafiki](cause)
-            - Hakuna anayejali hisia zangu
-            - Sina mtu wa kuzungumza naye kwa sababu ya [mabadiliko ya maisha](cause)
-            - Watu hawahisi maumivu yangu
-            - Sina mtu wa kuzungumza naye baada ya [kuachishwa kazi](cause)
-            - Najihisi mpweke kwa sababu [marafiki](relation) wangu walihama
-            - Sina mtu wa kushiriki naye [shida](cause) zangu
-            - Ninahisi kama nimetengwa na [jamii](relation)
-            - Sina msaada kutoka kwa [familia](relation)
-            - Najitahidi kuwa na marafiki lakini siwezi
-            - Sijui nifanye nini ili nisiwe mpweke
-            - Nahisi mpweke kwa sababu ya [kutengwa kazini](cause)
-            - Nahitaji mtu wa kuzungumza naye mara kwa mara
-            - Watu hawajali mimi hata nikijaribu kuwasiliana nao
-            - Kila mtu anaonekana kuwa na maisha yake, lakini mimi sina
-            - Watu hawafikirii kunihusisha katika shughuli zao
-            - Sina mtu wa kushiriki naye furaha yangu
-            - Sina mtu wa kuzungumza naye kwa sababu ya [uoga](cause)
-            - Nahisi mpweke kwa sababu ya [kutengwa kijamii](cause)
-            - Wenzangu wana shughuli zao, mimi niko peke yangu
-            - Nimejaribu kufungua moyo wangu lakini hakuna anayenisikiliza
-            - Hakuna mtu anayeweza kunisikia
-            - Nahisi mpweke kwa sababu ya [uhamisho](cause)
-            - Sina mtu wa kuzungumza naye kwa sababu ya [kuhama shule](cause)
-            - Watu wananitenga kwa sababu ya [lugha](cause)
-            - Sihisi kama ninathaminiwa na watu
-            - Watu hawahisi maumivu yangu kwa sababu ya [hali yangu ya kiakili](cause)
-            - Sina marafiki wa kweli kwa sababu ya [mabadiliko ya maisha](cause)
-            - Upweke wangu unasababishwa na [mtindo wa maisha](cause)
-            - Nimejaribu kutafuta marafiki lakini bado nahisi mpweke
-            - Sina mtu wa kuzungumza naye kwa sababu ya [hofu ya kuachwa](cause)
-            - Nimepoteza marafiki wangu wote baada ya [kuhama kazi](cause)
-            - Sina jamii inayonielewa kwa sababu ya [dini yangu](cause)
-            - Sina msaada wa kihemko kwa sababu ya [msongo wa mawazo](cause)
-            - Nahisi mpweke baada ya [kuachwa na mpenzi](cause)
-            - Sina mtu wa kunisikiliza baada ya [mgogoro wa kifamilia](cause)
-            - Sina mtu wa kushiriki naye siri zangu
-            - Najihisi mpweke kwa sababu ya [kutengwa shuleni](cause)
-            - Nahisi mpweke kwa sababu sina mtu wa kushiriki naye [maisha](cause)
-            - Sina marafiki wa karibu kwa sababu ya [kutojiamini](cause)
-            - Nahisi mpweke baada ya [kuachishwa kazi](cause)
-            - Nimejaribu kupata marafiki lakini bado sijafanikiwa
-            - Najihisi mpweke kwa sababu ya [hali ya maisha](cause)
-            - Hakuna mtu anayenielewa kwa sababu ya [uhusika wangu](cause)
-            - Nahisi kama hakuna anayenihitaji kwa sababu ya [hali yangu ya kimwili](cause)
-            - Nimehamia mji mpya lakini sijajua jinsi ya kutengeneza marafiki
-            - Najihisi mpweke kwa sababu ya [ukosefu wa uhusiano](cause)
-            - Hakuna mtu anayenijali kwa sababu ya [hali yangu ya kifamilia](cause)
-            - Najihisi mpweke kwa sababu ya [kutoelewana na watu](cause)
-            - Sina mtu wa kushiriki naye hisia zangu
-            - Watu hawana muda wa kunisikiliza
-            - Sina mtu wa kushiriki naye ndoto zangu
-            - Sina mtu wa kushiriki naye [mafanikio yangu](cause)
-            - Najihisi mpweke kwa sababu ya [uhaba wa muda wa kijamii](cause)
-            - Hakuna mtu anayenielewa kwa sababu ya [kutengwa kwa muda mrefu](cause)
-            - Najihisi mpweke kwa sababu ya [kuondoka kwa mpenzi wangu](cause)
-            - Sina mtu wa kuzungumza naye kwa sababu ya [mabadiliko ya tabia](cause)
-            - Nimepoteza marafiki wangu wote kwa sababu ya [kuhamia mbali](cause)
-            - Najihisi mpweke baada ya [kupoteza kazi](cause)
-            - Sina mtu wa kuzungumza naye kwa sababu ya [hali yangu ya kiakili](cause)
-            - Najihisi mpweke kwa sababu ya [mabadiliko makubwa ya maisha](cause)
-            - Sina mtu wa kushiriki naye [shida zangu](cause)
-            - Sina mtu wa kuzungumza naye kwa sababu ya [kupoteza imani kwa watu](cause)
-            - Nimejaribu kuungana na watu lakini bado najihisi mpweke
-            - Nahisi mpweke kwa sababu ya [kutoelewana na familia](cause)
+      - Vipi?
+      - Salama?
+      - Mambo vipi?
+      - Habari
+      - Niaje?
+      - Mambo safi?
+      - Shikamoo
+      - Vipi leo?
+
+  - intent: goodbye
+    examples: |
+      - Kwaheri rafiki
+      - Tutaonana baadaye
+      - Badaaye
+      - Kwaheri
+      - Nimechoka, nenda salama
+      - Tutaonana kesho
+      - Niko na safari, nitatoka sasa
+      - Nenda salama, usisahau kunipigia simu
+
+

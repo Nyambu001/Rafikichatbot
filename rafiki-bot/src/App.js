@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, Navigate } from 'react-router-dom';
 import SignUp from './Login/Signup/SignUp';
 import Login from './Login/Signup/Login';
-import Chatbot from './interface/ChatBot';
+import Chatbot from './interface/ChatBot'; // Assuming this is your Chatbot component
 import { MoonIcon, SunIcon } from '@heroicons/react/20/solid'; // Import Heroicons
 
 function App() {
@@ -34,7 +34,19 @@ function App() {
 
   return (
     <div className="relative flex flex-col w-full min-h-screen bg-white dark:bg-gray-900">
-       {/* Dark mode toggle button */}
+      
+      <header className="sticky top-0 z-10 flex items-center justify-center w-full gap-2 p-4 bg-white shadow-md dark:bg-gray-900">
+        <h1 className="font-urbanist text-[1.65rem] font-semibold text-center text-black dark:text-white">
+          Rafiki Bot
+        </h1>
+      </header>
+
+      {/* Chatbot content section */}
+      <div className="flex flex-col justify-between flex-grow">
+      
+      </div>
+
+      {/* Dark mode toggle button */}
       <button
         onClick={toggleTheme}
         className="absolute z-20 p-2 transition duration-300 rounded-full top-4 right-4 hover:bg-gray-200 dark:hover:bg-gray-700"
