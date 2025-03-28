@@ -43,7 +43,7 @@ class ActionHandleAssessment(Action):
 
         if test_type == "PHQ-9":
             if score <= 4:
-                score_interpretation = "Matokeo haya yanaonyesha kuwa huna dalili za unyogovu au una dalili chache sana. Hali hii ni ya kawaida, na mara nyingi inaweza kusababishwa na changamoto za maisha ya kila siku. Unyogovu huu hauathiri maisha yako kwa kiwango kikubwa na unaweza kuendelea na shughuli zako za kila siku bila matatizo makubwa. Ni muhimu kuendelea kujitunza na kufuatilia afya yako ya kiakili."
+                score_interpretation = "Matokeo haya yanaonyesha kuwa huna dalili za unyogovu au una dalili chache sana. Hali hii ni ya kawaida, na mara nyingi inaweza kusababishwa na changamoto za maisha ya kila siku. Unyogovu huu hauathiri maisha yako kwa kiwango kikubwa na unaweza kuendelea na shughuli zako za kila siku bila matatizo makubwa. "
                 if impact == "sio vigumu kabisa":
                     impact_analysis = "Dalili zako za unyogovu ni za kiwango cha chini na hazina athari yoyote kubwa kwenye maisha yako ya kila siku. Unaweza kuendelea na kazi, masomo, na shughuli zako bila changamoto kubwa."
                     guidance = " Endelea kujitunza kwa kushiriki shughuli unazozipenda, kufanya mazoezi ya mara kwa mara, kula vyema, na kulala vya kutosha. Kudumisha mawasiliano na marafiki na familia kunaweza kusaidia katika kuimarisha afya yako ya kiakili. Ikiwa utahisi mabadiliko katika hisia zako, ni vyema kuzingatia mbinu za kujituliza au kutafuta ushauri mapema."
@@ -59,7 +59,7 @@ class ActionHandleAssessment(Action):
 
             elif score <= 9:
 
-                score_interpretation = "Matokeo haya yanaonyesha kuwa una dalili za unyogovu wa kiwango cha chini. Hali hii inaweza kusababisha kupungua kwa ari, uchovu wa kihisia, na hisia za huzuni mara kwa mara. Ingawa dalili hizi bado si kali, ni muhimu kuzitambua mapema na kutafuta njia za kudhibiti hali yako ili isizidi kuwa mbaya."
+                score_interpretation = "Matokeo haya yanaonyesha kuwa una dalili za unyogovu wa kiwango cha chini. Hali hii inaweza kusababisha kupungua kwa ari, uchovu wa kihisia, na hisia za huzuni mara kwa mara. "
 
                 if impact == "sio vigumu kabisa":
 
@@ -86,7 +86,7 @@ class ActionHandleAssessment(Action):
                     guidance = "Hii ni ishara kwamba unahitaji msaada wa haraka wa kitaalamu. Tafuta usaidizi kutoka kwa mtaalamu wa afya ya akili ili upate mwongozo bora wa kukabiliana "
 
             elif score <= 14:
-                score_interpretation = "Matokeo haya yanaonyesha kuwa una dalili za unyogovu wa kiwango cha kati. Hali hii inaweza kuathiri hisia zako, uwezo wa kufanya kazi, na mahusiano yako na wengine. Unaweza kuhisi huzuni mara nyingi, kupoteza hamu ya kushiriki katika shughuli ulizokuwa ukifurahia, na kuwa na changamoto za umakini au usingizi. Ni muhimu kuchukua hatua mapema ili kudhibiti dalili hizi na kuzuia kuzorota kwa hali yako ya kiakili."
+                score_interpretation = "Matokeo haya yanaonyesha kuwa una dalili za unyogovu wa kiwango cha kati. Hali hii inaweza kuathiri hisia zako, uwezo wa kufanya kazi, na mahusiano yako na wengine. Unaweza kuhisi huzuni mara nyingi, kupoteza hamu ya kushiriki katika shughuli ulizokuwa ukifurahia, na kuwa na changamoto za umakini au usingizi. "
                 if impact == "sio vigumu kabisa":
                     impact_analysis = "Ingawa una dalili za unyogovu wa kiwango cha kati, bado una uwezo wa kuendelea na maisha yako ya kila siku bila matatizo makubwa. Hali hii inaweza kuwa ya muda mfupi au kusababishwa na hali fulani zinazokufanya uhisi huzuni au kupoteza ari."
                     guidance = "Ni muhimu kuzingatia afya yako ya kiakili kwa kudumisha ratiba ya kawaida, kushiriki mazoezi ya mwili, na kuzungumza na mtu unayemwamini kuhusu hisia zako. Ikiwa dalili zinaendelea kwa muda mrefu, fikiria kutafuta msaada wa kitaalamu ili kupata mwongozo wa kudhibiti hali yako."
@@ -101,7 +101,7 @@ class ActionHandleAssessment(Action):
                     guidance = "Unahitaji msaada wa kitaalamu haraka. Tafuta usaidizi kutoka kwa mshauri wa afya ya akili au daktari. Unaweza kufikiria tiba ya kitabia au hata matibabu ya dawa ikiwa yatapendekezwa na mtaalamu. Usijitenge—tafuta msaada kutoka kwa familia, marafiki, au mtu unayemwamini."
             # Score ≥ 15
             else:
-                score_interpretation = "Matokeo haya yanaonyesha kuwa una unyogovu wa kiwango cha juu wa kati, ambao una athari kubwa kwa maisha yako ya kila siku. Dalili kama huzuni sugu, kupoteza hamu ya maisha, matatizo ya usingizi, na uchovu wa kihisia vinaweza kuwa vya kawaida kwako. Hali hii inaweza kuathiri kazi yako, mahusiano, na ustawi wako kwa ujumla. Hatua za haraka zinahitajika ili kudhibiti hali hii na kuzuia kuzorota zaidi."
+                score_interpretation = "Matokeo haya yanaonyesha kuwa una unyogovu wa kiwango cha juu , ambao una athari kubwa kwa maisha yako ya kila siku. Dalili kama huzuni sugu, kupoteza hamu ya maisha, matatizo ya usingizi, na uchovu wa kihisia vinaweza kuwa vya kawaida kwako.  "
                 if impact == "sio vigumu kabisa":
                     impact_analysis = ": Ingawa una dalili kali za unyogovu, bado unajitahidi kuendelea na maisha yako ya kila siku. Hata hivyo, hali hii inaweza kuendelea kuzorota ikiwa haitashughulikiwa."
                     guidance = " Unapaswa kuchukua hatua sasa. Tafuta mbinu za kujituliza kama mazoezi, mindfulness, au kuzungumza na mtu unayemwamini. Ikiwa dalili hizi zinaendelea, tafuta msaada wa kitaalamu haraka."
@@ -132,7 +132,7 @@ class ActionHandleAssessment(Action):
 
             elif score <= 9:
 
-                score_interpretation = "Alama hii inaonesha kuwa una wasiwasi wastani. Hii inamaanisha kuwa mara kwa mara unahisi msongo wa mawazo au hofu, lakini bado unaweza kudhibiti hali hii kwa kiasi fulani. Wasiwasi huu unaweza kuathiri baadhi ya nyanja za maisha yako, kama vile uwezo wa kuzingatia kazi, kushiriki katika shughuli za kijamii, au kulala vizuri. Ingawa hali hii siyo hatari sana, ni muhimu kuitambua mapema na kutumia mbinu za kudhibiti ili isiendelee kuwa mbaya zaidi."
+                score_interpretation = "Alama hii inaonesha kuwa una wasiwasi wastani. Hii inamaanisha kuwa mara kwa mara unahisi msongo wa mawazo au hofu, lakini bado unaweza kudhibiti hali hii kwa kiasi fulani. Wasiwasi huu unaweza kuathiri baadhi ya nyanja za maisha yako, kama vile uwezo wa kuzingatia kazi, kushiriki katika shughuli za kijamii, au kulala vizuri. "
 
                 if impact == "sio vigumu kabisa":
 
@@ -159,7 +159,7 @@ class ActionHandleAssessment(Action):
                     guidance = "Hii ni ishara kwamba unahitaji msaada wa ziada wa kitaalamu. Usisite kuzungumza na mshauri wa afya ya akili ili kupata mwongozo wa kudhibiti hali hii. Unaweza pia kujaribu njia za kupunguza msongo wa mawazo, kama vile kufanya mazoezi ya utulivu, kufanya mazoezi ya kupumua, kuzungumza na mtu unayemwamini, na kuhakikisha unapata usingizi wa kutosha."
 
             elif score <= 14:
-                score_interpretation = "Matokeo haya yanaonyesha una wasiwasi wa kati. Hii inamaanisha kuwa wasiwasi wako ni wa mara kwa mara na unaweza kuathiri maisha yako ya kila siku kwa kiasi kikubwa. Unaweza kupata ugumu wa kuzingatia kazi au masomo, kuhisi kuchoka kihisia na kimwili, au hata kuepuka shughuli fulani kwa sababu ya hofu au msongo wa mawazo. Ni muhimu kuchukua hatua za kushughulikia hali hii ili isizidi kuwa mbaya zaidi."
+                score_interpretation = "Matokeo haya yanaonyesha una wasiwasi wa kati. Hii inamaanisha kuwa wasiwasi wako ni wa mara kwa mara na unaweza kuathiri maisha yako ya kila siku kwa kiasi kikubwa. Unaweza kupata ugumu wa kuzingatia kazi au masomo, kuhisi kuchoka kihisia na kimwili, au hata kuepuka shughuli fulani kwa sababu ya hofu au msongo wa mawazo. "
                 if impact == "sio vigumu kabisa":
                     impact_analysis = "Ingawa una kiwango cha kati cha wasiwasi, unaweza kuendelea na shughuli zako za kila siku bila kupata changamoto kubwa. Hata hivyo, bado unaweza kuhisi msongo wa mawazo unaojitokeza mara kwa mara, hasa katika mazingira yenye shinikizo kubwa. Unaweza pia kuwa na mawazo mengi yanayojirudia, lakini bado unaweza kuyadhibiti kwa kiasi fulani."
                     guidance = " Endelea kufuatilia hali yako ya kihisia na kuhakikisha kuwa wasiwasi huu hauongezeki. Jaribu kufanya shughuli zinazokufanya uhisi vizuri, kama vile kutembea, kusikiliza muziki wa utulivu, au kutumia muda na marafiki wa karibu. Pia, epuka tabia zinazoweza kuchochea wasiwasi kama vile kutokuwa na ratiba nzuri au kulala kwa muda mfupi."
@@ -174,7 +174,7 @@ class ActionHandleAssessment(Action):
                     guidance = "Hii ni ishara kwamba unahitaji msaada wa kitaalamu haraka. Tafuta mshauri wa afya ya akili ili upate njia bora za kushughulikia wasiwasi wako. Pia, jaribu kutengeneza mfumo wa msaada kwa kushirikiana na marafiki au familia ili usihisi uko peke yako katika hali hii. Ikiwa unahisi hali inazidi kuwa mbaya, usisite kutafuta msaada wa dharura kutoka kwa wataalamu wa afya."
             # Score ≥ 15
             elif score <=19:
-                score_interpretation = "Alama hii inaonesha kuwa una wasiwasi mkubwa. Hii ina maana kuwa wasiwasi huu unaweza kusababisha hofu kali, msongo wa mawazo sugu, na hata dalili za kimwili kama maumivu ya kichwa, kushindwa kulala, au maumivu ya misuli. Unaweza kuhisi kama akili yako imelemewa na mawazo yanayojirudia, na hali hii inaweza kuathiri kazi, mahusiano, na afya yako kwa ujumla. Ni muhimu sana kutafuta msaada na kuchukua hatua za kudhibiti hali hii."
+                score_interpretation = "Alama hii inaonesha kuwa una wasiwasi mkubwa. Hii ina maana kuwa wasiwasi huu unaweza kusababisha hofu kali, msongo wa mawazo sugu, na hata dalili za kimwili kama maumivu ya kichwa, kushindwa kulala, au maumivu ya misuli. Unaweza kuhisi kama akili yako imelemewa na mawazo yanayojirudia, na hali hii inaweza kuathiri kazi, mahusiano, na afya yako kwa ujumla. "
                 if impact == "sio vigumu kabisa":
                     impact_analysis = "Ingawa una kiwango cha juu cha wasiwasi, bado una uwezo wa kushughulikia shughuli zako za kila siku vizuri. Hata hivyo, msongo wa mawazo huu unaweza kuwa mzito na kuchukua nguvu nyingi za kiakili na kimwili. Unaweza kuwa na mwelekeo wa kufikiria kupita kiasi na kuhisi uchovu mara kwa mara, lakini bado una uwezo wa kushughulikia majukumu yako."
                     guidance = "Kupambana na hali hii, jitahidi kuzingatia mbinu za kupunguza msongo wa mawazo, kama vile kufanya mazoezi ya utulivu na mazoezi ya kupumua kwa kina. Pia, epuka tabia zinazoweza kuzidisha hali yako kama vile kukaa peke yako kwa muda mrefu au kushughulika na kazi nyingi bila kupumzika. Ikiwa unahisi hali hii inaendelea kwa muda mrefu, ni vyema kutafuta msaada wa kitaalamu mapema."
@@ -188,7 +188,7 @@ class ActionHandleAssessment(Action):
                     impact_analysis = "Wasiwasi wako umefikia kiwango cha juu kiasi kwamba unahisi kama huna tena mamlaka juu ya maisha yako, na kila kitu kinakushinda kabisa. Unaweza kupata hofu kubwa sana, kuhisi kushindwa kabisa kufanya kazi zako za kila siku, au hata kuwa na mawazo ya kukata tamaa. Hali hii inaweza kusababisha matatizo makubwa kiafya ikiwa haitashughulikiwa kwa haraka."
                     guidance = "Hii ni hali inayohitaji msaada wa haraka wa kitaalamu. Tafuta mshauri wa afya ya akili ili kupata mbinu bora za kukabiliana na hali hii. Ikiwa unahisi hali hii inazidi kuwa mbaya, usisite kuwasiliana na mtaalamu wa afya mara moja. Pia, zungumza na mtu unayemwamini ili kupata msaada wa kihisia. Kumbuka kuwa hauko peke yako, na msaada upo kwa ajili yako."
             else:
-                score_interpretation = "Matokeo haya yanaonyesha kuwa una dalili kali za unyogovu, ambazo zinaweza kuathiri maisha yako kwa kiwango kikubwa. Hali hii inaweza kuambatana na hisia za huzuni sugu, kuchoka kupita kiasi, kupoteza hamu ya maisha, matatizo ya usingizi (kulala kupita kiasi au kukosa usingizi), na matatizo ya kuzingatia au kufanya maamuzi. Watu wenye unyogovu mkali pia wanaweza kuwa na mawazo ya kujiudhuru au kujidhuru kimwili.Hali hii ni mbaya na inahitaji msaada wa haraka wa kitaalamu. Hakuna haja ya kubeba mzigo huu peke yako. Hatua za haraka zinaweza kusaidia kuboresha hali yako ya kiakili na kuboresha ubora wa maisha yako."
+                score_interpretation = "Matokeo haya yanaonyesha kuwa una dalili kali za unyogovu, ambazo zinaweza kuathiri maisha yako kwa kiwango kikubwa. Hali hii inaweza kuambatana na hisia za huzuni sugu, kuchoka kupita kiasi, kupoteza hamu ya maisha, matatizo ya usingizi (kulala kupita kiasi au kukosa usingizi), na matatizo ya kuzingatia au kufanya maamuzi. Watu wenye unyogovu mkali pia wanaweza kuwa na mawazo ya kujiudhuru au kujidhuru kimwili.Hali hii ni mbaya na inahitaji msaada wa haraka wa kitaalamu. "
                 if impact == "sio vigumu kabisa":
                     impact_analysis = "Ingawa una dalili kali za unyogovu, bado una uwezo wa kuendelea na maisha yako ya kila siku bila matatizo makubwa. Hata hivyo, hali hii inaweza kuwa hatari ikiwa haitashughulikiwa kwa wakati. Unaweza kuwa unajaribu kudhibiti hisia zako peke yako, lakini unyogovu mkali unahitaji msaada wa kitaalamu ili kuhakikisha hauzidi kuwa mbaya zaidi."
                     guidance = " Ni muhimu kutambua kuwa hata kama unaendelea na maisha yako kwa sasa, dalili za unyogovu zinaweza kuwa mzigo mkubwa kimwili na kiakili. Hatua unazochukua sasa zinaweza kusaidia kuzuia hali yako kuzorota zaidi. Unapaswa kuzungumza na mtaalamu wa afya ya akili ili kupokea tathmini sahihi na mwongozo wa matibabu unaofaa. Pia, jaribu kudumisha ratiba thabiti, kupata usingizi wa kutosha, na kuepuka vichocheo vya msongo wa mawazo. Ikiwa unahisi hali yako inaanza kuwa mbaya zaidi, usisite kutafuta msaada wa haraka."
