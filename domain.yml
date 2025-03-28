@@ -10,6 +10,8 @@ intents:
 - peer_pressure
 - effects_of_peer_pressure
 - define_peer_pressure
+- greet
+- goodbye
 entities:
 - cause
 - feeling
@@ -57,83 +59,100 @@ slots:
 
 
 responses:
+  utter_greet:
+    - text: "Habari! Niko hapa kusaidia. Unahitaji msaada gani leo?"
+    - text: "Vipi ndugu? Nafurahi kukuona. Je, kuna jambo lolote unataka kuzungumzia?"
+    - text: "Mambo vipi? Ni vipi naweza kusaidia leo?"
+    - text: "Shikamoo! Niko hapa, uko vipi?"
 
+  utter_goodbye:
+    - text: "Kwaheri! Usisahau kurudi tena."
+    - text: "Tutaonana baadaye! Nenda salama."
+    - text: "Kwaheri! Ninakutakia kila la heri."
+    - text: "Tutaonana kesho, ni furaha yangu kukusaidia."
   utter_appreciation:
-    - text: Karibu.Niko hapa kukusaidia kila wakati.
-    - text: Nashukuru sana kwa maneno yako mazuri.
-    - text: Ni furaha yangu kuwa hapa kwa ajili yako.
-    - text: Nashukuru kwa kuthamini msaada huu.
-    - text: Ni furaha yangu kusaidia.
-    - text: Ni wajibu yangu kusaidia.
-    - text: Maneno yako yananitia moyo. Asante.
-    - text: Nashukuru kwa kuthamini juhudi zangu.
-    - text: Nimefurahi kusaidia. Asante kwa kusema hivyo.
-    - text: Karibu sana!.
+    - text: "Karibu. Niko hapa kukusaidia kila wakati."
+    - text: "Nashukuru sana kwa maneno yako mazuri."
+    - text: "Ni furaha yangu kuwa hapa kwa ajili yako."
+    - text: "Nashukuru kwa kuthamini msaada huu."
+    - text: "Ni furaha yangu kusaidia."
+    - text: "Ni wajibu yangu kusaidia."
+    - text: "Maneno yako yananitia moyo. Asante."
+    - text: "Nashukuru kwa kuthamini juhudi zangu."
+    - text: "Nimefurahi kusaidia. Asante kwa kusema hivyo."
+    - text: "Karibu sana!"
+
   utter_express_stress:
-    - text: Pole sana kusikia hivyo.Msongo wa mawazo unaweza kuwa mgumu, lakini hauko peke yako. Je, ungependa kushiriki kinachokusumbua? Naweza kukupa ushauri au mbinu za kukabiliana na hali hiyo.
-    - text: Pole sana kwa yale unayopitia. Niko hapa kusikiliza ikiwa unataka kushiriki zaidi.
-    - text: Najua haya yanaweza kuwa magumu sana kwako. Tafadhali jisikie huru kuzungumza nami.
-    - text: Pole sana kwa kupitia wakati mgumu. Je, kuna kitu chochote kinachoweza kusaidia hata kidogo?
-    - text: Sio rahisi kupitia hali ngumu, lakini hauko peke yako. Niko hapa kwa ajili yako.
-    - text: Kumbuka, kila mtu hupitia nyakati ngumu. Usisite kushiriki jinsi unavyohisi .
-    - text: Ningependa kujua jinsi unavyohisi ili nisaidie vyema. Jisikie huru kushiriki chochote.
-    - text: Kuhisi hivi ni kawaida kabisa, na ni sawa kuwa na hisia hizi. Niko hapa kwa msaada wowote unaohitaji.
-    - text: Najua inaweza kuwa vigumu sana, lakini nataka ujue kuwa unaweza kunitegemea kwa msaada.
-    - text: Pole sana, najua unapitia wakati mgumu. Tafadhali kumbuka kuwa una msaada hapa.
+    - text: "Pole sana kusikia hivyo. Msongo wa mawazo unaweza kuwa mgumu, lakini hauko peke yako. Je, ungependa kushiriki kinachokusumbua? Naweza kukupa ushauri au mbinu za kukabiliana na hali hiyo."
+    - text: "Pole sana kwa yale unayopitia. Niko hapa kusikiliza ikiwa unataka kushiriki zaidi."
+    - text: "Najua haya yanaweza kuwa magumu sana kwako. Tafadhali jisikie huru kuzungumza nami."
+    - text: "Pole sana kwa kupitia wakati mgumu. Je, kuna kitu chochote kinachoweza kusaidia hata kidogo?"
+    - text: "Sio rahisi kupitia hali ngumu, lakini hauko peke yako. Niko hapa kwa ajili yako."
+    - text: "Kumbuka, kila mtu hupitia nyakati ngumu. Usisite kushiriki jinsi unavyohisi."
+    - text: "Ningependa kujua jinsi unavyohisi ili nisaidie vyema. Jisikie huru kushiriki chochote."
+    - text: "Kuhisi hivi ni kawaida kabisa, na ni sawa kuwa na hisia hizi. Niko hapa kwa msaada wowote unaohitaji."
+    - text: "Najua inaweza kuwa vigumu sana, lakini nataka ujue kuwa unaweza kunitegemea kwa msaada."
+    - text: "Pole sana, najua unapitia wakati mgumu. Tafadhali kumbuka kuwa una msaada hapa."
+
   utter_stress_causes:
-    - text: Msongo wa mawazo unaweza kusababishwa na kazi nyingi, matatizo ya kifamilia, afya, au hata presha ya kijamii.
-    - text: Sababu za stress ni nyingi, kama vile matatizo ya kifedha, mahusiano, au majukumu mazito.
-    - text: Watu wengi hupata stress kutokana na mambo kama kazi nyingi au kutokuwepo na msaada wa kutosha.
-    - text: Msongo wa mawazo unaweza kutokana na kupoteza mtu wa karibu, changamoto kazini au maisha ya kila siku.
-    - text: Mambo yanayosababisha stress ni pamoja na kutokuwa na muda wa kupumzika au shinikizo la kijamii.
-    - text: Changamoto kubwa maishani, kama vile ugonjwa, kazi au familia, ni vyanzo vya stress.
-    - text: Stress inaweza kutokana na matarajio yasiyotimia au hali ya kutokuwa na uhakika.
-    - text: Sababu kuu za stress ni matatizo ya kifamilia, ukosefu wa msaada, na presha kazini.
-    - text: Kila mtu hupitia stress kwa sababu tofauti, ikiwa ni pamoja na afya, fedha au mahusiano.
-    - text: Msongo wa mawazo hutokana na mzigo wa majukumu na hali zisizotarajiwa.
+    - text: "Msongo wa mawazo unaweza kusababishwa na kazi nyingi, matatizo ya kifamilia, afya, au hata presha ya kijamii."
+    - text: "Sababu za stress ni nyingi, kama vile matatizo ya kifedha, mahusiano, au majukumu mazito."
+    - text: "Watu wengi hupata stress kutokana na mambo kama kazi nyingi au kutokuwepo na msaada wa kutosha."
+    - text: "Msongo wa mawazo unaweza kutokana na kupoteza mtu wa karibu, changamoto kazini au maisha ya kila siku."
+    - text: "Mambo yanayosababisha stress ni pamoja na kutokuwa na muda wa kupumzika au shinikizo la kijamii."
+    - text: "Changamoto kubwa maishani, kama vile ugonjwa, kazi au familia, ni vyanzo vya stress."
+    - text: "Stress inaweza kutokana na matarajio yasiyotimia au hali ya kutokuwa na uhakika."
+    - text: "Sababu kuu za stress ni matatizo ya kifamilia, ukosefu wa msaada, na presha kazini."
+    - text: "Kila mtu hupitia stress kwa sababu tofauti, ikiwa ni pamoja na afya, fedha au mahusiano."
+    - text: "Msongo wa mawazo hutokana na mzigo wa majukumu na hali zisizotarajiwa."
+
   utter_stress_symptoms:
-    - text: Dalili za stress ni kama uchovu, usingizi wa shida, huzuni, wasiwasi, au kukosa hamu ya kula.
-    - text: Watu wenye stress hujihisi kuchoka, kuchanganyikiwa, au kupoteza hamu ya mambo.
-    - text: Msongo wa mawazo unaweza kusababisha maumivu ya kichwa, kukosa usingizi, au kushuka kwa morali.
-    - text: Dalili za msongo wa mawazo ni pamoja na hasira, wasiwasi mwingi, au kujitenga na watu.
-    - text: Mabadiliko ya tabia, mfano hasira au huzuni kupita kiasi, huweza kuwa dalili.
-    - text: Msongo wa mawazo unaweza kufanya mtu kuwa na msongo wa mawazo, maumivu ya mwili au kushuka kwa hamasa.
-    - text: Kukosa utulivu, kuhisi huzuni bila sababu, na kupoteza nguvu ni dalili za msongo wa mawazo.
-    - text: Mara nyingi, watu wenye msongo wa mawazo hupoteza hamu ya kula, kulala au kufurahia maisha.
-    - text: Dalili za msongo wa mawazo ni pamoja na mawazo mengi, kukosa pumziko, au kujisikia mpweke.
-    - text: Msongo wa mawazo inaweza kufanya mtu ahisi hana msaada, hana matumaini, au yuko peke yake.
+    - text: "Dalili za stress ni kama uchovu, usingizi wa shida, huzuni, wasiwasi, au kukosa hamu ya kula."
+    - text: "Watu wenye stress hujihisi kuchoka, kuchanganyikiwa, au kupoteza hamu ya mambo."
+    - text: "Msongo wa mawazo unaweza kusababisha maumivu ya kichwa, kukosa usingizi, au kushuka kwa morali."
+    - text: "Dalili za msongo wa mawazo ni pamoja na hasira, wasiwasi mwingi, au kujitenga na watu."
+    - text: "Mabadiliko ya tabia, mfano hasira au huzuni kupita kiasi, huweza kuwa dalili."
+    - text: "Msongo wa mawazo unaweza kufanya mtu kuwa na msongo wa mawazo, maumivu ya mwili au kushuka kwa hamasa."
+    - text: "Kukosa utulivu, kuhisi huzuni bila sababu, na kupoteza nguvu ni dalili za msongo wa mawazo."
+    - text: "Mara nyingi, watu wenye msongo wa mawazo hupoteza hamu ya kula, kulala au kufurahia maisha."
+    - text: "Dalili za msongo wa mawazo ni pamoja na mawazo mengi, kukosa pumziko, au kujisikia mpweke."
+    - text: "Msongo wa mawazo inaweza kufanya mtu ahisi hana msaada, hana matumaini, au yuko peke yake."
+
   utter_stress_relief_tips:
-    - text: Pole sana kwa unayopitia na huyuko pekee yako, jaribu kupumzika, fanya mazoezi mepesi au punguza majukumu yako.
-    - text: Pole sana kwa unayopitia na huyuko pekee yako,kupumua kwa kina na taratibu kunaweza kusaidia kupunguza stress.
-    - text: Pole sana kwa unayopitia na huyuko pekee yako, tafuta muda wa kupumzika kila siku, hata kama ni dakika chache.
-    - text: Pole sana kwa unayopitia na huyuko pekee yako,zungumza na mtu unayemwamini kuhusu hisia zako.
-    - text: Pole sana kwa unayopitia na huyuko pekee yako, epuka kukaa na mawazo peke yako, tafuta msaada.
-    - text: Pole sana kwa unayopitia na huyuko pekee yako, fanya shughuli unazozipenda, kama kusikiliza muziki au kutazama sinema.
-    - text: Pole sana kwa unayopitia na huyuko pekee yako,jihusishe na mazoezi ya mwili au kutembea kwa muda mfupi.
-    - text: Pole sana kwa unayopitia na huyuko pekee yako, jitunze kwa kula vizuri na kulala vya kutosha.
-    - text: Pole sana kwa unayopitia na huyuko pekee yako, andika hisia zako kwenye daftari ili kupunguza mzigo wa akili.
-    - text: Pole sana kwa unayopitia na huyuko pekee yako, jaribu kutafakari  au kufanya mazoezi ya kupumua kila siku.
+    - text: "Pole sana kwa unayopitia na huyuko pekee yako, jaribu kupumzika, fanya mazoezi mepesi au punguza majukumu yako."
+    - text: "Pole sana kwa unayopitia na huyuko pekee yako, kupumua kwa kina na taratibu kunaweza kusaidia kupunguza stress."
+    - text: "Pole sana kwa unayopitia na huyuko pekee yako, tafuta muda wa kupumzika kila siku, hata kama ni dakika chache."
+    - text: "Pole sana kwa unayopitia na huyuko pekee yako, zungumza na mtu unayemwamini kuhusu hisia zako."
+    - text: "Pole sana kwa unayopitia na huyuko pekee yako, epuka kukaa na mawazo peke yako, tafuta msaada."
+    - text: "Pole sana kwa unayopitia na huyuko pekee yako, fanya shughuli unazozipenda, kama kusikiliza muziki au kutazama sinema."
+    - text: "Pole sana kwa unayopitia na huyuko pekee yako, jihusishe na mazoezi ya mwili au kutembea kwa muda mfupi."
+    - text: "Pole sana kwa unayopitia na huyuko pekee yako, jitunze kwa kula vizuri na kulala vya kutosha."
+    - text: "Pole sana kwa unayopitia na huyuko pekee yako, andika hisia zako kwenye daftari ili kupunguza mzigo wa akili."
+    - text: "Pole sana kwa unayopitia na huyuko pekee yako, jaribu kutafakari au kufanya mazoezi ya kupumua kila siku."
+
   utter_what_is_stress:
-    - text: Msongo wa mawazo ni hali ya wasiwasi au msongo wa mawazo unaotokea unapokumbana na changamoto.
-    - text: Ni hisia ya kubanwa au kulemewa kutokana na shinikizo la maisha.
-    - text: Msongo wa mawazo ni mwitikio wa mwili na akili kwa hali ngumu au isiyotarajiwa.
-    - text: Ni hali ambapo mtu huhisi hawezi kudhibiti mazingira yake.
-    - text: Msongo wa mawazo hutokea tunapokumbwa na matatizo, presha au hofu.
-    - text: Ni hali ya kutokuwa na amani ya akili kutokana na changamoto au matatizo.
-    - text: Msongo wa mawazo ni mwitikio wa kawaida wa mwili kwa hali inayomletea wasiwasi au huzuni.
-    - text: Watu hupata msongo wa mawazo wanapohisi kuwa majukumu yao ni mengi kupita uwezo wao.
-    - text: Msongo wa mawazo inaweza kutokana na hali ya kutokuwa na uhakika wa maisha.
-    - text: Ni hali ambapo mtu huhisi hana udhibiti wa maisha yake.
+    - text: "Msongo wa mawazo ni hali ya wasiwasi au msongo wa mawazo unaotokea unapokumbana na changamoto."
+    - text: "Ni hisia ya kubanwa au kulemewa kutokana na shinikizo la maisha."
+    - text: "Msongo wa mawazo ni mwitikio wa mwili na akili kwa hali ngumu au isiyotarajiwa."
+    - text: "Ni hali ambapo mtu huhisi hawezi kudhibiti mazingira yake."
+    - text: "Msongo wa mawazo hutokea tunapokumbwa na matatizo, presha au hofu."
+    - text: "Ni hali ya kutokuwa na amani ya akili kutokana na changamoto au matatizo."
+    - text: "Msongo wa mawazo ni mwitikio wa kawaida wa mwili kwa hali inayomletea wasiwasi au huzuni."
+    - text: "Watu hupata msongo wa mawazo wanapohisi kuwa majukumu yao ni mengi kupita uwezo wao."
+    - text: "Msongo wa mawazo inaweza kutokana na hali ya kutokuwa na uhakika wa maisha."
+    - text: "Ni hali ambapo mtu huhisi hana udhibiti wa maisha yake."
+
   utter_crisis_alert:
-    - text: Pole sana kwa unayopitia na huyuko pekee yako, hali unayopitia ni nzito. Tafuta msaada wa haraka kutoka kwa mtaalamu.
-    - text: Naomba usiendelee kupambana peke yako. Tafadhali ongea na mtu wa karibu au mtaalamu sasa.
-    - text: Ninapendekeza utafute msaada wa kitaalamu haraka. Wewe ni muhimu.
-    - text: Pole sana. Tafadhali wasiliana na huduma ya dharura au mtaalamu wa afya ya akili.
-    - text: Hali hii inahitaji msaada wa haraka. Tafadhali pigia huduma za dharura.
-    - text: Niko hapa kwa ajili yako, lakini pia tafadhali tafuta msaada wa mtaalamu sasa.
-    - text: Hili ni jambo zito. Tafadhali ongea na mtu wa familia au mtaalamu wa afya ya akili.
-    - text: Ninakuhimiza kuzungumza na mshauri wa kitaalamu sasa hivi.
-    - text: Tafadhali usisite kutafuta msaada wa haraka kutoka kwa huduma za dharura.
+    - text: "Pole sana kwa unayopitia na huyuko pekee yako, hali unayopitia ni nzito. Tafuta msaada wa haraka kutoka kwa mtaalamu."
+    - text: "Naomba usiendelee kupambana peke yako. Tafadhali ongea na mtu wa karibu au mtaalamu sasa."
+    - text: "Ninapendekeza utafute msaada wa kitaalamu haraka. Wewe ni muhimu."
+    - text: "Pole sana. Tafadhali wasiliana na huduma ya dharura au mtaalamu wa afya ya akili."
+    - text: "Hali hii inahitaji msaada wa haraka. Tafadhali pigia huduma za dharura."
+    - text: "Niko hapa kwa ajili yako, lakini pia tafadhali tafuta msaada wa mtaalamu sasa."
+    - text: "Hili ni jambo zito. Tafadhali ongea na mtu wa familia au mtaalamu wa afya ya akili."
+    - text: "Ninakuhimiza kuzungumza na mshauri wa kitaalamu sasa hivi."
+    - text: "Tafadhali usisite kutafuta msaada wa haraka kutoka kwa huduma za dharura."
+
   utter_peer_pressure:
     - text: "Ninakusikia! Shinikizo la marafiki linaweza kuwa gumu. Unaweza kushiriki zaidi kuhusu {situation}?"
     - text: "Pole sana unajihisi {emotion}. Kumbuka, huna haja ya kufanya {action} ili kukubalika. Unaweza kuzungumza na mtu unayemwamini?"
@@ -201,6 +220,9 @@ actions:
 - utter_peer_pressure
 - utter_define_peer_pressure
 - utter_effects of peer pressure
+- utter_greet
+- utter_goodbye
+- action_handle_assessment
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
