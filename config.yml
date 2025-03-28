@@ -11,6 +11,8 @@ pipeline:
 - name: "DIETClassifier"
   epochs: 100
   constrain_similarities: true
+  entity_recognition: true
+
 
 
 policies:

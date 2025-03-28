@@ -1,26 +1,398 @@
 version: "3.1"
-
 nlu:
-  - intent: greet
-    examples: |
-      - Vipi?
-      - Salama?
-      - Mambo vipi?
-      - Habari
-      - Niaje?
-      - Mambo safi?
-      - Shikamoo
-      - Vipi leo?
+- intent: express_stress
+  examples: |
+    - Nina [huzuni](feeling).
+    - Nina [msongo wa mawazo](feeling)
+    - Nimechoka kabisa, siwezi tena
+    - Nahisi [msongo wa mawazo](feeling) kwa sababu ya [kazi nyingi](cause)
+    - Sijui nifanye nini, kila kitu kinaniumiza kichwa
+    - Nashindwa kulala usiku kwa sababu ya [madeni](cause)
+    - Nahisi [kuvunjika moyo](feeling), kila siku ni shida
+    - Nimebanwa na mawazo, sina amani
+    - Nahisi [huzuni](feeling) kwa sababu ya [shida za nyumbani](cause)
+    - Kila siku nalia kwa siri, siwezi kushika tena
+    - Sina nguvu hata ya kutoka kitandani
+    - Nimelemewa na mawazo kuhusu [shule](cause)
+    - Maisha yananikaba, sijui nitoke vipi
+    - Nahisi kama hakuna mtu ananielewa
+    - Nimechoka kuficha machozi yangu
+    - Nahisi nimefika mwisho
+    - Hali yangu ya akili si nzuri kabisa
+    - Siwezi kuvumilia tena, maisha yamenichosha
+    - Kila kitu kinanipiga, sina pahali pa kutulia
+    - Mawazo yamenizidi kwa sababu ya [mambo ya familia](cause)
+    - Nashindwa hata kula, sina hamu
+    - Nahisi [kupotea](feeling), sijui niende wapi
+    - Ninajihisi [kuishiwa nguvu](feeling) kutokana na [shida za kazi](cause)
+    - Maisha yangu hayana furaha tena
+    - Nahisi [upweke](feeling) na nimekosa msaada
+    - Kila siku naamka na huzuni moyoni
+    - Mawazo yangu ni mengi sana kuhusu [pesa](cause)
+    - Sioni maana ya maisha tena
+    - Nahisi [kuchanganyikiwa](feeling) kwa sababu ya [migogoro nyumbani](cause)
+    - Nimevunjika moyo sana
+    - Hali yangu ya akili imezorota
+    - Sina mtu wa kumweleza shida zangu
+    - Nimelemewa na mawazo kuhusu [afya yangu](cause)
+    - Nahisi maisha yanazidi kunisukuma ukingoni
+    - Nimechoka kujifanya niko sawa
+    - Nashindwa kupumzika usiku
+    - Nahisi nimefungwa ndani ya giza
+    - Kila siku nahisi kama mzigo mkubwa mgongoni
+    - Mawazo yananifanya nihisi [kupotea](feeling)
+    - Nimekuwa na [msongo wa mawazo](feeling) kuhusu [familia yangu](cause)
+    - Nimekosa [furaha](feeling), kila kitu kinaniumiza
+    - Nimekata tamaa na maisha
+    - Nahisi [wasiwasi mwingi](feeling) kila siku
+    - Nimeelemewa na [hofu](feeling) kuhusu [hatima yangu](cause)
+    - Nimechoka kubeba matatizo peke yangu
+    - Nahisi [maumivu ya moyo](feeling) bila sababu
+    - Nashindwa kuelewa [hisia zangu](feeling)
+    - Kila kitu kinaniumiza bila sababu
+    - Nahisi kama maisha yamenichosha sana
+    - Sina raha moyoni kabisa
+    - Mawazo yananifanya nihisi kama mzigo
+    - Nahisi nimefungwa na shida
+    - Nimekuwa nikilia usiku peke yangu
+    - Nahisi kama sipendwi
+    - Nimechoka kupambana kila siku
+    - Nahisi nimeshindwa na maisha
+    - Nashindwa kushughulikia mambo ya kila siku
+    - Nimeelemewa na mawazo kuhusu [watoto wangu](cause)
+    - Sina nguvu ya kuendelea tena
+    - Nahisi moyo wangu umejaa [huzuni](feeling)
+    - Nimechanganyikiwa kwa sababu ya [mambo ya kazi](cause)
+    - Nahisi dunia imenigeukia
+    - Mawazo yananinyonga kila siku
+    - Nimeishiwa nguvu kabisa
+    - Nahisi kama hakuna mtu ananijali
+    - Nahisi nimebanwa na mawazo yasiyoisha
+    - Kila siku nahisi kama siwezi tena
+    - Mawazo yangu yananisumbua kila wakati
+    - Nahisi maisha haya ni magumu mno
+    - Nimelemewa na mawazo kuhusu [mustakabali wangu](cause)
+    - Sina hamu ya kufanya chochote tena
+    - Nahisi nimelemewa na [mizigo ya kifamilia](cause)
+    - Nimekata tamaa kwa sababu ya [hali ya kazi](cause)
+    - Mawazo mengi kuhusu [mahali pa kuishi](cause) yananisumbua
+    - Nahisi nimeshindwa kwa sababu ya [vikwazo kazini](cause)
+    - Nahisi sina msaada kwa sababu ya [ukosefu wa marafiki](cause)
+    - Ninajihisi [kuvunjika moyo](feeling) kutokana na [upweke](cause)
+    - Sina matumaini kwa sababu ya [changamoto za kifedha](cause)
+    - Nimelemewa na mawazo kuhusu [matarajio ya jamii](cause)
+    - Ninahisi [hofu](feeling) ya [kupoteza kazi](cause)
+    - Nahisi nimefungwa ndani ya [mawazo mabaya](cause)
+    - Nimeelemewa na [wasiwasi mwingi](feeling) kuhusu [kushindwa mitihani](cause)
+    - Nahisi moyo wangu umejaa [huzuni](feeling) kwa sababu ya [kukosa mpenzi](cause)
+    - Nahisi kama siwezi tena kwa sababu ya [shida za kifamilia](cause)
+    - Nimechoka na [mashinikizo kazini](cause)
+    - Ninahisi [kuchanganyikiwa](feeling) kwa sababu ya [migogoro kazini](cause)
+    - Sina nguvu kwa sababu ya [madeni mengi](cause)
+    - Mawazo kuhusu [ugonjwa wa mzazi](cause) yananilemea
+    - Nimeelemewa na [hofu](feeling) ya [kushindwa maisha](cause)
+    - Nahisi nimebanwa na [majukumu ya nyumbani](cause)
+    - Sina raha kwa sababu ya [hali ya uchumi](cause)
+    - Nahisi [huzuni](feeling) kwa sababu ya [kutengwa na marafiki](cause)
+    - Mawazo yananifanya nihisi kama siwezi kupumua
+    - Nimechoka kubeba huzuni moyoni
+    - Nahisi nimefika mwisho wa safari
+    - Mawazo yanazidi kunichosha
+    - Nahisi kama maisha hayana maana
+    - Kila kitu kinanifanya nihisi vibaya
+    - Nahisi nimezidiwa na matatizo ya [wazazi wangu](cause)
+    - Sina amani moyoni
+    - Nimeelemewa na mawazo kuhusu [gharama za maisha](cause)
+    - Nahisi kama sina mwelekeo
+    - Mawazo yananifanya nisiwe na nguvu
+    - Nahisi nimefungwa na matatizo
+    - Nimeelemewa na mawazo kuhusu [afya ya mtoto wangu](cause)
+    - Sina raha hata nikilala
+    - Kila siku nahisi huzuni isiyoisha
+    - Mawazo yangu yamejaa wasiwasi
+    - Nimechoka kupambana na maisha
+    - Nahisi nimeachwa na kila mtu
+    - Sina nguvu ya kukabiliana na matatizo
+    - Nimeelemewa na mawazo kuhusu [shida za kifamilia](cause)
+    - Nahisi kama ninaishi kwenye giza
+    - Mawazo yananifanya nihisi mnyonge
+    - Nimechoka kubeba matatizo ya kila siku
+    - Nahisi nimebanwa na matatizo yasiyoisha
+    - Sina hamu ya kuendelea mbele
+    - Kila siku nahisi nimelemewa
+    - Nahisi nimekosa msaada wa kweli
+    - Nimeelemewa na mawazo kuhusu [shida za pesa](cause)
+    - Nahisi moyo wangu umevunjika kabisa
+    - Sina nguvu ya kukabiliana na dunia
+    - Nahisi maisha yamenizidi
+    - Kila siku nahisi kama mzigo
+    - Mawazo yananifanya nihisi kama nimefungwa
+    - Nahisi sina tumaini lolote
+    - Nimeelemewa na mawazo kuhusu [ndugu zangu](cause)
+    - Nahisi nimeelemewa na kila kitu
+    - Mawazo yananifanya nisiwe na raha
+    - Sina furaha moyoni
+    - Nahisi nimefungwa na huzuni
+    - Nimeelemewa na mawazo kuhusu [wajibu wangu kazini](cause)
+    - Nahisi moyo wangu umejaa maumivu
+    - Sina nguvu ya kupambana tena
+    - Nahisi maisha yamenichosha kabisa
+    - Nimeelemewa na mawazo kuhusu [changamoto za maisha](cause)
+    - Nahisi sina nafasi duniani
+    - Kila siku nahisi huzuni kubwa
+    - Mawazo yangu yananisumbua usiku
+    - Nahisi nimebanwa na matatizo makubwa
+    - Nimeelemewa na mawazo kuhusu [marafiki wangu](cause)
+    - Kazi imekuwa nyingi sana
+    - mawazo yangu yananisumbua sana
+    - nahisi nmebanwa na [kazi yangu](cause)
+- intent: stress_causes
+  examples: |
+    - Nini husababisha msongo wa mawazo?
+    - Chanzo cha msongo wa mawazo ni nini?
+    - Kwa nini watu hupata wasiwasi?
+    - Unajua sababu za huzuni?
+    - Ni mambo gani huleta mawazo mengi?
+    - Nipe sababu za msongo wa mawazo
+    - Nini kinaweza kunisababisha kuwa na huzuni?
+    - Sababu kuu za msongo wa mawazo ni zipi?
+    - Msongo wa mawazo husababishwa na nini?
+    - Kwa nini huwa na mawazo mengi?
+    - Ni nini kinachochochea wasiwasi?
+    - Nipe sababu za maumivu ya akili
+    - Msongo wa mawazo inasababishwa na mambo gani?
+    - Chanzo cha huzuni ni kipi?
+    - Ni nini chanzo cha msongo wa mawazo?
+    - Kwa nini najikuta na msongo wa mawazo?
+    - Unajua sababu za mawazo mengi?
+    - Nini kinachoweza kunifanya nihisi huzuni?
+    - Kwa nini watu wengi hupata msongo wa mawazo?
+    - Je, sababu za msongo wa mawazo ni zipi?
+- intent: stress_symptoms
+  examples: |
+    - Dalili za msongo wa mawazo ni zipi?
+    - Ni nini huonyesha mtu ana msongo wa mawazo?
+    - Mtu akiwa na msongo wa mawazo ataonyesha nini?
+    - Nitajuaje kama nina msongo wa mawazo?
+    - Je, msongo wa mawazo ina dalili gani?
+    - Nipe dalili za mawazo mengi
+    - Nitajuaje kama nina wasiwasi mwingi?
+    - Unajua ishara za huzuni?
+    - Dalili kuu za msongo wa mawazo ni zipi?
+    - Ishara za maumivu ya akili ni zipi?
+    - Msongo wa mawazo inaonyesha vipi?
+    - Kwa nini najihisi mnyonge?
+    - Nitajuaje kama nina mawazo mengi?
+    - Nina dalili gani nikijawa na msongo wa mawazo?
+    - Ishara za msongo wa mawazo ni zipi?
+    - Dalili za mawazo mengi ni zipi?
+    - Msongo wa mawazo una ishara gani?
+    - Nipe ishara za mtu mwenye msongo wa mawazo
+    - Ishara za mtu mwenye huzuni ni zipi?
+    - Je, msongo wa mawazo inaonyesha kwa mwili?
+- intent: stress_relief_tips
+  examples: |
+    - Nifanye nini kupunguza msongo wa mawazo?
+    - Nipatie ushauri wa kuondoa wasiwasi
+    - Nawezaje kushinda mawazo mengi?
+    - Njia gani za kupunguza huzuni?
+    - Nipatie mbinu za kutuliza akili
+    - Je, kuna njia ya kupunguza msongo wa mawazo?
+    - Nifanye nini nikihisi huzuni?
+    - Unashauri nini kupunguza mawazo?
+    - Nipe ushauri wa kudhibiti msongo wa mawazo
+    - Nawezaje kuwa na amani ya akili?
+    - Njia zipi za kupunguza maumivu ya akili?
+    - Nifanye nini nikilemewa na msongo wa mawazo?
+    - Unaweza kunisaidia kupunguza huzuni?
+    - Nitapunguzaje wasiwasi wangu?
+    - Nipatie mbinu za kupunguza mawazo mengi
+    - Je, kuna njia za kutuliza akili?
+    - Nifanye nini kujisikia nafuu?
+    - Unashauri nini nikihisi maumivu ya akili?
+    - Nawezaje kupunguza stress kazini?
+    - Nipe njia za kupunguza mawazo mengi
+    - nina wasiwasi juu ya mtihani ujao
+- intent: what_is_stress
+  examples: |
+    - Msongo wa mawazo ni nini?
+    - Stress ni nini?
+    - Elezea maana ya wasiwasi
+    - Unamaanisha nini unaposema huzuni?
+    - Tafsiri ya msongo wa mawazo ni nini?
+    - Nini maana ya kuwa na msongo wa mawazo?
+    - Msongo wa mawazo maana yake ni nini?
+    - Nielezee msongo wa mawazo
+    - Je, msongo wa mawazo ni nini hasa?
+    - Unajua maana ya msongo wa mawazo?
+    - Nini maana ya huzuni?
+    - Tafsiri ya mawazo mengi ni nini?
+    - Msongo wa mawazo unamaanisha nini?
+    - Huzuni ni nini kwa upande wa akili?
+    - Unaposema msongo wa mawazo, unamaanisha nini?
+    - Elezea maana ya maumivu ya akili
+    - Msongo wa mawazo inamaanisha nini?
+    - Je, mawazo mengi yana maana gani?
+    - Nipe tafsiri ya msongo wa mawazo
+    - Msongo wa mawazo hutafsiriwaje?
+- intent: crisis_alert
+  examples: |
+    - Siwezi kuendelea tena
+    - Maisha yamenishinda
+    - Nahisi sina sababu ya kuishi
+    - Natamani ningekuwa nimekufa
+    - Sina matumaini tena
+    - Naumwa na akili hadi nataka kujiua
+    - Dunia imenichosha
+    - Sina pa kukimbilia
+    - Nahisi kuachana na maisha
+    - Hakuna mtu anayeweza kunisaidia
+    - Najihisi sifai duniani
+    - Nimelemewa kabisa
+    - Sina furaha yoyote tena
+    - Najihisi kama mzigo kwa watu
+    - Sipati sababu ya kuamka asubuhi
+    - Sina mtu wa kunisaidia
+    - Naishi kwa maumivu yasiyoisha
+    - Najihisi nimevunjika kabisa
+    - Sioni maana ya maisha yangu
+- intent: appreciation
+  examples: |
+    - Asante sana kwa msaada wako
+    - Nashukuru kwa kunisikiliza
+    - Asante kwa kunipa ushauri
+    - Umenisaidia sana, asante
+    - Nashukuru kwa muda wako
+    - Asante kwa kunielewa
+    - Asante kwa kuwa hapa kwangu
+    - Nashukuru sana kwa mazungumzo haya
+    - Umenipa matumaini, asante
+    - Asante kwa kuniwezesha kuelewa
+    - Nashukuru sana kwa msaada wako
+    - Asante kwa kujali
+    - Asante kwa maneno yako mazuri
+    - Umenisaidia sana, Nashukuru
+    - Asante kwa kunitulia akili
+    - Nashukuru kwa kunielekeza
+    - Asante kwa msaada wa leo
+    - Asante kwa kusikiliza matatizo yangu
+    - Nashukuru kwa msaada uliotoa
+    - Asante kwa kuwa na mimi leo
 
-  - intent: goodbye
-    examples: |
-      - Kwaheri rafiki
-      - Tutaonana baadaye
-      - Badaaye
-      - Kwaheri
-      - Nimechoka, nenda salama
-      - Tutaonana kesho
-      - Niko na safari, nitatoka sasa
-      - Nenda salama, usisahau kunipigia simu
 
+- intent: peer_pressure
+  examples: |
+    - Marafiki wangu wananishinikiza [kunywa pombe](action)
+    - Ninahisi shinikizo kutoka kwa marafiki wangu
+    - Wanasema nitakuwa mjinga nisipovuta [sigara](action)
+    - Kila mtu shuleni anavaa viatu vya ghali, nataka kununua pia
+    - Wananisukuma [kuchelewa kurudi nyumbani](action)
+    - Nakosa amani kwa sababu wanataka nifanye [mambo mabaya](action)
+    - [Rafiki](person) yangu ananilazimisha nijaribu [dawa za kulevya](action)
+    - Wanafanya nione kama mimi ni wa ajabu
+    - Nimeanza kuhisi [wasiwasi](emotion) kwa sababu ya shinikizo la marafiki
+    - Wananilazimisha nishiriki katika [party](situation) ambayo siipendi
+    - Wanasema nisiwe [mtu mzuri](response) kwa sababu ni "cheesy"
+    - Wananihimiza nikose [darasa](situation) ili twende nje pamoja
+    - Ninaogopa kusema "hapana" kwa sababu nitaonekana mnyonge
+    - Kila mtu anafanya [mambo mabaya](action) kwa hivyo labda ni sawa
+    - Nahisi [upweke](emotion) kwa sababu sitaki kufanya wanachofanya
+    - Wananilazimisha [kusikiliza muziki](action) ambao sipendi
+    - Wanacheka nikikataa kufanya jambo fulani
+    - Najihisi [dhaifu](emotion) kwa sababu siwezi kuhimili shinikizo
+    - Nataka [msaada](response) jinsi ya kukataa shinikizo la marafiki
+    - Nilijaribu kusema hapana, lakini bado wananisukuma
+    - Nilianza [kunywa pombe](action) kwa sababu nilihisi shinikizo
+    - Ninapojaribu kujiweka mbali, wanasema si marafiki wa kweli
+    - [Rafiki zangu](person) wanasema lazima nijaribu [sigara](action)
+    - Sihisi raha kuwa na wao, lakini sioni njia ya kutoka
+    - Wanasema lazima nijaribu [michezo ya kamari](action) kama wao
+    - Wananishawishi nitumie [pesa](action) kwenye vitu visivyo na maana
+    - Wanataka nipige picha zisizofaa ili nipate [likes](action) mtandaoni
+    - Shinikizo linanifanya nihisi [msongo wa mawazo](emotion)
+    - Nimeanza kufanya mambo ambayo si mimi ili nitambuliwe
+    - Nahisi kama nikipinga, nitapoteza [marafiki](person)
+    - Wanasema lazima nivae kama wao ili niwe "cool"
+    - Wananiambia nisifanye kazi ngumu, eti ni kupoteza muda
+    - Wananicheka kwa sababu sipendi [sherehe](situation)
+    - Wananipuuza nikikataa kufanya wanachotaka
+    - Nilijaribu kuwaambia kuwa sipendi, lakini hawaelewi
+    - Shinikizo la marafiki limeanza kunichosha
+    - Wanataka nifanye mambo mabaya ili nipate [marafiki](person) wapya
+    - Nahisi [huzuni](emotion) kwa sababu sina uhakika cha kufanya
+    - Wanasema nikatae wazazi wangu ili niwe "huru"
+    - Wanasisitiza nianze kutumia [madawa](action)
+    - Wanataka nianze kuchumbiana ingawa siko tayari
+    - Wanataka niangalie video zisizofaa
+    - Wanasema sitakuwa "mwanaume" nisipofanya wanavyosema
+    - Wanataka niende [club](situation) kila wikendi
+    - Ninahisi shinikizo kubwa kutoka kwa jamii
+    - Wanasema nitakuwa "mshamba" nisipofuata mtindo wao
+    - Wanataka nipate [tattoo](action) lakini sipendi
+    - Nimeanza kujihisi [dhaifu](emotion) kwa sababu ya shinikizo lao
+    - Nahisi kama sipaswi kukubali shinikizo hili
+    - Wananishinikiza nibadilishe mtazamo wangu wa maisha
+    - [Mwalimu](person) wangu alisema nisiruhusu marafiki waniendeshe
+    - Nifanye nini nikihisi shinikizo kutoka kwa marafiki?
+    - [Dada yangu](person) ananiambia nisikubali shinikizo la marafiki
+    - Wananishinikiza nitumie [simu](action) usiku wote
+    - Shinikizo la rika linanifanya nihisi [kuchanganyikiwa](emotion)
+    - Kila mtu anafanya, kwa hivyo labda na mimi nahitaji kufanya
+    - Wanasema nisiwe [naibu](response) kwa sababu ni "boring"
+    - Wanasema nikatae dini yangu ili niwe kama wao
+    - Wanataka nifanye mambo niliyokuwa sipendi awali
+    - Shinikizo hili limeanza kunifanya [nikose usingizi](emotion)
+    - Wanasema lazima nijifanye mtu mwingine ili nikubalike
+    - Wanasema lazima niwe na mpenzi sasa
+    - Wanataka nibadili jinsi ninavyozungumza
+    - Shinikizo la marafiki linanifanya nitilie shaka maamuzi yangu
+    - Wananihimiza nibadilishe ndoto zangu kwa ajili yao
+    - Nahisi [woga](emotion) kwa sababu nataka kuwa huru
+    - Nimeanza kufanya mambo kwa sababu ya wengine, si mimi mwenyewe
+    - Wanataka nichukue [madeni](action) ili niwafurahishe
+    - Shinikizo la rika linanifanya nisihisi furaha tena
+    - Kila mtu anasema "ni kawaida" lakini sihisi hivyo
+    - Wanataka nisiwe [mwenye tabia njema](response)
+    - Nataka kuwa tofauti, lakini shinikizo ni kubwa
+    - [Mama yangu](person) anasema nisiendekeze shinikizo la marafiki
+    - Nimejaribu kuepuka shinikizo lakini bado linanifuata
+    - Wanataka nibadili marafiki zangu wazuri
+    - Kila mtu anasema nitajuta baadaye, lakini bado wanasisitiza
+    - Nimejaribu kueleza hisia zangu lakini hawajali
+    - Shinikizo la marafiki linanifanya nisiwe mimi tena
+    - Wanasema nisiwe mwaminifu kwa [mchumba wangu](person)
+    - Wanataka niachane na [ndoto zangu](response)
+    - Nahisi kama sina udhibiti wa maisha yangu tena
+    - Shinikizo linanifanya nihisi [kutojiamini](emotion)
+    - Wanataka nifanye jambo linaloenda kinyume na maadili yangu
+    - Wanataka nibadili jina langu ili nifanane nao
+    - Nahisi kama napoteza uhalisia wangu
+    - Shinikizo la rika linanifanya nisahau maadili yangu
+    - Wanataka nizungumze vibaya kuhusu [rafiki yangu](person)
+    - Wanataka nibadili dini yangu
+    - Wanataka niwasikilize hata kama nahisi si sawa
+    - Wanataka nipinge [familia](person) yangu ili niwe sehemu yao
 
+- intent: define_peer_pressure
+  examples: |
+    - Shinikizo ni nini?
+    - Shinikizo la marafiki linamaanisha nini?
+    - Unaweza kusema nini kuhusu peer pressure?
+    - Shinikizo la kijamii lina maana gani?
+    - Ni nini kinachohusiana na peer pressure?
+    - Shinikizo inaweza kuwa na madhara gani?
+    - Unawezaje kuelewa peer pressure?
+    - Shinikizo inaweza kumshinikiza mtu kufanya nini?
+
+- intent: effects_of_peer_pressure
+  examples: |
+    - Shinikizo inaniathiri vipi?
+    - Nadhani shinikizo la marafiki linanilemea.
+    - Shinikizo la kijamii linaweza kusababisha nini?
+    - Shinikizo inaweza kuathiri mawazo yangu.
+    - Shinikizo linaweza kubadilisha maamuzi yangu, siyo?
+    - Shinikizp ina athari gani kwa afya yangu ya akili?
+    - Shinikizo linaweza kusababisha mtu kufanya maamuzi mabaya.
+    - Nawezaje kujikinga na madhara ya peer pressure?
+    - Shinikizo inaweza kusababisha mtu kujihisi mwenye huzuni.
+    - Ni madhara gani ya kuwa na marafiki wanaoshinikiza?

@@ -1,19 +1,35 @@
 version: "3.1"
 
 rules:
-
-- rule: Respond to greeting
+- rule: Provide stress causes
   steps:
-    - intent: greet
-    - action: utter_greet
+  - intent: stress_causes
+  - action: utter_stress_causes
 
-- rule: Say goodbye when the user says goodbye
+- rule: Provide stress symptoms
   steps:
-    - intent: goodbye
-    - action: utter_goodbye
+  - intent: stress_symptoms
+  - action: utter_stress_symptoms
 
-
-- rule: give assessment
+- rule: Provide stress relief tips
   steps:
-    - intent: submit_assessment
-    - action: action_handle_assessment
+  - intent: stress_relief_tips
+  - action: utter_stress_relief_tips
+
+- rule: Explain what stress is
+  steps:
+  - intent: what_is_stress
+  - action: utter_what_is_stress
+
+- rule: Handle crisis alert
+  steps:
+  - intent: crisis_alert
+  - action: utter_crisis_alert
+
+- rule: Thank the user for appreciation
+  steps:
+  - intent: appreciation
+  - action: utter_appreciation
+
+
+

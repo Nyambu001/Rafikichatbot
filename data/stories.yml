@@ -1,8 +1,106 @@
 version: "3.1"
 
 stories:
-- story: stress management advice
+
+
+- story: User expresses stress feelings
   steps:
-    - intent: stress_management
-    - action: utter_stress_management
+  - intent: express_stress
+  - action: utter_express_stress
+
+- story: User asks about stress causes
+  steps:
+  - intent: stress_causes
+  - action: utter_stress_causes
+
+- story: User asks about stress symptoms
+  steps:
+  - intent: stress_symptoms
+  - action: utter_stress_symptoms
+
+- story: User asks for stress relief tips
+  steps:
+  - intent: stress_relief_tips
+  - action: utter_stress_relief_tips
+
+- story: User asks what is stress
+  steps:
+  - intent: what_is_stress
+  - action: utter_what_is_stress
+
+- story: Crisis situation
+  steps:
+  - intent: crisis_alert
+  - action: utter_crisis_alert
+
+- story: User says thank you
+  steps:
+  - intent: appreciation
+  - action: utter_appreciation
+
+
+# Complex story example - user stressed, asks for relief tips
+- story: User stressed then seeks advice
+  steps:
+  - intent: express_stress
+  - action: utter_express_stress
+  - intent: stress_relief_tips
+  - action: utter_stress_relief_tips
+
+# Crisis + Appreciation flow
+- story: User in crisis then appreciates
+  steps:
+  - intent: crisis_alert
+  - action: utter_crisis_alert
+  - intent: appreciation
+  - action: utter_appreciation
+
+# User asks about symptoms, then what is stress
+- story: User wants symptoms and meaning
+  steps:
+  - intent: stress_symptoms
+  - action: utter_stress_symptoms
+  - intent: what_is_stress
+  - action: utter_what_is_stress
+
+
+- story: Handle peer pressure scenario
+  steps:
+  - intent: peer_pressure
+  - action: utter_peer_pressure
+
+- story: User asks about peer pressure
+  steps:
+    - intent: define_peer_pressure
+    - action: utter_define_peer_pressure
+
+- story: User asks about effects of peer pressure
+  steps:
+    - intent: effects_of_peer_pressure
+    - action: utter_effects_of_peer_pressure
+
+- story: Peer pressure with entity - situation
+  steps:
+  - intent: peer_pressure
+    entities:
+      - situation: "marafiki wananishinikiza"
+  - slot_was_set:
+    - situation: "marafiki wananishinikiza"
+  - action: utter_peer_pressure
+
+- story: Peer pressure with multiple entities
+  steps:
+  - intent: peer_pressure
+    entities:
+      - person: "rafiki yangu"
+      - emotion: "nina huzuni"
+      - action: "kunywa pombe"
+  - slot_was_set:
+    - person: "rafiki yangu"
+    - emotion: "nina huzuni"
+    - action: "kunywa pombe"
+  - action: utter_peer_pressure
+
+
+
 
