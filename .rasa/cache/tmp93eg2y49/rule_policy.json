@@ -1,0 +1,26 @@
+{
+  "lookup": {
+    "rules": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stress_symptoms\"}}]": "utter_stress_symptoms",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stress_symptoms\"}}, {\"prev_action\": {\"action_name\": \"utter_stress_symptoms\"}, \"user\": {\"intent\": \"stress_symptoms\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"appreciation\"}}]": "utter_appreciation",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"appreciation\"}}, {\"prev_action\": {\"action_name\": \"utter_appreciation\"}, \"user\": {\"intent\": \"appreciation\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"crisis_alert\"}}]": "utter_crisis_alert",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"crisis_alert\"}}, {\"prev_action\": {\"action_name\": \"utter_crisis_alert\"}, \"user\": {\"intent\": \"crisis_alert\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stress_relief_tips\"}}]": "utter_stress_relief_tips",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stress_relief_tips\"}}, {\"prev_action\": {\"action_name\": \"utter_stress_relief_tips\"}, \"user\": {\"intent\": \"stress_relief_tips\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stress_causes\"}}]": "utter_stress_causes",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"stress_causes\"}}, {\"prev_action\": {\"action_name\": \"utter_stress_causes\"}, \"user\": {\"intent\": \"stress_causes\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"what_is_stress\"}}]": "utter_what_is_stress",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"what_is_stress\"}}, {\"prev_action\": {\"action_name\": \"utter_what_is_stress\"}, \"user\": {\"intent\": \"what_is_stress\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [],
+    "rules_for_loop_unhappy_path": {},
+    "rules_not_in_stories": [
+      "predicting default action with intent back",
+      "predicting default action with intent restart",
+      "predicting default action with intent session_start"
+    ]
+  }
+}

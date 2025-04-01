@@ -1,0 +1,28 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-cause",
+      "2": "I-cause",
+      "3": "L-cause",
+      "4": "U-cause",
+      "5": "B-feeling",
+      "6": "I-feeling",
+      "7": "L-feeling",
+      "8": "U-feeling",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-cause": 1,
+      "I-cause": 2,
+      "L-cause": 3,
+      "U-cause": 4,
+      "B-feeling": 5,
+      "I-feeling": 6,
+      "L-feeling": 7,
+      "U-feeling": 8,
+      "O": 0
+    },
+    "num_tags": 9
+  }
+]

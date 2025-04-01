@@ -431,3 +431,10 @@ nlu:
     - Nawezaje kujikinga na madhara ya peer pressure?
     - Shinikizo inaweza kusababisha mtu kujihisi mwenye huzuni.
     - Ni madhara gani ya kuwa na marafiki wanaoshinikiza?
+
+- intent: anffirm
+    - Ndio
+    - Ndiyo
+    - Sawa
+    - Ukweli kabisaa.
+    - Ndiyo hivyo.

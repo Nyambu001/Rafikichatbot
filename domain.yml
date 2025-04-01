@@ -12,6 +12,7 @@ intents:
 - define_peer_pressure
 - greet
 - goodbye
+- affirm
 entities:
 - cause
 - feeling
@@ -96,19 +97,19 @@ responses:
 
   utter_stress_causes:
     - text: "Msongo wa mawazo unaweza kusababishwa na kazi nyingi, matatizo ya kifamilia, afya, au hata presha ya kijamii."
-    - text: "Sababu za stress ni nyingi, kama vile matatizo ya kifedha, mahusiano, au majukumu mazito."
-    - text: "Watu wengi hupata stress kutokana na mambo kama kazi nyingi au kutokuwepo na msaada wa kutosha."
+    - text: "Sababu za msongo wa mawazo ni nyingi, kama vile matatizo ya kifedha, mahusiano, au majukumu mazito."
+    - text: "Watu wengi hupata msongo wa mawazo kutokana na mambo kama kazi nyingi au kutokuwepo na msaada wa kutosha."
     - text: "Msongo wa mawazo unaweza kutokana na kupoteza mtu wa karibu, changamoto kazini au maisha ya kila siku."
-    - text: "Mambo yanayosababisha stress ni pamoja na kutokuwa na muda wa kupumzika au shinikizo la kijamii."
-    - text: "Changamoto kubwa maishani, kama vile ugonjwa, kazi au familia, ni vyanzo vya stress."
-    - text: "Stress inaweza kutokana na matarajio yasiyotimia au hali ya kutokuwa na uhakika."
-    - text: "Sababu kuu za stress ni matatizo ya kifamilia, ukosefu wa msaada, na presha kazini."
-    - text: "Kila mtu hupitia stress kwa sababu tofauti, ikiwa ni pamoja na afya, fedha au mahusiano."
+    - text: "Mambo yanayosababisha msongo wa mawazo ni pamoja na kutokuwa na muda wa kupumzika au shinikizo la kijamii."
+    - text: "Changamoto kubwa maishani, kama vile ugonjwa, kazi au familia, ni vyanzo vya msongo wa mawazo."
+    - text: "Msongo wa mawazo inaweza kutokana na matarajio yasiyotimia au hali ya kutokuwa na uhakika."
+    - text: "Sababu kuu za msongo wa mawazo ni matatizo ya kifamilia, ukosefu wa msaada, na presha kazini."
+    - text: "Kila mtu hupitia msongo wa mawazo kwa sababu tofauti, ikiwa ni pamoja na afya, fedha au mahusiano."
     - text: "Msongo wa mawazo hutokana na mzigo wa majukumu na hali zisizotarajiwa."
 
   utter_stress_symptoms:
-    - text: "Dalili za stress ni kama uchovu, usingizi wa shida, huzuni, wasiwasi, au kukosa hamu ya kula."
-    - text: "Watu wenye stress hujihisi kuchoka, kuchanganyikiwa, au kupoteza hamu ya mambo."
+    - text: "Dalili za msongo wa mawazo ni kama uchovu, usingizi wa shida, huzuni, wasiwasi, au kukosa hamu ya kula."
+    - text: "Watu wenye msongo wa mawazo hujihisi kuchoka, kuchanganyikiwa, au kupoteza hamu ya mambo."
     - text: "Msongo wa mawazo unaweza kusababisha maumivu ya kichwa, kukosa usingizi, au kushuka kwa morali."
     - text: "Dalili za msongo wa mawazo ni pamoja na hasira, wasiwasi mwingi, au kujitenga na watu."
     - text: "Mabadiliko ya tabia, mfano hasira au huzuni kupita kiasi, huweza kuwa dalili."
@@ -184,28 +185,28 @@ responses:
 
 
   utter_define_peer_pressure:
-    - text: "Peer pressure ni hali ambapo mtu anashawishiwa na marafiki au jamii kufanya jambo fulani, kwa hiari au kwa kulazimishwa."
+    - text: "Shinikizo ni hali ambapo mtu anashawishiwa na marafiki au jamii kufanya jambo fulani, kwa hiari au kwa kulazimishwa."
     - text: "Shinikizo la marafiki linapotokea, mtu anaweza kuhisi lazima afanye jambo fulani ili aonekane kuwa sehemu ya kikundi."
-    - text: "Peer pressure ni shinikizo kutoka kwa watu unaowazunguka, ambalo linaweza kumfanya mtu kufanya kitu anachohisi hakitaki."
+    - text: "Shinikizo  hukutoka kwa watu unaowazunguka, ambalo linaweza kumfanya mtu kufanya kitu anachohisi hakitaki."
     - text: "Ni hali ambapo mtu anahisi kushawishiwa na wengine kufanya jambo, hata kama yeye mwenyewe haoni umuhimu wa kufanya hivyo."
     - text: "Shinikizo la kijamii ni pale ambapo watu wanajikuta wakifanya vitu kwa sababu ya presha kutoka kwa marafiki au jamii."
-    - text: "Peer pressure inaweza kuwa chanya au hasi, na mara nyingi inatokea pale ambapo mtu anajikuta akifanya kitu ili kupata kukubalika na wengine."
+    - text: "Shinikizo inaweza kuwa chanya au hasi, na mara nyingi inatokea pale ambapo mtu anajikuta akifanya kitu ili kupata kukubalika na wengine."
     - text: "Shinikizo la marafiki linaweza kuwa la kutaka mtu kufanya kitu kwa sababu ya kuendana na wenzake, hata kama hajisikii vizuri kufanya hivyo."
-    - text: "Peer pressure inajumuisha hali ya kuwa na shinikizo kutoka kwa marafiki au jamii kufanya jambo fulani bila kujali maoni yako."
+    - text: "Shinikizo inajumuisha hali ya kuwa na shinikizo kutoka kwa marafiki au jamii kufanya jambo fulani bila kujali maoni yako."
     - text: "Hii ni hali ambapo mtu anaweza kushawishika kufanya jambo alilojua si sahihi, lakini anajikuta akifanya kwa sababu ya shinikizo la wengine."
     - text: "Shinikizo la kijamii linaweza kumfanya mtu kujua kuwa baadhi ya maamuzi ni bora kwa ajili ya jamii, lakini hayafai kwa mtu binafsi."
 
   utter_effects_of_peer_pressure:
-      - text: "Peer pressure inaweza kusababisha mtu kufanya maamuzi ambayo hayafai kwa afya yake, kama vile kutumia dawa za kulevya au kunywa pombe."
+      - text: "shinikizo linaweza kusababisha mtu kufanya maamuzi ambayo hayafai kwa afya yake, kama vile kutumia dawa za kulevya au kunywa pombe."
       - text: "Shinikizo la marafiki linaweza kuathiri hali yako ya kiakili na kukufanya kujihisi kama unahitaji kuendana na wenzako kila wakati."
       - text: "Shinikizo la kijamii linaweza kusababisha wasiwasi na msongo wa mawazo, kwa sababu mtu anaweza kujihisi kama hawezi kusema hapana."
-      - text: "Athari za peer pressure zinaweza kuleta upinzani ndani yako, ambapo unajikuta unafanya vitu kwa sababu ya shinikizo, lakini siyo kwa furaha."
+      - text: "Athari shinikizo zinaweza kuleta upinzani ndani yako, ambapo unajikuta unafanya vitu kwa sababu ya shinikizo, lakini siyo kwa furaha."
       - text: "Shinikizo linaweza kusababisha mtu kujihisi mpweke au kutengwa kutoka kwa wengine ikiwa hataki kufanya kile wanachotaka."
       - text: "Shinikizo la marafiki linaweza kuathiri maamuzi yako, na hata kukufanya kuwa na hisia za kujilaumu baada ya kufanya kitu ambacho si sahihi."
-      - text: "Peer pressure inaweza kusababisha kupoteza utu wako au kuamua kufanya mambo kwa sababu ya kuogopa hukumu kutoka kwa watu unaowajali."
+      - text: "Shinikizo inaweza kusababisha kupoteza utu wako au kuamua kufanya mambo kwa sababu ya kuogopa hukumu kutoka kwa watu unaowajali."
       - text: "Hali ya kushinikizwa inaweza kusababisha upungufu wa kujitambua na kujihisi kuwa umepoteza udhibiti wa maisha yako."
       - text: "Peer pressure inaweza kusababisha mabadiliko katika tabia zako, ikiwa ni pamoja na kufanya maamuzi yasiyofaa au kubadili marafiki."
-      - text: "Madhara ya peer pressure yanaweza kujitokeza kama kujihisi kuwa huwezi kuwa wewe mwenyewe kwa sababu ya kutaka kubaki kwenye kundi au jamii."
+      - text: "Madhara ya Shinikizo yanaweza kujitokeza kama kujihisi kuwa huwezi kuwa wewe mwenyewe kwa sababu ya kutaka kubaki kwenye kundi au jamii."
 
 actions:
 - utter_express_stress
@@ -215,8 +216,6 @@ actions:
 - utter_stress_causes
 - utter_stress_symptoms
 - utter_crisis_alert
-- action_reassure_user
-- action_give_advice
 - utter_peer_pressure
 - utter_define_peer_pressure
 - utter_effects of peer pressure

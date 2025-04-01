@@ -1,0 +1,44 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-cause",
+      "2": "I-cause",
+      "3": "L-cause",
+      "4": "U-cause",
+      "5": "B-feeling",
+      "6": "I-feeling",
+      "7": "L-feeling",
+      "8": "U-feeling",
+      "9": "B-pressure_type",
+      "10": "I-pressure_type",
+      "11": "L-pressure_type",
+      "12": "U-pressure_type",
+      "13": "B-response",
+      "14": "I-response",
+      "15": "L-response",
+      "16": "U-response",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-cause": 1,
+      "I-cause": 2,
+      "L-cause": 3,
+      "U-cause": 4,
+      "B-feeling": 5,
+      "I-feeling": 6,
+      "L-feeling": 7,
+      "U-feeling": 8,
+      "B-pressure_type": 9,
+      "I-pressure_type": 10,
+      "L-pressure_type": 11,
+      "U-pressure_type": 12,
+      "B-response": 13,
+      "I-response": 14,
+      "L-response": 15,
+      "U-response": 16,
+      "O": 0
+    },
+    "num_tags": 17
+  }
+]

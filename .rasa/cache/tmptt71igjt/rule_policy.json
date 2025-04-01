@@ -1,0 +1,18 @@
+{
+  "lookup": {
+    "rules": {},
+    "rule_only_slots": [],
+    "rule_only_loops": [],
+    "rules_for_loop_unhappy_path": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}}, {\"active_loop\": {\"name\": \"mental_health_form\"}, \"prev_action\": {\"action_name\": \"mental_health_form\"}, \"user\": {\"intent\": \"submit_assessment\"}}]": "do_not_predict_loop_action",
+      "[{\"prev_action\": {\"action_name\": \"mental_health_form\"}}, {\"active_loop\": {\"name\": \"mental_health_form\"}, \"prev_action\": {\"action_name\": \"utter_slots_values\"}, \"user\": {\"intent\": \"submit_assessment\"}}]": "do_not_predict_loop_action"
+    },
+    "rules_not_in_stories": [
+      "predicting default action with intent back",
+      "handling active loops and forms - mental_health_form - action_listen",
+      "predicting default action with intent session_start",
+      "handling active loops and forms - mental_health_form",
+      "predicting default action with intent restart"
+    ]
+  }
+}

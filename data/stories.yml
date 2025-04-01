@@ -1,10 +1,13 @@
 version: "3.1"
 
 stories:
-- story: greet and goodbye
+- story: greet
   steps:
   - intent: greet
   - action: utter_greet
+
+- story: goodbye
+  steps:
   - intent: goodbye
   - action: utter_goodbye
 
@@ -43,6 +46,16 @@ stories:
   - intent: appreciation
   - action: utter_appreciation
 
+- story: user greets affirms and utters stress
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: express_stress
+  - action: utter_express_stress
+  - intent: affirm
+  - action: utter_stress_relief_tips
+  - intent: appreciation
+  - action: utter_appreciation
 
 # Complex story example - user stressed, asks for relief tips
 - story: User stressed then seeks advice
@@ -105,6 +118,10 @@ stories:
     - emotion: "nina huzuni"
     - action: "kunywa pombe"
   - action: utter_peer_pressure
+
+
+
+
 
 
 

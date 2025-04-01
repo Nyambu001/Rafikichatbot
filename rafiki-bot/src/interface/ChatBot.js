@@ -1,26 +1,51 @@
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Message from './Message';
-import InputField from './InputField';
+import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import Message from "./Message";
+import InputField from "./InputField";
+import PHQ9Form from "./PHQ9Form";
+import GAD7Form from "./GAD7Form";
+import { FiMenu } from "react-icons/fi";
+import {FiArrowLeft } from "react-icons/fi";
+
 
 function Chatbot({ isDarkMode }) {
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
+  const [newMessage, setNewMessage] = useState("");
   const [chats, setChats] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showHistory, setShowHistory] = useState(false);
   const [selectedChatId, setSelectedChatId] = useState(null);
+  const [showQuestionnaireOptions, setShowQuestionnaireOptions] = useState(true);
+  const [showPHQ9Form, setShowPHQ9Form] = useState(false);
+  const [showGAD7Form, setShowGAD7Form] = useState(false);
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const goBackToHome = () => {
+    navigate("/");
+  };
+
+
+
+ useEffect(() => {
     fetchChatHistory();
   }, []);
 
+const startNewConversation = () => {
+    setShowQuestionnaireOptions(true);
+    setShowPHQ9Form(false);
+    setShowGAD7Form(false);
+
+
+};
+
+
+
   const fetchChatHistory = async () => {
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem("userId");
     if (!userId) {
-      setError('User ID not found');
+      setError("User ID not found");
       return;
     }
 
@@ -28,164 +53,280 @@ function Chatbot({ isDarkMode }) {
     setError(null);
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/chat_history/?user_id=${userId}`);
+      const response = await fetch(
+        `http://127.0.0.1:8000/chat_history/?user_id=${userId}`
+      );
       const data = await response.json();
 
       if (response.ok) {
-        if (Array.isArray(data.chats) && data.chats.length > 0) {
-          setChats(data.chats);
-          setSelectedChatId(data.chats[0].conversation_id);
-          setMessages(data.chats[0].messages || []);
-        } else {
-          setChats([]);
-          setSelectedChatId(null);
-          setMessages([]);
-        }
+        setChats(data.chats || []);
       } else {
-        setError(data.error || 'Failed to fetch chat history');
+        setError(data.error || "Failed to fetch chat history");
       }
     } catch (error) {
-      setError('Error fetching chat history');
+      setError("Error fetching chat history");
     } finally {
       setLoading(false);
     }
   };
 
-  const startNewConversation = () => {
-    setMessages([]);
-    setNewMessage('');
-    setSelectedChatId(null);
+
+
+const handleSelectQuestionnaire = async (type) => {
+  setShowQuestionnaireOptions(false);
+
+  try {
+    const token = localStorage.getItem("authToken");
+    if (!token) return;
+
+    const requestData = { type };
+
+    const response = await fetch("http://localhost:8000/create_chat_session/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(requestData),
+    });
+
+    if (!response.ok) throw new Error("Error creating chat session");
+
+    const data = await response.json();
+    setSelectedChatId(data.chat_id);
+
+    if (type === "PHQ-9") {
+      setShowPHQ9Form(true);
+    } else if (type === "GAD-7") {
+      setShowGAD7Form(true);
+    } else if (type === "both") {
+      setShowPHQ9Form(true);
+      setShowGAD7Form("pending");
+    }
+
+  } catch (error) {
+    console.error("Error creating chat session:", error);
+  }
+};
+
+
+  const handleBack = () => {
+    setShowQuestionnaireOptions(true);
+    setShowPHQ9Form(false);
+    setShowGAD7Form(false);
+
+
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userId');
-    navigate('/login');
-  };
 
-  const submitNewMessage = async () => {
-    const trimmedMessage = newMessage.trim();
-    if (!trimmedMessage) return;
-
-    setMessages(prevMessages => [
-      ...prevMessages,
-      { role: 'user', content: trimmedMessage }
-    ]);
-    setNewMessage('');
-
+  const sendMessageToBackend = async (message) => {
     try {
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem("authToken");
       if (!token) return;
 
       const requestData = {
-        message: trimmedMessage,
-        conversation_id: selectedChatId || null,
+        message: message,
+        conversation_id: selectedChatId,
       };
 
-      const response = await fetch('http://localhost:8000/chatbot/', {
-        method: 'POST',
+      const response = await fetch("http://localhost:8000/chatbot/", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(requestData),
       });
 
       if (!response.ok) {
-        throw new Error('Error sending message to Django API');
+        throw new Error("Error sending message");
       }
 
       const data = await response.json();
+      if(!selectedChatId&&data.conversation_id){
+      setSelectedChatId(data.conversation_id);
+      }
 
       if (data.responses && data.responses.length > 0) {
-        setMessages(prevMessages => [
+        setMessages((prevMessages) => [
           ...prevMessages,
-          ...data.responses.map(resp => ({
-            role: 'assistant',
-            content: data.responses[0].content ||'No response',
+          ...data.responses.map((resp) => ({
+            role: "assistant",
+            content: resp.content || "No response",
           })),
         ]);
       }
-
       fetchChatHistory();
-
     } catch (error) {
-      alert('There was an error sending the message.');
+      setError("There was an error sending the message. Please try again later.");
     }
   };
 
-  const handleChatSelect = (chat) => {
-    setSelectedChatId(chat.conversation_id);
-    setMessages(chat.messages.map(entry => ({
-      role: entry.role,
-      content: entry.message || entry.content,
-    })));
+  const submitNewMessage = () => {
+    const trimmedMessage = newMessage.trim();
+    if (!trimmedMessage) return;
+
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { role: "user", content: trimmedMessage },
+    ]);
+    setNewMessage("");
+
+    sendMessageToBackend(trimmedMessage);
   };
 
-  return (
-    <div className={`flex flex-col h-screen ${isDarkMode ? 'dark' : ''}`}>
-      <div className="absolute z-50 top-4 left-4">
+ const handleSubmitScore = (combinedMessage) => {
+    setMessages((prevMessages) => [
+    ...prevMessages,
+    { role: "user", content: combinedMessage },
+  ]);
+
+  sendMessageToBackend(combinedMessage);
+};
+const handleSkipQuestionnaire = async () => {
+  await handleSelectQuestionnaire("skip");
+  setShowQuestionnaireOptions(false);
+};
+
+  const handleChatSelect = (chat) => {
+    setSelectedChatId(chat.conversation_id);
+    setMessages(
+      chat.messages.map((entry) => ({
+        role: entry.role,
+        content: entry.message || entry.content,
+      }))
+    );
+    setShowQuestionnaireOptions(false);
+    setShowPHQ9Form(false);
+    setShowGAD7Form(false);
+  };
+   useEffect(() => {
+    setTimeout(() => {
+      if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  }, [messages]);
+
+ return (
+    <div className={`flex flex-col h-screen ${isDarkMode ? "dark text-white" : ""}`}>
+      <div className="absolute z-50 flex items-center w-5 h-5 space-x-4 top-4 left-4">
         <button
-          onClick={startNewConversation}
-          className="px-4 py-2 text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-400 focus:outline-none"
+          onClick={() => setShowHistory(!showHistory)}
+          className="text-xl text-gray-700 dark:text-white hover:text-gray-500"
         >
-          +
+          <FiMenu />
+        </button>
+        <button
+          onClick={() => {
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("userId");
+            navigate("/login");
+          }}
+          className="bg-white w-7 h-7 dark:bg-gray-900"
+        >
+          ⏻
         </button>
       </div>
 
-      <div className="absolute z-50 top-4 right-4">
-        <button
-          onClick={handleLogout}
-          className="px-4 py-2 text-white bg-red-500 rounded-lg shadow-md hover:bg-red-400 focus:outline-none"
-        >
-          Logout
-        </button>
-      </div>
-
-      <div className="relative grid h-full grid-cols-1 gap-4 p-4 md:grid-cols-3">
-        <div className="col-span-1 overflow-y-auto bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg max-h-[90vh]">
-          <h2 className="text-lg font-bold mb-4">Chat History</h2>
-          {loading && <p>Loading chat history...</p>}
-          {error && <p className="text-red-500">{error}</p>}
-          <ul className="text-sm font-medium text-gray-900">
-            {chats.length > 0 ? (
-              chats.map((chat, index) => {
-                const conversationLabel = `Conversation ${index + 1}`;
-                return (
+      <div className={`grid h-full ${showHistory ? "grid-cols-[250px_auto]" : "grid-cols-1"} gap-4 p-4`}>
+        {showHistory && (
+          <div className="w-[250px] overflow-y-auto bg-white dark:bg-gray-800 dark:text-white p-4 rounded-lg shadow-lg">
+            <h2 className="mb-4 text-lg font-bold">Chat History</h2>
+            {loading && <p>Loading chat history...</p>}
+            {error && <p className="text-red-500">{error}</p>}
+            <ul className="text-sm font-medium text-gray-900">
+              {chats.length > 0 ? (
+                chats.map((chat, index) => (
                   <li key={chat.conversation_id}>
                     <button
                       onClick={() => handleChatSelect(chat)}
-                      className="block px-4 py-2 mt-1 bg-gray-100 rounded-md dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
+                      className="block px-4 py-2 mt-1 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
                     >
-                      <strong>{conversationLabel}</strong>
+                      <strong>Gumzo la {index + 1}</strong>
                     </button>
                   </li>
-                );
-              })
+                ))
+              ) : (
+                <p className="text-md dark:text-white">No chat history available.</p>
+              )}
+            </ul>
+          </div>
+        )}
+          <div className={`flex flex-col ${showHistory ? "col-span-1" : "col-span-1"} bg-white dark:bg-gray-900 rounded-lg shadow-lg h-full`}>
+            {!showQuestionnaireOptions ? (
+                       <button
+              onClick={startNewConversation}
+              className={`absolute top-12 z-20 transition-all duration-300
+                          ${showHistory ? "left-[300px]" : "left-20"}`}
+              title="Go Back"
+            >
+            ⬅️
+          </button>
+          ) : null}
+          {/* Chat Messages - Scrollable */}
+          <div className="flex-grow p-4 overflow-y-auto" style={{ maxHeight: "calc(100vh - 150px)" }}>
+
+            {showQuestionnaireOptions ? (
+              <div className="flex flex-col items-center space-y-4">
+                <h2 className="text-xl font-semibold text-center dark:text-white">
+                  Je ungependa kushiriki katika dodoso la afya ya akili?
+                </h2>
+                <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                  <button
+                    className="p-4 bg-blue-100 rounded-lg shadow-md dark:bg-blue-800 dark:text-white hover:bg-blue-200 dark:hover:bg-blue-700"
+                    onClick={() => handleSelectQuestionnaire("PHQ-9")}
+                  >
+                    📋 PHQ-9
+                    <p className="text-sm dark:text-white">mtihani wa unyongovu</p>
+                  </button>
+                  <button
+                    className="p-4 bg-green-100 rounded-lg shadow-md dark:text-white dark:bg-green-800 hover:bg-green-200 dark:hover:bg-green-700"
+                    onClick={() => handleSelectQuestionnaire("GAD-7")}
+                  >
+                    📋 GAD-7
+                    <p className="text-sm dark:text-white">mtihani wa wasiwasi</p>
+                  </button>
+                  <button
+                    className="p-4 bg-teal-100 rounded-lg shadow-md dark:text-white dark:bg-teal-800 hover:bg-teal-200 dark:hover:bg-teal-700"
+                    onClick={() => handleSelectQuestionnaire("both")}
+                  >
+                    📋 zote mbili
+                    <p className="text-sm dark:text-white">mitihani yote</p>
+                  </button>
+                  <button
+                    className="p-4 bg-gray-100 rounded-lg shadow-md dark:text-white dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600"
+                    onClick={() => handleSelectQuestionnaire("skip")}
+                  >
+                    🏃‍♂️‍➡️🏃‍♂️‍➡️️ Apana
+                  </button>
+                </div>
+              </div>
+
+            ) : showPHQ9Form ? (
+              <PHQ9Form onSubmit={handleSubmitScore} onClose={() => setShowPHQ9Form(false)} />
+            ) : showGAD7Form ? (
+              <GAD7Form onSubmit={handleSubmitScore} onClose={() => setShowGAD7Form(false)} />
             ) : (
-              <p>No chat history available.</p>
+              <>
+                <Message messages={messages} />
+                <div ref={messagesEndRef} />
+              </>
             )}
-          </ul>
-        </div>
+          </div>
 
-        <div className="flex-grow col-span-2 p-4 overflow-auto bg-white dark:bg-gray-900">
-          {messages.length === 0 && (
-            <div className="mt-3 space-y-2 text-xl font-light text-primary-blue dark:text-gray-300">
-              <p>👋 Hey, how can I help?</p>
-            </div>
-          )}
-          <Message messages={messages} />
-          <div ref={messagesEndRef} />
+       {!showQuestionnaireOptions ? (
+  <div className="relative p-4 bg-white shadow-lg dark:bg-gray-900">
+    <InputField
+      startNewConversation={startNewConversation}
+      newMessage={newMessage}
+      setNewMessage={setNewMessage}
+      submitNewMessage={submitNewMessage}
+      isDarkMode={isDarkMode}
+    />
+  </div>
+) : null}
         </div>
-      </div>
-
-      <div className="p-4 bg-white dark:bg-gray-800 dark:border-gray-700">
-        <InputField
-          newMessage={newMessage}
-          setNewMessage={setNewMessage}
-          submitNewMessage={submitNewMessage}
-          isDarkMode={isDarkMode}
-        />
       </div>
     </div>
   );
