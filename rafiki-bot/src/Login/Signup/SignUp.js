@@ -2,11 +2,13 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash, FaLock, FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom'
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [showPassword, setShowPassword] = useState(false);
     const [signUpError, setSignUpError] = useState('');
+    const navigate= useNavigate();
 
 const onSubmit = async (data) => {
    console.log("Form Data:", data);
@@ -19,7 +21,6 @@ const onSubmit = async (data) => {
             const data = await response.json();
             return data.csrf_token;
         } catch (error) {
-            console.error("Error fetching CSRF token:", error);
             setSignUpError("Could not fetch CSRF token");
             return null;
         }
@@ -27,13 +28,12 @@ const onSubmit = async (data) => {
 
     const csrfToken = await getCSRFToken();
     if (!csrfToken) {
-        console.error("CSRF token is not available.");
         setSignUpError("CSRF token not found.");
         return;
     }
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/register/', {
+        const response = await fetch('http://127.0.0.1:8000/signup/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,11 +50,12 @@ const onSubmit = async (data) => {
         if (response.ok) {
             alert('Registration successful!');
             reset();
+            navigate('/login')
+
         } else {
             setSignUpError(result.error || 'Registration failed');
         }
     } catch (error) {
-        console.error('Error:', error);
         setSignUpError('An error occurred. Please try again later.');
     }
 };
@@ -87,7 +88,7 @@ const onSubmit = async (data) => {
                         {errors.username && <p className="text-xs text-red-500">{errors.username.message}</p>}
                     </div>
 
-                    {/* Email (Optional) */}
+                    {/* Email*/}
                     <div className="mb-6">
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">Email</label>
                         <input

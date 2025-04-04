@@ -1,6 +1,19 @@
 version: "3.1"
 
 nlu:
+  - intent: submit_assessment
+    examples: |
+       - alama ya PHQ-9: 11 | athari kwa maisha ya kila siku: sio vigumu kabisa
+       - alama ya GAD-7: 11 | athari kwa maisha ya kila siku: sio vigumu kabisa
+       - GAD-7 alama: 5
+       - PHQ-9 alama: 14
+       - alama yangu ya GAD-7 ni 10
+       
+  - intent: request_test
+    examples: |
+       - ningependa kuchukua mtihani wa unyongovu
+       - ningependa kuchukua mtihani wa wasiwasi
+
   - intent: greet
     examples: |
       - Vipi?
@@ -14,13 +27,12 @@ nlu:
 
   - intent: goodbye
     examples: |
-      - Kwaheri rafiki
-      - Tutaonana baadaye
-      - Badaaye
-      - Kwaheri
-      - Nimechoka, nenda salama
-      - Tutaonana kesho
-      - Niko na safari, nitatoka sasa
-      - Nenda salama, usisahau kunipigia simu
-
+     - Kwaheri rafiki
+     - Tutaonana baadaye
+     - Badaaye
+     - Kwaheri
+     - Nimechoka, nenda salama
+     - Tutaonana kesho
+     - Niko na safari, nitatoka sasa
+     - Nenda salama, usisahau kunipigia simu
 

@@ -1,7 +1,7 @@
 from datetime import datetime
 from mongoengine import Document, StringField, EmailField, DateTimeField, ReferenceField
 from werkzeug.security import generate_password_hash, check_password_hash
-from mongoengine import ListField, DictField
+from mongoengine import ListField, DictField, IntField
 from mongoengine.queryset.visitor import Q
 
 
@@ -25,6 +25,8 @@ class ChatRecord(Document):
     user = ReferenceField('User', required=True)
     conversation = ListField(DictField())
     timestamp = DateTimeField(default=datetime.utcnow)
+    assessment_type = StringField(choices=['PHQ-9', 'GAD-7'], default=None)  # Store type of assessment
+    assessment_score = IntField(default=None)  # Store the score
 
     def add_message(self, user_message, bot_response):
         self.conversation.append({
@@ -35,6 +37,17 @@ class ChatRecord(Document):
         self.conversation.append({
             'role': 'assistant',
             'content': bot_response,
+            'timestamp': datetime.utcnow()
+        })
+        self.save()
+
+    def save_assessment(self, assessment_type, score):
+        """Save PHQ-9 or GAD-7 score in the conversation."""
+        self.assessment_type = assessment_type
+        self.assessment_score = score
+        self.conversation.append({
+            'role': 'assistant',
+            'content': f"{assessment_type} Score: {score}",
             'timestamp': datetime.utcnow()
         })
         self.save()
@@ -54,13 +67,8 @@ class ChatRecord(Document):
     def get_conversation_by_id(cls, chat_id):
         return cls.objects(id=chat_id).first()
 
-    def __str__(self):
-        if self.conversation:
-            last_message = self.conversation[-1]
-            role = last_message.get('role', 'unknown')
-            content = last_message.get('content', 'No content')
-            return f"User: {self.user.username}, Last {role}: {content}"
-        return f"User: {self.user.username}, No conversation history"
+
+
 
 
 
