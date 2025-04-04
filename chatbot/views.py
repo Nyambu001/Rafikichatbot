@@ -17,7 +17,7 @@ def create_chat_session(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
-            chat_type = data.get("type")  
+            chat_type = data.get("type")
             token = request.headers.get("Authorization", "").split("Bearer ")[-1]
 
             if not token:

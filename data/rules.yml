@@ -12,7 +12,6 @@ rules:
     - intent: goodbye
     - action: utter_goodbye
 
-
 - rule: give assessment
   steps:
     - intent: submit_assessment

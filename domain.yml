@@ -3,8 +3,63 @@ version: "3.1"
 intents:
   - greet
   - goodbye
+  - financial_struggles
+  - academic_pressure
+  - submit_assessment
 
 
+
+entities:
+  - support_dependents
+  - financial_status
+  - capital
+  - income_source
+  - institution
+  - intensity
+  - expense_type
+  - debt
+
+slots:
+  expense_type:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: expense_type
+  financial_status:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: financial_status
+  support_dependents:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: support_dependents
+  capital:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: capital
+  debt:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: debt
+  intensity:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: intensity
+  income_source:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: income_source
+  institution:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: institution
 
 
 
