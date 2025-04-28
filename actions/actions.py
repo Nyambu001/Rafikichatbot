@@ -205,4 +205,315 @@ class ActionHandleAssessment(Action):
         dispatcher.utter_message(text=full_response)
         return []
 
+class ActionStressAdvice(Action):
+    def name(self):
+        return "action_stress_advice"
+    def run(self, dispatcher, tracker, domain):
+        stress_issues={}
+        for slot in ["cause","symptom","intensity"]:
+            value = tracker.get_slot(slot)
+            if value:
+                stress_issues[slot]=value
+        advice = {
+            "cause": [
+                "Kumbuka kuwa kila mtu hupitia changamoto katika maisha, hauko peke yako.",
+                "Jipe muda wa kupumzika na kutuliza akili yako unapokumbwa na hali ngumu.",
+                "Tafuta mtu wa kuzungumza naye ili kupunguza uzito wa mawazo yako.",
+                "Ni sawa kuhisi huzuni wakati hali ngumu zinatokea, jipe ruhusa ya kuhisi.",
+                "Jaribu kuchukua hatua ndogo kila siku hata kama hali inaonekana ngumu.",
+                "Kumbuka kwamba hata siku mbaya zaidi huwa na mwisho wake.",
+                "Jikumbushe nguvu zako na mafanikio ya awali ili kuongeza matumaini yako.",
+                "Tafuta shughuli zinazokufurahisha kama njia ya kupunguza msongo wa mawazo.",
+                "Usione haya kuomba msaada unapojisikia kushindwa na hali.",
+                "Chukua kila siku kama fursa mpya ya kupata afueni na nguvu mpya.",
+                "Hakuna lengo linalofaa zaidi kuliko kujali afya yako ya akili na mwili.",
+                "Unapohisi umekwama, kumbuka kwamba hali hii pia itapita.",
+                "Inachukua muda, lakini kila hatua ndogo inakupeleka mbele.",
+                "Kila hatua unayochukua ni maendeleo, hata kama hailingani na vile ulivyokuwa ukitarajia.",
+                "Ni sawa kukubaliana na hali yako ya sasa na kujitolea muda kwa nafsi yako.",
+                "Tafadhali kumbuka kwamba kujali nafsi yako ni muhimu kuliko lolote lingine.",
+                "Unapohisi kushindwa, kumbuka kwamba sio kila mapambano yanaonekana kwa wengine.",
+                "Hali ngumu si ishara ya udhaifu, bali ni uthibitisho wa uwezo wako wa kuhimili.",
+                "Usikate tamaa, wakati mgumu ni sehemu ya safari ya maisha.",
+                "Wakati mwingine inachukua ujasiri mkubwa kusema, 'Sina nguvu leo, lakini nitapigana kesho.'",
+                "Kama unahisi kupoteza matumaini, kumbuka kuwa kuna nafasi ya kujenga matumaini mapya kila siku.",
+                "Unapohisi uchovu, ni ishara ya kuwa unahitaji kupumzika ili kupata nguvu mpya.",
+                "Mara nyingi, wakati unavyokuwa na furaha ndogo, ndiyo unapata nguvu kubwa ya kushinda changamoto kubwa.",
+                "Weka mbele yako ndoto zako, lakini jua kuwa ni sawa kupumzika wakati mwingine.",
+                "Hata ukishindwa, kumbuka kuwa kujitahidi ndio kunaleta mafanikio baadaye.",
+                "Pokea kila siku kama zawadi ya kujijenga tena na tena, polepole.",
+                "Tafuta nafasi ya kutafakari na kupata amani ya akili, hata kama ni kwa sekunde chache.",
+                "Usijali kuhusu kile ambacho huwezi kubadilisha, tumia nguvu zako kwa kile unachoweza kuboresha.",
+                "Kumbuka kuwa unafaa kupumzika na kujitunza kabla ya kuendelea mbele.",
+                "Hata wakati unavyohisi kupoteza njia, kumbuka kwamba unaweza kujua njia yako tena kwa haraka.",
+                "Usikate tamaa kwa sababu ya changamoto za leo; kesho kuna uwezekano wa kuleta mabadiliko.",
+                "Katika hali ngumu, usikate tamaa; sehemu ya mafanikio yako ni kushinda vikwazo.",
+                "Kama unajiona umekata tamaa, tafadhali kumbuka kuwa kila mtu hupitia hali kama hiyo.",
+                "Usijali kuwa hufanyi vizuri kila wakati, mabadiliko yanahitaji muda na uvumilivu.",
+                "Ni sawa kuwa na hisia za uchovu, lakini jipe ruhusa ya kupona na kujenga nguvu mpya.",
+                "Kama unajiona katika giza, kumbuka kwamba mwangaza upo mbele yako.",
+                "Inachukua muda kujifunza kuwa na huruma kwako mwenyewe katika nyakati za changamoto.",
+                "Usijali kuhusu hatua kubwa, hatua ndogo ni muhimu kwa mafanikio yako.",
+                "Katika kila hali ngumu, kuna somo linalokuja kukufundisha na kukusaidia kukua.",
+                "Kama unapojikuta ukiwa na wasiwasi, kumbuka kwamba kupumzika ni hatua muhimu ya kupona.",
+                "Kumbuka kuwa kila changamoto ni fursa ya kujifunza na kukua.",
+                "Mara nyingi unachohitaji ni kujua kuwa unastahili kupumzika na kujitunza.",
+                "Hata wakati unahisi unapoteza mwelekeo, kumbuka kuwa unajitahidi na hilo linathaminiwa.",
+                "Usiogope kuonyesha udhaifu wako kwa wengine, ni sehemu ya nguvu yako.",
+                "Kila wakati unaposhindwa, kumbuka kwamba wewe ni mtu mwenye nguvu na ustahimilivu.",
+                "Unapohisi kushindwa, jua kuwa unastahili muda wa kupumzika na kujenga nguvu upya.",
+                "Huzuni ni sehemu ya maisha, lakini hakikisha unajitunza wakati wote.",
+                "Kila wakati unapohisi umekwama, kumbuka kuwa umejijenga zaidi kuliko unavyodhani.",
+                "Kumbuka kuwa kila wakati unachukua mapumziko, unajijenga kwa ajili ya hatua zako zijazo.",
+                "Inachukua ujasiri mkubwa kukubaliana na hali yako na kisha kuchukua hatua kwa polepole.",
+                "Hata wakati maumivu ya kihisia ni makali, kumbuka kuwa utaweza kuyapitia.",
+                "Jipe fursa ya kujitunza, kwa sababu kila wakati unajitunza, unapata nguvu za kutosha.",
+                "Hali ngumu hazidumu milele, lakini uwezo wako wa kuhimili ni wa kudumu.",
+                "Kila kitu kina nafasi yake, na lazima uamini kuwa hata changamoto zako zina mwisho.",
+                "Jifunze kuachilia baadhi ya vitu, kwa sababu sio kila kitu kinahitaji udhibiti wako.",
+                "Unapohisi kuzidiwa, jua kwamba nguvu zako zimejijenga kupitia kila changamoto unayokutana nayo.",
+                "Hakikisha unatoa nafasi kwa nafsi yako kupumzika na kuwa na amani.",
+                "Usikate tamaa unapopitia magumu, kumbuka kuwa unajifunza kila siku.",
+                "Kama unahisi msongo wa mawazo, jua kuwa kujitunza ni sehemu ya kuwa na nguvu."
+                "Matatizo ya familia yanaweza kuwa na athari kubwa kwa akili na mwili wako. Kumbuka kuwa ni muhimu kujitunza wakati huu mgumu. Jaribu kufanya mazoezi ya kupumua ili kupunguza mvutano na uchovu. Pia, tafuta mtu wa kuzungumza naye, mtu anayekuelewa na kukupa ushauri wa busara. "
+            ],
+            "symptom": [
+                "Jaribu mazoezi ya kupumua kwa kina ili kusaidia kupunguza mshituko wa mwili.",
+                "Weka ratiba ya kupumzika ili kusaidia kupunguza uchovu unaosababishwa na msongo.",
+                "Kuwa makini na mabadiliko ya mwili wako na chukua hatua za kujitunza mapema.",
+                "Jitahidi kupata usingizi wa kutosha kusaidia mwili na akili yako kupata nafuu.",
+                "Fanya shughuli unazopenda kama njia ya kupunguza maumivu ya kihisia.",
+                "Tafuta mazingira tulivu unayoweza kujipa muda wa kutuliza akili yako.",
+                "Usione aibu kutafuta msaada wa kitaalamu kama dalili za msongo zinaendelea.",
+                "Punguza matumizi ya vifaa vya kidijitali kama simu au kompyuta ili kupumzisha akili.",
+                "Fanya mazoezi mepesi kama kutembea kwa miguu ili kusaidia mwili kupunguza msongo.",
+                "Kumbuka kuwa kusikiliza muziki kunaweza kupunguza dalili za msongo.",
+                "Kama unahisi huzuni au maumivu, jaribu kutafuta wakati wa kupumzika na kufanya vitu vinavyokufurahisha.",
+                "Unapohisi uchovu, tafadhali kumbuka kuwa kupumzika ni sehemu muhimu ya kujitunza.",
+                "Jifunze kujisamehe unapohisi hasira au uchovu, kujitunza ni muhimu.",
+                "Weka mipango ya kupumzika kila siku, hata kama ni kwa dakika chache.",
+                "Jaribu kupunguza shinikizo la mawazo kwa kujitolea muda wa kuwa na amani.",
+                "Kumbuka kuwa kufanya yoga au mazoezi ya kutuliza akili kunaweza kupunguza dalili za msongo.",
+                "Usijali kuwa unahisi huzuni au msongo, kila mtu hupitia hayo katika nyakati ngumu.",
+                "Fanya kazi kwa taratibu, usijali kwa sababu kila hatua ndogo inatoa mafanikio.",
+                "Pumzika na kuzingatia hisia zako, ni njia nzuri ya kupunguza dalili za msongo.",
+                "Fanya vitu vinavyokufurahisha ili kupunguza maumivu ya kihisia.",
+                "Unapohisi kushindwa, jua kuwa ni muhimu kujitunza kwa usawa na kutafuta msaada inapohitajika.",
+                "Hakuna shida kusema kwamba unahitaji mapumziko au msaada wa kitaalamu.",
+                "Usijali kuhusu kila kitu, kumbuka kuwa unahitaji kujitunza ili kufurahi na kuwa na nguvu.",
+                "Pumzika kutoka kwenye majukumu yako na tafuta mazingira ya utulivu.",
+                "Unapohisi maumivu ya kihisia, jua kuwa kutafuta msaada ni ishara ya nguvu na kujali.",
+                "Kama unahisi mwili wako umejaa msongo, jaribu kufanya mazoezi ya kutuliza akili.",
+                "Kumbuka kuwa ni muhimu kuzingatia hisia zako na kutafuta nafasi ya kupumzika.",
+                "Tafadhali kumbuka kuwa ni sawa kuwa na hisia ya msongo, lakini kujitunza ni muhimu.",
+                "Kama unahisi umejaa shinikizo, pumzika na jaribu kufanya vitu vinavyokufurahisha.",
+                "Kama unahisi uchovu mkubwa, jipe muda wa kupumzika na kuchukua mapumziko ya kweli.",
+                "Jaribu kupunguza matumizi ya simu ili kusaidia akili yako kupumzika.",
+                "Weka ratiba ya kupumzika kila siku ili kuzuia uchovu na msongo wa mawazo.",
+                "Tafuta muda wa kutuliza akili yako kwa kufanya meditation au yoga.",
+                "Pumzika kutoka kwa vitu vinavyokuongezea shinikizo na tafuta mazingira ya utulivu.",
+                "Usijali kuhusu kila kitu unachohisi, ni sawa kuwa na hisia tofauti katika nyakati ngumu.",
+                "Jifunze kutoa nafasi kwa nafsi yako kupumzika bila kujilaumu.",
+                "Kama unahisi kupoteza mwelekeo, jaribu kupata muda wa kutuliza akili yako na kupumzika.",
+                "Tafuta nafasi ya kutafakari na kupumzika, hata kama ni kwa muda mfupi.",
+                "Usikate tamaa unapohisi kushindwa; pata muda wa kujitunza na kupata nguvu mpya.",
+                "Kama unahisi uchovu, tafadhali tafuta mazingira ya kutuliza akili yako na kupumzika.",
+                "Kumbuka kuwa kila hisia unayo hisi inahitajika kushughulikiwa kwa upole na kujali.",
+                "Pumzika na usijali kwa sababu wewe ni muhimu na unahitaji kujitunza.",
+                "Weka ratiba ya kupumzika ili kusaidia kupunguza dalili za msongo na kuchangamsha akili yako.",
+                "Tafuta muda wa kujitunza kupitia vitu vinavyokufurahisha, kama kusikiliza muziki au kutembea.",
+                "Jaribu kufanya kazi kwa polepole na kwa utulivu ili kupunguza msongo wa mwili na akili.",
+                "Tafuta mazingira ya utulivu ambayo yatakusaidia kujitunza na kupata nguvu mpya.",
+                "Fanya mazoezi ya kupumua kwa kina ili kupunguza athari za msongo na kufanya akili yako kuwa tulivu.",
+                "Kumbuka kuwa si kila dalili ya msongo inahitaji kujibu kwa haraka, unahitaji pia kujitunza.",
+                "Unapohisi huzuni, ni sawa kuchukua muda kutuliza akili yako na kuangalia mambo yanayokufurahisha.",
+                "Usijali kuhusu kufanya kila kitu kwa haraka, hata hatua ndogo ni muhimu kwa afueni yako.",
+                "Tafuta msaada wakati unahisi dalili za msongo kuwa kubwa ili kuepuka madhara ya kudumu.",
+                "Pumzika kutoka kwa vitu vinavyokukera na tafuta shughuli zinazokufurahisha na kukupa nguvu."
+            ],
 
+            "intensity": [
+                "Kama msongo unahisi kuwa mzito sana, tafadhali tafuta msaada wa haraka kutoka kwa mtaalamu.",
+                "Unapohisi msongo kupita kiasi, jaribu kupumzika na kuweka akili yako kwenye shughuli tulivu.",
+                "Hali ya hisia kali ni ya kawaida wakati mwingine, lakini ni muhimu kuitunza mapema.",
+                "Kumbuka kwamba kuzungumza na mtu unayemuamini kunaweza kupunguza uzito wa hisia zako.",
+                "Ukiona msongo unaathiri maisha yako ya kila siku, usisite kutafuta msaada wa kitaalamu.",
+                "Jipe ruhusa ya kupumzika unapohisi umelemewa sana na hisia.",
+                "Kumbuka kuwa si kila hali ya msongo inaweza kushughulikiwa peke yako; msaada ni muhimu.",
+                "Fanya mazoezi mepesi au shughuli za kupumzisha mwili unapohisi msongo umekuwa mkubwa.",
+                "Panga muda wa kujitunza kila siku ili kushughulikia msongo kabla haujazidi.",
+                "Tafakari mafanikio madogo unayoyapata kila siku kama njia ya kupunguza uzito wa hisia zako.",
+                "Unapohisi kuwa msongo umeongezeka, kumbuka kuwa ni sawa kutafuta msaada ili kusaidia kudhibiti hali.",
+                "Kama hisia zako zinaonekana kuwa kali, ni muhimu kujitunza kwa upole na kuzingatia njia za kupumzika.",
+                "Jipe ruhusa ya kupumzika kutoka kwa hali inayokusumbua ili kuepuka kuzidiwa na msongo.",
+                "Unapohisi msongo mkubwa, chukua muda kufanya mazoezi au kutafuta mazingira ya amani.",
+                "Kama hali inakuwa nzito, ni muhimu kutafuta msaada wa kitaalamu ili kusaidia kudhibiti hali hiyo.",
+                "Jaribu kufikiria mambo mazuri ili kupunguza uzito wa mawazo yako na kupunguza msongo.",
+                "Kama msongo unavyozidi, angalia mifumo ya kujitunza inayoweza kusaidia kubalance hali yako.",
+                "Kama unahisi umejaa msongo, jaribu kupumzika na kufanya shughuli rahisi zinazokufurahisha.",
+                "Kumbuka kuwa kila hatua ndogo inatoa faraja, hata ikiwa hali ya msongo inahisi kuwa kubwa.",
+                "Jipe muda wa kupumzika mara kwa mara ili kukabiliana na msongo unaozidi kuathiri hali yako.",
+                "Unapohisi kuwa hali inazidi kuwa mbaya, jaribu kujitolea muda wa kupumzika na kutuliza akili yako.",
+                "Jua kuwa unapojitunza kila siku, unaweza kudhibiti na kupunguza madhara ya msongo wa mawazo.",
+                "Pumzika kutoka kwa shughuli zinazokuletea msongo na tafuta muda wa kujitunza.",
+                "Kama hali inakuwa ngumu sana, usikate tamaa, tafuta msaada wa kitaalamu ili kusaidia kuhamasisha mabadiliko.",
+                "Kumbuka kuwa hakuna aibu kutafuta msaada unapohisi msongo unaathiri uwezo wako wa kufanya mambo ya kila siku.",
+                "Jaribu kutafuta shughuli rahisi za kupunguza hisia kali za msongo, kama kusikiliza muziki au kufanya yoga.",
+                "Hakikisha kuwa unapata muda wa kupumzika kutoka kwa majukumu yako ya kila siku ili kupunguza msongo.",
+                "Pumzika na ujitunze, unapohisi msongo mkubwa, ni muhimu kujitahidi kubaki na utulivu.",
+                "Unapohisi msongo unavyoongezeka, fikiria kufanya mazoezi ya kupumua kwa kina ili kusaidia kupunguza athari zake.",
+                "Kama hali ya msongo inavyozidi, tafadhali angalia njia za kupunguza kasi yake na kutafuta msaada.",
+                "Kumbuka kuwa msongo mkubwa unaweza kushughulikiwa kwa njia mbalimbali, ikiwa ni pamoja na kujitunza na kutafuta msaada.",
+                "Kama unahisi kuwa msongo unakufinya, ni wakati mzuri wa kutafuta njia za kupumzika na kutoa nafasi kwa nafsi yako.",
+                "Pumzika, hata kama ni kwa dakika chache, ili kupunguza athari za msongo mkubwa.",
+                "Kumbuka kuwa unahitaji kujitunza kila siku ili kupunguza hatari ya msongo mkubwa.",
+                "Kama unahisi kuwa hali ya msongo inaathiri kila kitu unachofanya, tafadhali tafuta msaada wa kitaalamu ili kusaidia kudhibiti hali.",
+                "Fanya mazoezi ya mwili au tafuta mazingira tulivu ili kupunguza hali ya msongo unaozidi.",
+                "Usijali kuhusu kila kitu unachohisi, unapohisi msongo mkubwa, ni muhimu kutafuta msaada na kupumzika.",
+                "Jaribu kuchukua muda kwa ajili ya kujitunza ili kupunguza athari za msongo mkubwa.",
+                "Kama unahisi hali ya msongo inakwenda mbali zaidi, tafuta mtu unayemwamini ili kuzungumza kuhusu hisia zako.",
+                "Unapohisi kuwa msongo unakuwa mzito, tafuta aina ya kujitunza inayoweza kusaidia kupunguza dalili.",
+                "Usione aibu kutafuta msaada wa kitaalamu wakati hali ya msongo inazidi kuwa kubwa.",
+                "Kama hisia zako zinakuwa kali na unahisi kuwa msongo unakuwa mkubwa, tafuta muda wa kutuliza akili yako.",
+                "Kumbuka kuwa ni muhimu kujitunza ili kupunguza athari za msongo kubwa kwa mwili na akili yako.",
+                "Pumzika na unyenyekevu unapohisi msongo mkubwa, hata hatua ndogo inaweza kusaidia.",
+                "Jipe muda wa kutuliza akili yako ikiwa hali ya msongo inakufinya, hii ni njia nzuri ya kupunguza hisia kali.",
+                "Kama unahisi kuwa msongo unakuletea madhara makubwa, tafuta msaada wa kitaalamu ili kusaidia kudhibiti hali."
+            ]
+
+        }
+        if stress_issues:
+            response = []
+            for issue in stress_issues:
+                advice_part = random.choice(advice[issue])
+                response.append(f" {advice_part}")
+            first_response = "Pole kwa unayopitia, najua hali hii inaweza kuwa ngumu lakini niko hapa kwa ajili yako. "
+            full_response = first_response + " ".join(response)  # Join the response without the first part
+            dispatcher.utter_message(full_response.strip())
+
+        else:
+            dispatcher.utter_message("tafadhali unaweza kunieleza zaidi,niko hapa kwa ajili yako.")
+            return [SlotSet(slot, None) for slot in stress_issues]
+
+
+
+class ActionLoneliness(Action):
+    def name(self):
+        return "action_loneliness"
+    def run(self, dispatcher, tracker, domain):
+        lonely_issues={}
+        for slot in ["feeling", "cause"]:
+            value = tracker.get_slot(slot)
+            if value:
+                lonely_issues[slot]=value
+        loneliness_advice={"feeling": [
+                "Pole sana kwa kile unachohisi, upweke unaweza kuwa mzito na mgumu kushughulikia.",
+                "Kama unajihisi kupotea, kumbuka kuwa kuna watu wanaojali na wako tayari kukusaidia.",
+                "Wakati mwingine hisia za upweke zinaweza kuwa ngumu kuelezea, lakini usijione peke yako.",
+                "Ni sawa kuhisi huzuni na upweke, kila mtu hupitia hali kama hiyo wakati mwingine.",
+                "Kama unahisi umepoteza njia, tafuta msaada kutoka kwa mtu unayemwamini. Usikate tamaa.",
+                "Najiunga na wewe katika maombi ya kuwa na amani katika moyo wako. Upweke unahisi kama mzigo mkubwa.",
+                "Kama unahisi kuwa huwezi kushirikiana na wengine, tafuta njia ndogo za kujiunganishia na watu.",
+                "Kumbuka, hisia zako ni sahihi na unastahili kujaliwa na wengine.",
+                "Upweke unaweza kufanywa kuwa mwepesi kwa hatua ndogo za kushirikiana na wengine.",
+                "Jua kuwa hisia zako ni muhimu na zinapaswa kuzingatiwa. Upweke hauwezi kukufanya kuwa dhaifu.",
+                "Kama unapitia magumu, tafuta msaada bila aibu. Si lazima uhisi upweke kila wakati.",
+                "Inahitaji nguvu kubwa kukabiliana na upweke, lakini kujua kwamba kuna wengine wanaojali kunaweza kusaidia.",
+                "Hakuna makosa katika kuhisi huzuni au upweke. Hii ni sehemu ya maisha na kila mmoja wetu anapitia hilo.",
+                "Pole sana, najua ni vigumu lakini unaweza kushinda hali hii kwa msaada na kujitunza mwenyewe.",
+                "Wakati mwingine, kutafuta mtu wa kuzungumza naye kunaweza kupunguza uzito wa upweke.",
+                "Usijione peke yako, kuna watu wanaojali na wako tayari kukusaidia kutatua hisia hizi.",
+                "Kama upweke unakukalia, tafuta njia ndogo ya kujihusisha na jamii au marafiki.",
+                "Jua kwamba upweke ni hisia ya kawaida, lakini si lazima iwe sehemu ya maisha yako milele.",
+                "Kama unajihisi upweke, angalia mifumo ya kujitunza inayoweza kusaidia kuboresha hali yako.",
+                "Kumbuka, kuna nguvu kubwa katika kushirikiana na wengine, hata kama ni hatua ndogo.",
+                "Tafadhali usikate tamaa, upweke utapita na kuna watu wanaokusudia kukusaidia katika kipindi hiki.",
+                "Pole sana kwa kile unachohisi, lakini kumbuka kila changamoto ina mwisho, na hii pia itapita.",
+                "Kama unahisi upweke, jaribu kuzungumza na mtu unayemwamini, hiyo inaweza kupunguza hisia zako.",
+                "Jua kwamba kuna watu duniani wanaokujali na wapo tayari kutusaidia kwa njia yoyote ile.",
+                "Hakuna aibu katika kuhisi upweke. Wengi wetu tunapitia hiyo na ni sehemu ya maisha.",
+                "Pole kwa kile unachohisi. Kumbuka kwamba upweke ni hali ya kupita, na kuna njia za kujitunza ili kupunguza athari zake.",
+                "Usijione peke yako, kuna watu wanaowajali na wako tayari kusaidia unapohitaji msaada.",
+                "Jaribu kutafuta mambo madogo yanayoweza kuboresha hali yako, kama kutafuta mazungumzo ya kirafiki au kuchukua muda kwa ajili yako mwenyewe.",
+                "Kama unahisi kupoteza, kumbuka kwamba kila mtu hupitia upweke kwa wakati fulani na hiyo si kasoro.",
+                "Kama unahisi upweke, tafuta vitu vinavyoweza kukufanya ujisikie vizuri, kama kufanya shughuli zinazokufurahisha.",
+                "Unapojisikia upweke, tafuta nafasi ya kutoa hisia zako kwa mtu unayemwamini.",
+                "Jua kwamba hisia zako ni sahihi, lakini pia kuna watu wanaoweza kukusaidia kupitia kipindi hiki.",
+                "Kama upweke unakulemea, tafuta msaada wa marafiki au familia yako ili upate msaada wa kihisia.",
+                "Pole sana kwa kile unachohisi, lakini kumbuka kwamba kila hisia ina sababu na kila hali ina mwisho.",
+                "Kama unahisi kuwa umeachwa peke yako, tafuta msaada kutoka kwa wale wanaokujali na wanaweza kusaidia.",
+                "Hakuna aibu katika kutafuta msaada unapohisi upweke, na unastahili kupata upendo na msaada.",
+                "Tafuta njia ndogo za kushirikiana na wengine, kama kuzungumza na mtu au kufanya shughuli za kijamii.",
+                "Usijione peke yako, kuna jamii nyingi zinazokusaidia kupunguza hisia za upweke.",
+                "Pole kwa kile unachohisi, lakini kumbuka kuwa upweke unaweza kupunguza kwa hatua ndogo za kutafuta msaada.",
+                "Kama unahisi upweke, tafuta fursa za kuungana na wengine kwa njia ya mtandao au kwa familia na marafiki.",
+                "Jua kwamba hisia zako ni halali, na kuna watu wengi ambao wanapitia hali kama hiyo.",
+                "Kama unahisi kupotea, kumbuka kwamba wewe ni muhimu na kuna watu wanaokujali na wanataka kuona ukiishi vizuri.",
+                "Jipe muda wa kuzungumza na mtu, kama unahisi upweke. Hii inaweza kupunguza hali ya kujihisi peke yako.",
+                "Hata wakati unajihisi upweke, kumbuka kwamba kuna wengine wanatamani kukusaidia, na hakuna ubaya kutafuta msaada.",
+                "Upweke unaweza kuwa ngumu, lakini hatua ndogo kama kuzungumza na mtu anaweza kubadili hisia zako.",
+                "Kama unahisi upweke, tafuta huduma au msaada wa kitaalamu ili kupunguza athari zake.",
+                "Pole kwa kile unachohisi, lakini kumbuka kwamba kila mtu hupitia wakati wa upweke, na unaweza kushinda hili kwa msaada.",
+                "Kama hisia zako za upweke zinaendelea, tafuta njia za kuungana na wengine kama njia ya kupunguza hali hiyo.",
+                "Upweke ni hali ya kawaida, na kuna watu wengi ambao wanaweza kusaidia kupunguza athari zake.",
+                "Pole kwa kile unachohisi, lakini kumbuka kwamba kila hali ina mwisho, na upweke hautadumu milele."
+            ],
+            "cause": [
+                "Unapohisi kutengwa, inaweza kuwa ni matokeo ya mabadiliko katika maisha yako. Jaribu kufungua moyo kwa wengine.",
+                "Kukosa uhusiano wa karibu na watu wengine kunaweza kusababisha hali ya upweke. Tafuta fursa ya kuungana na wengine.",
+                "Wakati mwingine, upweke unatokana na kupoteza mtu wa karibu. Hali hii inaweza kuachia maumivu, lakini jipe muda na usihisi aibu kutafuta msaada.",
+                "Kama unajihisi mbali na jamii yako, tafuta njia za kujumuika na wengine au kuanzisha mazungumzo na watu wapya.",
+                "Upweke unaweza kuwa matokeo ya kutokuwa na shughuli zinazoendana na masilahi yako. Tafuta njia ya kujishughulisha na vitu unavyovipenda.",
+                "Kama umepitia mabadiliko makubwa ya maisha kama kuhamia sehemu mpya, unaweza kujihisi kutengwa. Hata hivyo, mambo yanaweza kubadilika kwa wakati.",
+                "Kukosa uhusiano wa karibu na familia au marafiki kunaweza kuwa chanzo cha upweke. Hakikisha unajitahidi kuwasiliana nao mara kwa mara.",
+                "Pia, kukosa uhusiano wa kimapenzi kunaweza kuleta hisia za upweke. Kumbuka, unapohitaji, unaweza kutafuta msaada kutoka kwa marafiki.",
+                "Kama umejichagua kuwa na maisha ya faragha au kujitenga, upweke unaweza kujitokeza kwa urahisi. Tafuta njia za kujumuika na wengine.",
+                "Mabadiliko katika kazi au masomo yanaweza kusababisha upweke. Punguza mzigo kwa kushirikiana na wengine kwenye shughuli zinazofanana.",
+                "Kutokuwa na shughuli zinazokufurahisha kunaweza kusababisha hali ya upweke. Tafuta vitu vinavyokuvutia na unavyopenda kufanya.",
+                "Ikiwa unahisi kupoteza lengo au mwelekeo katika maisha, unaweza kujikuta ukiwa na upweke. Jaribu kutafuta msukumo kutoka kwa wale wanaokuzunguka.",
+                "Kama unajihisi kutengwa kutokana na imani au maadili yako, tafuta watu wenye mtazamo sawa ili kujenga uhusiano.",
+                "Unapohisi kuwa huna kitu cha kufanya au kuzungumza, upweke unaweza kujitokeza. Tafuta shughuli za kujieleza au kujifunza vitu vipya.",
+                "Hali ya upweke inaweza kuletwa na kutokuwa na msaada wa kihisia kutoka kwa wengine. Hakikisha unatafuta watu wa kukusaidia wakati mgumu.",
+                "Upweke unaweza kutokea unapohisi kwamba hakuna mtu wa kuelewa hali yako. Tafuta watu wanaoweza kukusaidia kujielewa.",
+                "Mabadiliko ya kijamii yanaweza kuchangia hali ya upweke. Tafuta njia ya kujumuika na watu wapya ili kuimarisha hisia zako za kutokuwa peke yako.",
+                "Kama unahisi kupoteza mtu wa karibu, inaweza kuleta hali ya upweke. Jipe muda na tafuta msaada kwa wale wanaoweza kusaidia.",
+                "Wakati mwingine, hali ya upweke inaweza kutokana na kutokuwa na majukumu au malengo. Tafuta shughuli au kazi zinazokufaa.",
+                "Kama umehamia sehemu mpya au kufanya mabadiliko makubwa katika maisha yako, upweke unaweza kuonekana. Hata hivyo, mambo yataanza kuwa bora kwa wakati.",
+                "Kama unahisi kutengwa kutokana na tofauti za kisiasa au kijamii, tafuta watu wanaoshiriki maoni yako ili kujenga ushirikiano.",
+                "Upweke unaweza kutokana na kutokuwa na uhusiano wa kijamii. Tafuta fursa ya kuungana na wengine na kujijengea jamii yenye msaada.",
+                "Mabadiliko katika familia au mazingira yako yanaweza kuleta hali ya upweke. Tafuta msaada kutoka kwa watu wa karibu ili kushughulikia hali hii.",
+                "Kama unahisi upweke kutokana na changamoto za kiuchumi au kazi, jaribu kutafuta msaada wa kijamii na familia.",
+                "Hali ya upweke inaweza kuwa matokeo ya kutokuwa na vipaumbele au malengo katika maisha yako. Tafuta fursa mpya za kujishughulisha.",
+                "Upweke unaweza kutokea unapohisi kutokuwa na shabiki au watu wanaokuelewa. Tafuta fursa za kuungana na watu wenye maslahi sawa.",
+                "Kama unahisi kupoteza mtazamo kuhusu maisha yako, upweke unaweza kuonekana. Tafuta msaada kutoka kwa wale wanaokujali ili kupata mtazamo mpya.",
+                "Kama unahisi kutokuwa na uhusiano wa kihisia na wengine, tafuta njia za kujitunza na kuungana na jamii yako.",
+                "Unapohisi kutokuwa na mazungumzo ya maana, upweke unaweza kuzidi. Tafuta nafasi za kujifunza na kushirikiana na wengine.",
+                "Kama unahisi kutengwa kwa sababu ya mabadiliko ya maisha yako, jaribu kutafuta njia ya kujitunza na kujenga uhusiano mpya.",
+                "Upweke unaweza kuletwa na kukosa mtu wa karibu anayeweza kukusaidia. Tafuta msaada kutoka kwa marafiki na familia.",
+                "Kutokuwa na ratiba ya shughuli za kijamii kunaweza kusababisha hali ya upweke. Tafuta fursa za kushirikiana na wengine.",
+                "Kama upweke unakukalia kutokana na kutokuwa na uhusiano wa kimapenzi, tafuta njia za kuungana na watu au kujihusisha na shughuli.",
+                "Mabadiliko katika kazi au shule yanaweza kuleta hali ya upweke. Tafuta msaada kutoka kwa wenzako ili kushirikiana na wao.",
+                "Unapohisi kutokuwa na msaada wa kihisia, upweke unaweza kuwa mzito. Tafuta msaada kutoka kwa wataalamu au jamii yako.",
+                "Upweke unaweza kutokana na kutokuwa na hamu ya kufanya vitu au kushirikiana na wengine. Tafuta vitu vinavyokuvutia na kufanya hatua ndogo.",
+                "Kama unahisi kupoteza msukumo, upweke unaweza kuwa sehemu ya hiyo. Tafuta msaada na ushirikiano kutoka kwa wengine.",
+                "Kama unajihisi kutengwa au kupoteza mwelekeo, tafuta msaada ili kujipata upya na kujitunza vizuri.",
+                "Upweke unaweza kutokea unapohisi kutokuwa na shabiki au mtu anayekuelewa. Tafuta njia ya kujihusisha na watu na kujenga jamii.",
+                "Kama umehamia mahali pasipo familia au marafiki, upweke unaweza kuwa changamoto. Tafuta njia za kujitunza na kujenga uhusiano mpya.",
+                "Kama unajihisi kutengwa kutokana na kutokuwa na maslahi yanayofanana na wengine, tafuta jamii inayoshiriki maslahi sawa.",
+                "Kama hali ya upweke inahusiana na matatizo ya kifamilia, tafuta msaada wa kihisia kutoka kwa watu wa karibu au wataalamu.",
+                "Kama unahisi kutengwa au kukosa mtu wa kujali, tafuta njia za kuungana na wengine na kujijenga upya."
+            ]
+
+        }
+        if lonely_issues:
+            responses=[]
+            for issues in lonely_issues:
+                advice_parts = random.choice(loneliness_advice[issues])
+                responses.append(f" {advice_parts}")
+            first_part = "Pole kwa unayopitia,kumbuka huyuko pekee yako nko hapa kwa ajili yako."
+            full_response = first_part + " ".join(responses)  # Join the response without the first part
+            dispatcher.utter_message(full_response.strip())
+
+        else :
+            dispatcher.utter_message("tafadhali unaweza kunieleza zaidi,niko hapa kwa ajili yako.")
+            return [SlotSet(slot, None) for slot in lonely_issues]

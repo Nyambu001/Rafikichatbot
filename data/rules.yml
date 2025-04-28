@@ -1,6 +1,7 @@
 version: "3.1"
 
 rules:
+
 - rule: Respond to greeting
   steps:
     - intent: greet
@@ -11,35 +12,17 @@ rules:
     - intent: goodbye
     - action: utter_goodbye
 
-- rule: Provide stress causes
+
+- rule: give assessment
   steps:
-  - intent: stress_causes
-  - action: utter_stress_causes
-
-- rule: Provide stress symptoms
+    - intent: submit_assessment
+    - action: action_handle_assessment
+- rule: give stress advice
   steps:
-  - intent: stress_symptoms
-  - action: utter_stress_symptoms
-
-- rule: Provide stress relief tips
+      - intent: stress
+      - action: action_stress_advice
+- rule: give loneliness advice
   steps:
-  - intent: stress_relief_tips
-  - action: utter_stress_relief_tips
-
-- rule: Explain what stress is
-  steps:
-  - intent: what_is_stress
-  - action: utter_what_is_stress
-
-- rule: Handle crisis alert
-  steps:
-  - intent: crisis_alert
-  - action: utter_crisis_alert
-
-- rule: Thank the user for appreciation
-  steps:
-  - intent: appreciation
-  - action: utter_appreciation
-
-
+      - intent: loneliness
+      - action: action_loneliness
 

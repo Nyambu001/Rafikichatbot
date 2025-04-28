@@ -1,63 +1,38 @@
-version: '3.1'
+version: "3.1"
+
 intents:
-- appreciation
-- crisis_alert
-- express_stress
-- stress_causes
-- stress_relief_tips
-- stress_symptoms
-- what_is_stress
-- peer_pressure
-- effects_of_peer_pressure
-- define_peer_pressure
-- greet
-- goodbye
-- affirm
+  - greet
+  - goodbye
+  - stress
+  - loneliness
+
 entities:
-- cause
-- feeling
-- person
-- emotion
-- action
-- situation
-- response
+  - cause
+  - symptom
+  - intensity
+  - feeling
+
 slots:
-  feeling:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: feeling
   cause:
     type: text
     mappings:
       - type: from_entity
         entity: cause
-  person:
+  symptom:
     type: text
     mappings:
       - type: from_entity
-        entity: person
-  emotion:
+        entity: symptom
+  intensity:
     type: text
     mappings:
       - type: from_entity
-        entity: emotion
-  action:
+        entity: intensity
+  feeling:
     type: text
     mappings:
       - type: from_entity
-        entity: action
-  situation:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: situation
-  response:
-    type: text
-    mappings:
-      - type: from_entity
-        entity: response
-
+        entity: feeling
 
 responses:
   utter_greet:
@@ -71,157 +46,11 @@ responses:
     - text: "Tutaonana baadaye! Nenda salama."
     - text: "Kwaheri! Ninakutakia kila la heri."
     - text: "Tutaonana kesho, ni furaha yangu kukusaidia."
-  utter_appreciation:
-    - text: "Karibu. Niko hapa kukusaidia kila wakati."
-    - text: "Nashukuru sana kwa maneno yako mazuri."
-    - text: "Ni furaha yangu kuwa hapa kwa ajili yako."
-    - text: "Nashukuru kwa kuthamini msaada huu."
-    - text: "Ni furaha yangu kusaidia."
-    - text: "Ni wajibu yangu kusaidia."
-    - text: "Maneno yako yananitia moyo. Asante."
-    - text: "Nashukuru kwa kuthamini juhudi zangu."
-    - text: "Nimefurahi kusaidia. Asante kwa kusema hivyo."
-    - text: "Karibu sana!"
 
-  utter_express_stress:
-    - text: "Pole sana kusikia hivyo. Msongo wa mawazo unaweza kuwa mgumu, lakini hauko peke yako. Je, ungependa kushiriki kinachokusumbua? Naweza kukupa ushauri au mbinu za kukabiliana na hali hiyo."
-    - text: "Pole sana kwa yale unayopitia. Niko hapa kusikiliza ikiwa unataka kushiriki zaidi."
-    - text: "Najua haya yanaweza kuwa magumu sana kwako. Tafadhali jisikie huru kuzungumza nami."
-    - text: "Pole sana kwa kupitia wakati mgumu. Je, kuna kitu chochote kinachoweza kusaidia hata kidogo?"
-    - text: "Sio rahisi kupitia hali ngumu, lakini hauko peke yako. Niko hapa kwa ajili yako."
-    - text: "Kumbuka, kila mtu hupitia nyakati ngumu. Usisite kushiriki jinsi unavyohisi."
-    - text: "Ningependa kujua jinsi unavyohisi ili nisaidie vyema. Jisikie huru kushiriki chochote."
-    - text: "Kuhisi hivi ni kawaida kabisa, na ni sawa kuwa na hisia hizi. Niko hapa kwa msaada wowote unaohitaji."
-    - text: "Najua inaweza kuwa vigumu sana, lakini nataka ujue kuwa unaweza kunitegemea kwa msaada."
-    - text: "Pole sana, najua unapitia wakati mgumu. Tafadhali kumbuka kuwa una msaada hapa."
-
-  utter_stress_causes:
-    - text: "Msongo wa mawazo unaweza kusababishwa na kazi nyingi, matatizo ya kifamilia, afya, au hata presha ya kijamii."
-    - text: "Sababu za msongo wa mawazo ni nyingi, kama vile matatizo ya kifedha, mahusiano, au majukumu mazito."
-    - text: "Watu wengi hupata msongo wa mawazo kutokana na mambo kama kazi nyingi au kutokuwepo na msaada wa kutosha."
-    - text: "Msongo wa mawazo unaweza kutokana na kupoteza mtu wa karibu, changamoto kazini au maisha ya kila siku."
-    - text: "Mambo yanayosababisha msongo wa mawazo ni pamoja na kutokuwa na muda wa kupumzika au shinikizo la kijamii."
-    - text: "Changamoto kubwa maishani, kama vile ugonjwa, kazi au familia, ni vyanzo vya msongo wa mawazo."
-    - text: "Msongo wa mawazo inaweza kutokana na matarajio yasiyotimia au hali ya kutokuwa na uhakika."
-    - text: "Sababu kuu za msongo wa mawazo ni matatizo ya kifamilia, ukosefu wa msaada, na presha kazini."
-    - text: "Kila mtu hupitia msongo wa mawazo kwa sababu tofauti, ikiwa ni pamoja na afya, fedha au mahusiano."
-    - text: "Msongo wa mawazo hutokana na mzigo wa majukumu na hali zisizotarajiwa."
-
-  utter_stress_symptoms:
-    - text: "Dalili za msongo wa mawazo ni kama uchovu, usingizi wa shida, huzuni, wasiwasi, au kukosa hamu ya kula."
-    - text: "Watu wenye msongo wa mawazo hujihisi kuchoka, kuchanganyikiwa, au kupoteza hamu ya mambo."
-    - text: "Msongo wa mawazo unaweza kusababisha maumivu ya kichwa, kukosa usingizi, au kushuka kwa morali."
-    - text: "Dalili za msongo wa mawazo ni pamoja na hasira, wasiwasi mwingi, au kujitenga na watu."
-    - text: "Mabadiliko ya tabia, mfano hasira au huzuni kupita kiasi, huweza kuwa dalili."
-    - text: "Msongo wa mawazo unaweza kufanya mtu kuwa na msongo wa mawazo, maumivu ya mwili au kushuka kwa hamasa."
-    - text: "Kukosa utulivu, kuhisi huzuni bila sababu, na kupoteza nguvu ni dalili za msongo wa mawazo."
-    - text: "Mara nyingi, watu wenye msongo wa mawazo hupoteza hamu ya kula, kulala au kufurahia maisha."
-    - text: "Dalili za msongo wa mawazo ni pamoja na mawazo mengi, kukosa pumziko, au kujisikia mpweke."
-    - text: "Msongo wa mawazo inaweza kufanya mtu ahisi hana msaada, hana matumaini, au yuko peke yake."
-
-  utter_stress_relief_tips:
-    - text: "Pole sana kwa unayopitia na huyuko pekee yako, jaribu kupumzika, fanya mazoezi mepesi au punguza majukumu yako."
-    - text: "Pole sana kwa unayopitia na huyuko pekee yako, kupumua kwa kina na taratibu kunaweza kusaidia kupunguza stress."
-    - text: "Pole sana kwa unayopitia na huyuko pekee yako, tafuta muda wa kupumzika kila siku, hata kama ni dakika chache."
-    - text: "Pole sana kwa unayopitia na huyuko pekee yako, zungumza na mtu unayemwamini kuhusu hisia zako."
-    - text: "Pole sana kwa unayopitia na huyuko pekee yako, epuka kukaa na mawazo peke yako, tafuta msaada."
-    - text: "Pole sana kwa unayopitia na huyuko pekee yako, fanya shughuli unazozipenda, kama kusikiliza muziki au kutazama sinema."
-    - text: "Pole sana kwa unayopitia na huyuko pekee yako, jihusishe na mazoezi ya mwili au kutembea kwa muda mfupi."
-    - text: "Pole sana kwa unayopitia na huyuko pekee yako, jitunze kwa kula vizuri na kulala vya kutosha."
-    - text: "Pole sana kwa unayopitia na huyuko pekee yako, andika hisia zako kwenye daftari ili kupunguza mzigo wa akili."
-    - text: "Pole sana kwa unayopitia na huyuko pekee yako, jaribu kutafakari au kufanya mazoezi ya kupumua kila siku."
-
-  utter_what_is_stress:
-    - text: "Msongo wa mawazo ni hali ya wasiwasi au msongo wa mawazo unaotokea unapokumbana na changamoto."
-    - text: "Ni hisia ya kubanwa au kulemewa kutokana na shinikizo la maisha."
-    - text: "Msongo wa mawazo ni mwitikio wa mwili na akili kwa hali ngumu au isiyotarajiwa."
-    - text: "Ni hali ambapo mtu huhisi hawezi kudhibiti mazingira yake."
-    - text: "Msongo wa mawazo hutokea tunapokumbwa na matatizo, presha au hofu."
-    - text: "Ni hali ya kutokuwa na amani ya akili kutokana na changamoto au matatizo."
-    - text: "Msongo wa mawazo ni mwitikio wa kawaida wa mwili kwa hali inayomletea wasiwasi au huzuni."
-    - text: "Watu hupata msongo wa mawazo wanapohisi kuwa majukumu yao ni mengi kupita uwezo wao."
-    - text: "Msongo wa mawazo inaweza kutokana na hali ya kutokuwa na uhakika wa maisha."
-    - text: "Ni hali ambapo mtu huhisi hana udhibiti wa maisha yake."
-
-  utter_crisis_alert:
-    - text: "Pole sana kwa unayopitia na huyuko pekee yako, hali unayopitia ni nzito. Tafuta msaada wa haraka kutoka kwa mtaalamu."
-    - text: "Naomba usiendelee kupambana peke yako. Tafadhali ongea na mtu wa karibu au mtaalamu sasa."
-    - text: "Ninapendekeza utafute msaada wa kitaalamu haraka. Wewe ni muhimu."
-    - text: "Pole sana. Tafadhali wasiliana na huduma ya dharura au mtaalamu wa afya ya akili."
-    - text: "Hali hii inahitaji msaada wa haraka. Tafadhali pigia huduma za dharura."
-    - text: "Niko hapa kwa ajili yako, lakini pia tafadhali tafuta msaada wa mtaalamu sasa."
-    - text: "Hili ni jambo zito. Tafadhali ongea na mtu wa familia au mtaalamu wa afya ya akili."
-    - text: "Ninakuhimiza kuzungumza na mshauri wa kitaalamu sasa hivi."
-    - text: "Tafadhali usisite kutafuta msaada wa haraka kutoka kwa huduma za dharura."
-
-  utter_peer_pressure:
-    - text: "Ninakusikia! Shinikizo la marafiki linaweza kuwa gumu. Unaweza kushiriki zaidi kuhusu {situation}?"
-    - text: "Pole sana unajihisi {emotion}. Kumbuka, huna haja ya kufanya {action} ili kukubalika. Unaweza kuzungumza na mtu unayemwamini?"
-    - text: "Sio rahisi kukabiliana na shinikizo la marafiki. Je, unahitaji msaada wa kujua namna ya kusema 'hapana' kwa njia nzuri?"
-    - text: "Shinikizo la rika linaweza kuathiri hisia zako. Kujua thamani yako ni muhimu! Jipe nafasi ya kufikiria."
-    - text: "Najua inaweza kuwa vigumu, lakini kusimama kwa maadili yako ni jambo la kishujaa. Unahitaji mawazo kuhusu jinsi ya kukabiliana na hii?"
-    - text: "Pole unajihisi hivyo. Kujilinda ni muhimu. Kuna mtu unaweza kuzungumza naye kuhusu hili?"
-    - text: "Jambo muhimu ni kujua kuwa una haki ya kusema hapana kwa {action}. Unaweza kutafuta msaada kwa mtu unayemwamini?"
-    - text: "Shinikizo linaweza kuwa kubwa, lakini kumbuka: Wewe ni wa thamani jinsi ulivyo! Jaribu kuzungumza na mtu unayemwamini."
-    - text: "Siku zote kuna njia ya kukabiliana na shinikizo la rika bila kuathiri thamani zako. Ningependa kusaidia, niambie zaidi."
-    - text: "Najua inaweza kuwa vigumu, lakini kujiheshimu ni muhimu. Kuna mtu katika maisha yako anayekutia moyo kuwa wewe mwenyewe?"
-    - text: "Marafiki wazuri watakukubali bila kukulazimisha kufanya {action}. Labda ni wakati wa kuangalia ni nani anayekuhamasisha kuwa bora."
-    - text: "Sio kila mtu atakubaliana na maamuzi yako, na hilo ni sawa! Unahisi ungependa kujadili njia za kushinda shinikizo?"
-    - text: "Najua hii ni ngumu, lakini unapaswa kufanya maamuzi yanayokufanya uhisi salama na mwenye amani. Unahitaji msaada zaidi kuhusu hili?"
-    - text: "Inaweza kuhisi kama una shinikizo kubwa, lakini unayo nguvu ya kusema hapana. Je, unataka mawaidha zaidi ya jinsi ya kujiweka imara?"
-    - text: "Siku zote unaweza kuchagua nini ni bora kwako! Ukihisi shinikizo, kumbuka kuwa maamuzi yako yana thamani. Unaweza kushiriki zaidi?"
-    - text: "Nimeelewa unavyohisi. Hakuna haja ya kufanya {action} ili kukubalika. Marafiki wa kweli watakuheshimu kama ulivyo."
-    - text: "Uamuzi wako ni wako, na una haki ya kufuata thamani zako! Tafadhali, niambie zaidi kuhusu unavyohisi."
-    - text: "Pole sana! Una haki ya kufuata njia yako. Unaweza kutafuta msaada kutoka kwa mtu unayemwamini?"
-    - text: "Ninaelewa hii ni changamoto. Kumbuka kuwa huwezi kupendeza kila mtu, lakini unaweza kujiheshimu."
-    - text: "Wakati mwingine kusema 'hapana' ni jambo bora zaidi unaloweza kufanya kwa ajili yako. Unahitaji ushauri wa jinsi ya kusimama kidete?"
-    - text: "Usihisi kuwa uko peke yako. Watu wazuri watakuheshimu kwa msimamo wako. Umeshajaribu kuzungumza na mtu unayemwamini kuhusu hili?"
-    - text: "Unastahili kuwa katika mazingira yanayokuunga mkono. Ikiwa unahisi shinikizo kubwa, je, unahitaji msaada wa kutafuta njia mbadala?"
-    - text: "Ujasiri wa kweli ni kusema 'hapana' hata kama wengine wanakushinikiza. Unajihisi vipi kuhusu hili?"
-    - text: "Huna haja ya kuthibitisha thamani yako kwa mtu yeyote kwa kufanya {action}. Unahitaji msaada wa kuweka mipaka yako?"
-    - text: "Ni sawa kuhisi shinikizo, lakini ni muhimu zaidi kujua mipaka yako. Je, unahitaji msaada wa kuweka mipaka yako wazi?"
-    - text: "Ninaelewa hii inaweza kuwa ngumu. Kumbuka, chagua njia inayokufanya uhisi salama na mwenye furaha. Unahitaji mtu wa kuzungumza naye?"
-    - text: "Siku zote unaweza kuchagua njia yako. Uaminifu kwako mwenyewe ni jambo la muhimu zaidi!"
-
-
-  utter_define_peer_pressure:
-    - text: "Shinikizo ni hali ambapo mtu anashawishiwa na marafiki au jamii kufanya jambo fulani, kwa hiari au kwa kulazimishwa."
-    - text: "Shinikizo la marafiki linapotokea, mtu anaweza kuhisi lazima afanye jambo fulani ili aonekane kuwa sehemu ya kikundi."
-    - text: "Shinikizo  hukutoka kwa watu unaowazunguka, ambalo linaweza kumfanya mtu kufanya kitu anachohisi hakitaki."
-    - text: "Ni hali ambapo mtu anahisi kushawishiwa na wengine kufanya jambo, hata kama yeye mwenyewe haoni umuhimu wa kufanya hivyo."
-    - text: "Shinikizo la kijamii ni pale ambapo watu wanajikuta wakifanya vitu kwa sababu ya presha kutoka kwa marafiki au jamii."
-    - text: "Shinikizo inaweza kuwa chanya au hasi, na mara nyingi inatokea pale ambapo mtu anajikuta akifanya kitu ili kupata kukubalika na wengine."
-    - text: "Shinikizo la marafiki linaweza kuwa la kutaka mtu kufanya kitu kwa sababu ya kuendana na wenzake, hata kama hajisikii vizuri kufanya hivyo."
-    - text: "Shinikizo inajumuisha hali ya kuwa na shinikizo kutoka kwa marafiki au jamii kufanya jambo fulani bila kujali maoni yako."
-    - text: "Hii ni hali ambapo mtu anaweza kushawishika kufanya jambo alilojua si sahihi, lakini anajikuta akifanya kwa sababu ya shinikizo la wengine."
-    - text: "Shinikizo la kijamii linaweza kumfanya mtu kujua kuwa baadhi ya maamuzi ni bora kwa ajili ya jamii, lakini hayafai kwa mtu binafsi."
-
-  utter_effects_of_peer_pressure:
-      - text: "shinikizo linaweza kusababisha mtu kufanya maamuzi ambayo hayafai kwa afya yake, kama vile kutumia dawa za kulevya au kunywa pombe."
-      - text: "Shinikizo la marafiki linaweza kuathiri hali yako ya kiakili na kukufanya kujihisi kama unahitaji kuendana na wenzako kila wakati."
-      - text: "Shinikizo la kijamii linaweza kusababisha wasiwasi na msongo wa mawazo, kwa sababu mtu anaweza kujihisi kama hawezi kusema hapana."
-      - text: "Athari shinikizo zinaweza kuleta upinzani ndani yako, ambapo unajikuta unafanya vitu kwa sababu ya shinikizo, lakini siyo kwa furaha."
-      - text: "Shinikizo linaweza kusababisha mtu kujihisi mpweke au kutengwa kutoka kwa wengine ikiwa hataki kufanya kile wanachotaka."
-      - text: "Shinikizo la marafiki linaweza kuathiri maamuzi yako, na hata kukufanya kuwa na hisia za kujilaumu baada ya kufanya kitu ambacho si sahihi."
-      - text: "Shinikizo inaweza kusababisha kupoteza utu wako au kuamua kufanya mambo kwa sababu ya kuogopa hukumu kutoka kwa watu unaowajali."
-      - text: "Hali ya kushinikizwa inaweza kusababisha upungufu wa kujitambua na kujihisi kuwa umepoteza udhibiti wa maisha yako."
-      - text: "Peer pressure inaweza kusababisha mabadiliko katika tabia zako, ikiwa ni pamoja na kufanya maamuzi yasiyofaa au kubadili marafiki."
-      - text: "Madhara ya Shinikizo yanaweza kujitokeza kama kujihisi kuwa huwezi kuwa wewe mwenyewe kwa sababu ya kutaka kubaki kwenye kundi au jamii."
 
 actions:
-- utter_express_stress
-- utter_stress_relief_tips
-- utter_what_is_stress
-- utter_appreciation
-- utter_stress_causes
-- utter_stress_symptoms
-- utter_crisis_alert
-- utter_peer_pressure
-- utter_define_peer_pressure
-- utter_effects of peer pressure
-- utter_greet
-- utter_goodbye
-- action_handle_assessment
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  - utter_greet
+  - utter_goodbye
+  - action_handle_assessment
+  - action_stress_advice
+  - action_loneliness

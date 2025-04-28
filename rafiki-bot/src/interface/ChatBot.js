@@ -210,7 +210,7 @@ const handleSkipQuestionnaire = async () => {
 
  return (
     <div className={`flex flex-col h-screen ${isDarkMode ? "dark text-white" : ""}`}>
-      <div className="absolute z-50 flex items-center w-5 h-5 space-x-4 top-4 left-4">
+      <div className="w-5 h-5 absolute z-50 top-4 left-4 flex items-center space-x-4">
         <button
           onClick={() => setShowHistory(!showHistory)}
           className="text-xl text-gray-700 dark:text-white hover:text-gray-500"
@@ -223,7 +223,7 @@ const handleSkipQuestionnaire = async () => {
             localStorage.removeItem("userId");
             navigate("/login");
           }}
-          className="bg-white w-7 h-7 dark:bg-gray-900"
+          className="w-7 h-7 bg-white dark:bg-gray-900"
         >
           ⏻
         </button>
@@ -232,7 +232,7 @@ const handleSkipQuestionnaire = async () => {
       <div className={`grid h-full ${showHistory ? "grid-cols-[250px_auto]" : "grid-cols-1"} gap-4 p-4`}>
         {showHistory && (
           <div className="w-[250px] overflow-y-auto bg-white dark:bg-gray-800 dark:text-white p-4 rounded-lg shadow-lg">
-            <h2 className="mb-4 text-lg font-bold">Chat History</h2>
+            <h2 className="text-lg font-bold mb-4">Chat History</h2>
             {loading && <p>Loading chat history...</p>}
             {error && <p className="text-red-500">{error}</p>}
             <ul className="text-sm font-medium text-gray-900">
@@ -265,37 +265,37 @@ const handleSkipQuestionnaire = async () => {
           </button>
           ) : null}
           {/* Chat Messages - Scrollable */}
-          <div className="flex-grow p-4 overflow-y-auto" style={{ maxHeight: "calc(100vh - 150px)" }}>
+          <div className="flex-grow overflow-y-auto p-4" style={{ maxHeight: "calc(100vh - 150px)" }}>
 
             {showQuestionnaireOptions ? (
               <div className="flex flex-col items-center space-y-4">
                 <h2 className="text-xl font-semibold text-center dark:text-white">
                   Je ungependa kushiriki katika dodoso la afya ya akili?
                 </h2>
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <button
-                    className="p-4 bg-blue-100 rounded-lg shadow-md dark:bg-blue-800 dark:text-white hover:bg-blue-200 dark:hover:bg-blue-700"
+                    className="p-4 bg-blue-100 dark:bg-blue-800 dark:text-white rounded-lg shadow-md hover:bg-blue-200 dark:hover:bg-blue-700"
                     onClick={() => handleSelectQuestionnaire("PHQ-9")}
                   >
                     📋 PHQ-9
                     <p className="text-sm dark:text-white">mtihani wa unyongovu</p>
                   </button>
                   <button
-                    className="p-4 bg-green-100 rounded-lg shadow-md dark:text-white dark:bg-green-800 hover:bg-green-200 dark:hover:bg-green-700"
+                    className="p-4 bg-green-100 dark:text-white dark:bg-green-800 rounded-lg shadow-md hover:bg-green-200 dark:hover:bg-green-700"
                     onClick={() => handleSelectQuestionnaire("GAD-7")}
                   >
                     📋 GAD-7
                     <p className="text-sm dark:text-white">mtihani wa wasiwasi</p>
                   </button>
                   <button
-                    className="p-4 bg-teal-100 rounded-lg shadow-md dark:text-white dark:bg-teal-800 hover:bg-teal-200 dark:hover:bg-teal-700"
+                    className="p-4 bg-teal-100 dark:text-white dark:bg-teal-800 rounded-lg shadow-md hover:bg-teal-200 dark:hover:bg-teal-700"
                     onClick={() => handleSelectQuestionnaire("both")}
                   >
                     📋 zote mbili
                     <p className="text-sm dark:text-white">mitihani yote</p>
                   </button>
                   <button
-                    className="p-4 bg-gray-100 rounded-lg shadow-md dark:text-white dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600"
+                    className="p-4 bg-gray-100 dark:text-white dark:bg-gray-700 rounded-lg shadow-md hover:bg-gray-200 dark:hover:bg-gray-600"
                     onClick={() => handleSelectQuestionnaire("skip")}
                   >
                     🏃‍♂️‍➡️🏃‍♂️‍➡️️ Apana
@@ -316,7 +316,7 @@ const handleSkipQuestionnaire = async () => {
           </div>
 
        {!showQuestionnaireOptions ? (
-  <div className="relative p-4 bg-white shadow-lg dark:bg-gray-900">
+  <div className="relative bg-white dark:bg-gray-900 p-4 shadow-lg">
     <InputField
       startNewConversation={startNewConversation}
       newMessage={newMessage}

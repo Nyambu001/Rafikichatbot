@@ -1,128 +1,76 @@
 version: "3.1"
 
 stories:
-- story: greet
+- story: greet and goodbye
   steps:
   - intent: greet
   - action: utter_greet
-
-- story: goodbye
-  steps:
   - intent: goodbye
   - action: utter_goodbye
 
-- story: User expresses stress feelings
+- story: stress advice
   steps:
-  - intent: express_stress
-  - action: utter_express_stress
+  - intent: stress
+  - action: action_stress_advice
 
-- story: User asks about stress causes
+- story: loneliness response
   steps:
-  - intent: stress_causes
-  - action: utter_stress_causes
+  - intent: loneliness
+  - action: action_loneliness
 
-- story: User asks about stress symptoms
-  steps:
-  - intent: stress_symptoms
-  - action: utter_stress_symptoms
-
-- story: User asks for stress relief tips
-  steps:
-  - intent: stress_relief_tips
-  - action: utter_stress_relief_tips
-
-- story: User asks what is stress
-  steps:
-  - intent: what_is_stress
-  - action: utter_what_is_stress
-
-- story: Crisis situation
-  steps:
-  - intent: crisis_alert
-  - action: utter_crisis_alert
-
-- story: User says thank you
-  steps:
-  - intent: appreciation
-  - action: utter_appreciation
-
-- story: user greets affirms and utters stress
+- story: greet and stress
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: express_stress
-  - action: utter_express_stress
-  - intent: affirm
-  - action: utter_stress_relief_tips
-  - intent: appreciation
-  - action: utter_appreciation
+  - intent: stress
+  - action: action_stress_advice
 
-# Complex story example - user stressed, asks for relief tips
-- story: User stressed then seeks advice
+
+- story: greet and loneliness
   steps:
-  - intent: express_stress
-  - action: utter_express_stress
-  - intent: stress_relief_tips
-  - action: utter_stress_relief_tips
+  - intent: greet
+  - action: utter_greet
+  - intent: loneliness
+  - action: action_loneliness
 
-# Crisis + Appreciation flow
-- story: User in crisis then appreciates
+
+- story: stress and goodbye
   steps:
-  - intent: crisis_alert
-  - action: utter_crisis_alert
-  - intent: appreciation
-  - action: utter_appreciation
+  - intent: stress
+  - action: action_stress_advice
+  - intent: goodbye
+  - action: utter_goodbye
 
-# User asks about symptoms, then what is stress
-- story: User wants symptoms and meaning
+
+- story: loneliness and goodbye
   steps:
-  - intent: stress_symptoms
-  - action: utter_stress_symptoms
-  - intent: what_is_stress
-  - action: utter_what_is_stress
+  - intent: loneliness
+  - action: action_loneliness
+  - intent: goodbye
+  - action: utter_goodbye
 
 
-- story: Handle peer pressure scenario
+- story: full conversation stress and loneliness
   steps:
-  - intent: peer_pressure
-  - action: utter_peer_pressure
+  - intent: greet
+  - action: utter_greet
+  - intent: stress
+  - action: action_stress_advice
+  - intent: loneliness
+  - action: action_loneliness
+  - intent: goodbye
+  - action: utter_goodbye
 
-- story: User asks about peer pressure
+
+- story: full conversation loneliness and stress
   steps:
-    - intent: define_peer_pressure
-    - action: utter_define_peer_pressure
-
-- story: User asks about effects of peer pressure
-  steps:
-    - intent: effects_of_peer_pressure
-    - action: utter_effects_of_peer_pressure
-
-- story: Peer pressure with entity - situation
-  steps:
-  - intent: peer_pressure
-    entities:
-      - situation: "marafiki wananishinikiza"
-  - slot_was_set:
-    - situation: "marafiki wananishinikiza"
-  - action: utter_peer_pressure
-
-- story: Peer pressure with multiple entities
-  steps:
-  - intent: peer_pressure
-    entities:
-      - person: "rafiki yangu"
-      - emotion: "nina huzuni"
-      - action: "kunywa pombe"
-  - slot_was_set:
-    - person: "rafiki yangu"
-    - emotion: "nina huzuni"
-    - action: "kunywa pombe"
-  - action: utter_peer_pressure
-
-
-
-
-
-
+  - intent: greet
+  - action: utter_greet
+  - intent: loneliness
+  - action: action_loneliness
+  - intent: stress
+  - action: action_stress_advice
+  - intent: goodbye
+  - action: utter_goodbye
 
 
