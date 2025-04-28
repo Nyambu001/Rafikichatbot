@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 try:
     mongoengine.connect(
         db='chatbotdb',
-        host='mongodb://localhost:27017'
+        host='mongodb://Serah:Serah-bobo@localhost:27017/?authSource=admin'
     )
     print("Successfully connected to MongoDB")
 except mongoengine.ConnectionError as e:

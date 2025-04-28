@@ -11,6 +11,8 @@ entities:
   - symptom
   - intensity
   - feeling
+  - deny
+  - affirm
 
 slots:
   cause:
@@ -47,6 +49,107 @@ responses:
     - text: "Kwaheri! Ninakutakia kila la heri."
     - text: "Tutaonana kesho, ni furaha yangu kukusaidia."
 
+  utter_exiting_conversation:
+    - text: "Asante kwa kushirikiana nami. Kumbuka kuwa hauko peke yako. Ukihitaji msaada zaidi, niko hapa."
+    - text: "Nashukuru kwa mazungumzo yetu. Jali afya yako ya kiakili na uendelee kujitunza."
+    - text: "Kumbuka kuwa kila hatua ya kujijali ni hatua muhimu. Ukihitaji msaada tena, niko tayari kusaidia."
+    - text: "Umenifanya nihisi fahari kushirikiana nawe leo. Tafadhali endelea kujipa nafasi ya kupumzika na kuponya."
+  utter_offer_stress_tips:
+    - text: "Je, ungependa kupata vidokezo vya kukusaidia kupunguza msongo wa mawazo?"
+    - text: "Ningependa kushiriki mbinu rahisi za kupunguza msongo wa mawazo. Je, uko tayari?"
+    - text: "Tunaweza kuchunguza njia bora za kushughulikia msongo wa mawazo. Ungependa tuanze?"
+    - text: "Je, unahitaji msaada wa mbinu za kupunguza msongo wa mawazo unaokukabili?"
+    - text: "Niko hapa kusaidia. Ungependa kusikia vidokezo vya kupunguza msongo wa mawazo?"
+  utter_handle_stress_tips:
+    - text: |
+        Hapa kuna vidokezo vya kusaidia kupunguza msongo wa mawazo:
+        - Pumua kwa kina na polepole kila unapohisi umesongwa.
+        - Tengeneza ratiba ya mapumziko mafupi wakati wa shughuli nyingi.
+        - Fanya shughuli unazopenda kama kusikiliza muziki au kuchora.
+
+    - text: |
+        Vidokezo vya kushughulikia msongo wa mawazo ni:
+        - Lala kwa muda wa kutosha kila usiku ili kurejesha nguvu.
+        - Weka mipaka kwenye kazi au majukumu yanayokuchosha.
+        - Tafuta msaada kutoka kwa marafiki au familia unapohitaji msaada wa kihisia.
+
+    - text: |
+        Unaweza kujaribu njia hizi za kupunguza msongo wa mawazo:
+        - Jifunze kusema "hapana" kwa mambo yanayozidi uwezo wako.
+        - Jihusishe na mazoezi ya mwili kama kutembea au kucheza.
+        - Tenga muda wa kufanya mambo yanayokuletea furaha na utulivu.
+
+    - text: |
+        Vidokezo vya kusaidia kukabiliana na msongo wa mawazo ni:
+        - Tumia mbinu za kutafakari na kutuliza akili kila siku.
+        - Andika hisia zako kwenye daftari ili kuzielewa na kuziachia.
+        - Jitunze kwa kula chakula bora na kunywa maji ya kutosha.
+
+    - text: |
+        Njia nyingine za kushughulikia msongo wa mawazo:
+        - Punguza muda unaotumia kwenye mitandao ya kijamii kama inakuletea msongo.
+        - Weka malengo madogo ya kila siku badala ya kulundika majukumu makubwa.
+        - Iwapo msongo ni mkubwa sana, tafuta msaada wa mtaalamu wa afya ya akili.
+  utter_offer_more_handle_stress_advice:
+  - text: "Je, ungependa kupata ushauri zaidi wa kukusaidia kupunguza msongo wa mawazo?"
+  - text: "Nina mbinu nyingine nzuri za kusaidia kupunguza msongo wa mawazo. Ungependa kusikia zaidi?"
+  - text: "Tungeweza kuchunguza njia zaidi za kukusaidia kushughulikia msongo wa mawazo. Je, tuendelee?"
+  - text: "Niko hapa kwa msaada zaidi. Ungependa kupata vidokezo vingine vya kukabiliana na msongo wa mawazo?"
+
+  utter_more_handle_stress_advice:
+    - text: "Kufanya mazoezi mepesi kama kutembea au yoga kunaweza kusaidia kupunguza msongo wa mawazo."
+    - text: "Kumbuka, unaweza kusoma hapa: https://www.purdue.edu/recwell/pdf/wellness/manage-stress-workbook.pdf?utm_source=chatgpt.com
+     ⚠️ *Mawaidha haya yako kwa kingereza*"
+    - text: "Kuchukua mapumziko mafupi wakati wa kazi au masomo kunaweza kusaidia kuondoa msongamano wa mawazo."
+    - text: "Kuzungumza na mtu unayeamini kuhusu kile kinachokusumbua kunaweza kupunguza mzigo wa hisia."
+    - text: "Kujitunza kwa kula chakula bora na kulala vya kutosha kunaweza kusaidia kudhibiti msongo wa mawazo."
+
+  utter_offer_loneliness_tips:
+    - text: "Je, ungependa kupata vidokezo vya kukusaidia kupambana na upweke?"
+    - text: "Ningependa kushiriki mbinu rahisi za kukusaidia kupunguza hisia za upweke. Je, uko tayari?"
+    - text: "Tunaweza kuchunguza njia bora za kushughulikia upweke. Ungependa tuanze?"
+    - text: "Je, unahitaji msaada wa mbinu za kupunguza upweke unaohisi?"
+    - text: "Niko hapa kusaidia. Ungependa kusikia vidokezo vya kupunguza upweke?"
+  utter_handle_loneliness_tips:
+    - text: |
+        Hapa kuna vidokezo vya kusaidia kupambana na upweke:
+        - Jitahidi kuzungumza na watu, hata kama ni kwa simu au mitandao ya kijamii.
+        - Jihusishe na shughuli unazozipenda kama kusoma, kutembea, au kufanya mazoezi.
+        - Tafuta shughuli za kijamii kama kujitolea au kushiriki vikundi vya kujifunza.
+
+    - text: |
+        Vidokezo vya kushughulikia upweke ni:
+        - Jenga utaratibu wa kila siku unaojumuisha shughuli zinazokufanya ujisikie vizuri.
+        - Shirikiana na familia na marafiki yako, hata kama ni kwa njia ya mtandao.
+        - Tafuta msaada kutoka kwa mtaalamu ikiwa hisia za upweke zinakuwa nzito.
+
+    - text: |
+        Unaweza kujaribu njia hizi za kupambana na upweke:
+        - Tengeneza ratiba ya kufanya shughuli za kijamii kila wiki.
+        - Jifunze kupenda na kujihusisha na mambo unayoyapenda mwenyewe.
+        - Jitahidi kuwa na mtazamo chanya na kujivunia mafanikio yako ya kila siku.
+
+    - text: |
+        Vidokezo vya kusaidia kukabiliana na upweke ni:
+        - Fanya mazoezi ya kutuliza akili kama kutafakari au yoga.
+        - Jitahidi kuwa na mzunguko wa kijamii unaokufanya uhisi kuwa umejumuishwa.
+        - Andika mawazo yako na hisia zako ili kuzielewa na kuziachia.
+
+    - text: |
+        Njia nyingine za kushughulikia upweke:
+        - Punguza muda unaotumia peke yako na tafuta njia za kujumuika na wengine.
+        - Tenga muda wa kufanya shughuli zinazokuletea furaha na utulivu.
+        - Iwapo upweke unakuwa mzito, tafuta msaada kutoka kwa mtaalamu wa afya ya akili.
+  utter_offer_more_handle_loneliness_advice:
+    - text: "Je, ungependa kupata ushauri zaidi wa kukusaidia kupambana na upweke?"
+    - text: "Nina mbinu nyingine nzuri za kusaidia kupunguza upweke. Ungependa kusikia zaidi?"
+    - text: "Tungeweza kuchunguza njia zaidi za kukusaidia kushughulikia upweke. Je, tuendelee?"
+    - text: "Niko hapa kwa msaada zaidi. Ungependa kupata vidokezo vingine vya kukabiliana na upweke?"
+  utter_more_handle_loneliness_advice:
+    - text: "Kufanya mazoezi mepesi kama kutembea au yoga kunaweza kusaidia kupunguza upweke."
+    - text: "Kutafuta muktadha chanya, kama kuangalia filamu za kuvutia au kuzungumza na marafiki, kunaweza kupunguza upweke."
+    - text: "Kuzungumza na mtu unayeamini kuhusu kile kinachokusumbua kunaweza kupunguza hisia za upweke."
+    - text: "Kwa vidokezo zaidi na msaada kuhusu usimamizi wa upweke, unaweza kutembelea: https://www.psychologytoday.com/us/basics/loneliness  ⚠️ *Mawaidha haya yako kwa kingereza*"
 
 actions:
   - utter_greet
@@ -54,3 +157,12 @@ actions:
   - action_handle_assessment
   - action_stress_advice
   - action_loneliness
+  - utter_exiting_conversation
+  - utter_offer_stress_tips
+  - utter_handle_stress_tips
+  - utter_offer_more_handle_stress_advice
+  - utter_more_handle_stress_advice
+  - utter_offer_loneliness_tips
+  - utter_handle_loneliness_tips
+  - utter_offer_more_handle_loneliness_advice
+  - utter_more_handle_loneliness_advice

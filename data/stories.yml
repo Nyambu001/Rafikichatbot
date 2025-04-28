@@ -7,70 +7,73 @@ stories:
   - action: utter_greet
   - intent: goodbye
   - action: utter_goodbye
-
-- story: stress advice
+- story: stress - user accepts help
   steps:
-  - intent: stress
-  - action: action_stress_advice
+    - intent: stress
+    - action: action_stress_advice
+    - action: utter_offer_stress_tips
+    - action: action_listen
+    - intent: affirm
+    - action: utter_handle_stress_tips
+    - action: utter_offer_more_handle_stress_advice
+    - action: action_listen
+    - intent: affirm
+    - action: utter_more_handle_stress_advice
 
-- story: loneliness response
+- story: stress - user accepts help and declines extra help
   steps:
-  - intent: loneliness
-  - action: action_loneliness
+    - intent: stress
+    - action: action_stress_advice
+    - action: utter_offer_stress_tips
+    - action: action_listen
+    - intent: affirm
+    - action: utter_handle_stress_tips
+    - action: utter_offer_more_handle_stress_advice
+    - action: action_listen
+    - intent: deny
+    - action: utter_exiting_conversation
 
-- story: greet and stress
+- story: stress - user declines help
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: stress
-  - action: action_stress_advice
+    - intent: stress
+    - action: action_stress_advice
+    - action: utter_offer_stress_tips
+    - action: action_listen
+    - intent: deny
+    - action: utter_exiting_conversation
 
-
-- story: greet and loneliness
+- story: loneliness - user accepts help
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: loneliness
-  - action: action_loneliness
+    - intent: loneliness
+    - action: action_loneliness
+    - action: utter_offer_loneliness_tips
+    - action: action_listen
+    - intent: affirm
+    - action: utter_handle_loneliness_tips
+    - action: utter_offer_more_handle_loneliness_advice
+    - action: action_listen
+    - intent: affirm
+    - action: utter_more_handle_loneliness_advice
 
-
-- story: stress and goodbye
+- story: loneliness - user accepts help and declines extra help
   steps:
-  - intent: stress
-  - action: action_stress_advice
-  - intent: goodbye
-  - action: utter_goodbye
+    - intent: loneliness
+    - action: action_loneliness
+    - action: utter_offer_loneliness_tips
+    - action: action_listen
+    - intent: affirm
+    - action: utter_handle_loneliness_tips
+    - action: utter_offer_more_handle_loneliness_advice
+    - action: action_listen
+    - intent: deny
+    - action: utter_exiting_conversation
 
-
-- story: loneliness and goodbye
+- story: loneliness - user declines help
   steps:
-  - intent: loneliness
-  - action: action_loneliness
-  - intent: goodbye
-  - action: utter_goodbye
-
-
-- story: full conversation stress and loneliness
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: stress
-  - action: action_stress_advice
-  - intent: loneliness
-  - action: action_loneliness
-  - intent: goodbye
-  - action: utter_goodbye
-
-
-- story: full conversation loneliness and stress
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: loneliness
-  - action: action_loneliness
-  - intent: stress
-  - action: action_stress_advice
-  - intent: goodbye
-  - action: utter_goodbye
-
+    - intent: loneliness
+    - action: action_loneliness
+    - action: utter_offer_loneliness_tips
+    - action: action_listen
+    - intent: deny
+    - action: utter_exiting_conversation
 

@@ -17,12 +17,17 @@ rules:
   steps:
     - intent: submit_assessment
     - action: action_handle_assessment
-- rule: give stress advice
-  steps:
-      - intent: stress
-      - action: action_stress_advice
-- rule: give loneliness advice
-  steps:
-      - intent: loneliness
-      - action: action_loneliness
 
+- rule: Respond to stress
+  steps:
+    - intent: stress
+    - action: action_stress_advice
+    - action: utter_offer_stress_tips
+    - action: action_listen
+
+- rule: Respond to loneliness
+  steps:
+    - intent: loneliness
+    - action: action_loneliness
+    - action: utter_offer_loneliness_tips
+    - action: action_listen

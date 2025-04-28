@@ -131,3 +131,18 @@ nlu:
     - [Sijui kwa nini](feeling), lakini [familia](cause) yangu haioni umuhimu wangu.
     - [Marafiki](cause) wameniacha, sina mtu wa kutegemea kwa wakati huu.
     - [Najawa na [huzuni](feeling)] kwa sababu sina mtu wa kuzungumza na.
+
+- intent: Affirm
+  examples: |
+    - ndio.
+    - ndiyo.
+    - sawa basi.
+    - Bila shaka, niko tayari kuzungumzia hilo.
+    - sawa, nielezee.
+- intent: deny
+  examples: |
+    - apana.
+    - la.
+    - hapana
+    - sidhani nahitaji  msaada saa hii.
+    - Hapana, staki kuzungumza saa hii.
