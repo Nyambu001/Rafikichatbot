@@ -3,26 +3,254 @@ version: "3.1"
 intents:
   - greet
   - goodbye
+  - financial_struggles
+  - academic_pressure
+  - submit_assessment
+  - affirm
+  - deny
+  - ask_more_help
+  - who_are_you
 
 
 
+entities:
+  - support_dependents
+  - financial_status
+  - capital
+  - income_source
+  - institution
+  - intensity
+  - expense_type
+  - debt
+  - subject
+  - exam_type
+  - bad_grade
+  - good_grade
+  - pressure_source
+  - home_task
+  - education_difficulty
+  - time_frame
+  - achievement_goal
+  - school_task
+  - emotion
+
+
+
+slots:
+  expense_type:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: expense_type
+  financial_status:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: financial_status
+  support_dependents:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: support_dependents
+  capital:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: capital
+  debt:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: debt
+  intensity:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: intensity
+  income_source:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: income_source
+  institution:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: institution
+  subject:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: subject
+  bad_grade:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: bad_grade
+  good_grade:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: good_grade
+  home_task:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: home_task
+  school_task:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: school_task
+  pressure_source:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: pressure_source
+  education_difficulty:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: education_difficulty
+  exam_type:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: exam_type
+  emotion:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: emotion
+
+  time_frame:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: time_frame
+  achievement_goal:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: achievement_goal
 
 
 responses:
+  utter_offer_financial_tips:
+    - text: "Ungependa kujadili mbinu za kupanga bajeti au kupata msaada wa kifedha?"
+    - text: "Nikupe vidokezo vya kudhibiti matumizi au kukuonyesha mahali pa kuanzia?"
+    - text: "Je, unahitaji msaada wa kupanga mambo ya kifedha?"
+
+  utter_financial_advice:
+    - text: |
+        Hapa kuna vidokezo vya haraka:
+        💡 Andika mapato yako na matumizi.
+        🎯 Tenga bajeti kwa mahitaji ya lazima kwanza.
+        📉 Epuka mikopo yenye riba kubwa.
+
+        Tovuti hii inaweza kusaidia: [Financial Planning for Youth](https://www.consumerfinance.gov/consumer-tools/money-as-you-grow/)  
+        ⚠️ *Kiungo hiki kiko kwa Kiingereza.*
+
+  utter_check_in_continue_financial:
+    - text: "Je, ungependa kuendelea kujifunza zaidi kuhusu masuala ya kifedha?"
+    - text: "Niko hapa ikiwa ungependa kuendelea au kujadili jambo lingine."
+    - text: "Je, unahitaji usaidizi zaidi au twende kwenye mada nyingine?"
+
+  utter_more_resources_finance:
+    - text: |
+        Rasilimali nyingine zinazoweza kusaidia:
+        📘 [Managing Student Finances](https://www.topuniversities.com/student-info/advice/10-simple-ways-manage-your-money-university)  
+        💼 [Youth Financial Toolkit](https://www.mymoney.gov/Pages/default.aspx)  
+        ⚠️ *Viungo hivi viko kwa Kiingereza. Jisikie huru kuniuliza unachohitaji kuelewa.*
+
+    - text: |
+        Unaweza pia kujaribu:
+        💳 Kutumia programu za kusimamia matumizi (kama Spendee au Mint).
+        👨‍🏫 Kushauriana na mshauri wa kifedha wa kijamii au wa shule.
+
+        Soma zaidi hapa: [Financial Literacy for Youth](https://www.jumpstart.org/what-we-do/support-financial-education/for-parents/)  
+        ⚠️ *Maudhui haya yako kwa Kiingereza.*
   utter_greet:
     - text: "Habari! Niko hapa kusaidia. Unahitaji msaada gani leo?"
     - text: "Vipi ndugu? Nafurahi kukuona. Je, kuna jambo lolote unataka kuzungumzia?"
     - text: "Mambo vipi? Ni vipi naweza kusaidia leo?"
     - text: "Shikamoo! Niko hapa, uko vipi?"
-
+  utter_iam:
+    - text: "Mimi ni RafikiBot.
+            Niko hapa kukusaidia kwa mawazo, maelezo, au kuzungumza tu kuhusu hali yako ya kiakili - kulingana na kile unachohitaji.
+            Ninawezaje kukusaidia leo?"
   utter_goodbye:
     - text: "Kwaheri! Usisahau kurudi tena."
     - text: "Tutaonana baadaye! Nenda salama."
     - text: "Kwaheri! Ninakutakia kila la heri."
     - text: "Tutaonana kesho, ni furaha yangu kukusaidia."
+  utter_suggest_coping_academics:
+    - text: "Ungependa mbinu za kupanga muda au kushughulikia msongo wa mitihani?"
+    - text: "Je, unahitaji msaada wa kupanga ratiba ya kusoma au kupunguza msongo?"
+    - text: "Nikupe vidokezo vya kujitunza unapopitia msongo wa masomo?"
+    - text: "Je, ungependa kujifunza mbinu za kusimamia shinikizo la shule?"
+    - text: "Nikuonyeshe njia rahisi za kujipanga kimasomo na kudhibiti msongo?"
+  utter_academic_followup_tip:
+    - text: |
+        Hapa kuna vidokezo vya haraka:
+        📌 Gawanya masomo kwa sehemu ndogo.
+        🕒 Tumia ratiba ya muda mfupi na mapumziko.
+        🧘‍♀️ Fanya mazoezi madogo ya kupumua unapohisi kushindwa.
+
+        Unaweza pia kuangalia [Mind UK – Tips for Students](https://www.mind.org.uk/information-support/tips-for-everyday-living/student-life/student-life/)  
+        ⚠️ *Kiungo hiki kiko kwa Kiingereza.*
+    - text: |
+        Zifuatazo ni njia rahisi za kushughulikia msongo:
+        ✅ Andika majukumu yako ya kila siku.
+        ✅ Pata usingizi wa kutosha.
+        ✅ Ongea na mtu unayemuamini unapohisi umelemewa.
+
+        Tafadhali tembelea: [Student Minds UK](https://www.studentminds.org.uk/)  
+        ⚠️ *Kiungo hiki kiko kwa Kiingereza.*
+    - text: |
+        Vidokezo vya kukusaidia:
+        📖 Soma kwa vipindi vifupi – si lazima ufunge somo moja lote mara moja.
+        ☕ Pata mapumziko, hata dakika 10 husaidia.
+        🤝 Tafuta msaada kwa walimu au marafiki unapohitaji.
+
+        Tovuti inayoweza kukusaidia: [Mental Health for Students](https://www.nhs.uk/mental-health/children-and-young-adults/young-people/help-for-teenagers-young-adults/)  
+        ⚠️ *Maelezo haya yako kwa Kiingereza.*
+  utter_check_in_continue:
+    - text: "Je, ungependa kujua zaidi au tuendelee na mada nyingine?"
+    - text: "Niko hapa kama ungependa kuendelea au kubadilisha mada."
+    - text: "Unahitaji maelezo zaidi kuhusu hili au unataka kuzungumza kitu kingine?"
+
+  utter_acknowledge_exit:
+    - text: "Sawa, nipo hapa ukihitaji msaada zaidi. Usisite kurudi."
+    - text: "Nimekuelewa. Tuko pamoja, muda wowote unahitaji kusaidiwa."
+    - text: "Sawa, chukua muda wako. Tutazungumza tena ukihisi tayari."
+  utter_more_resources_academics:
+    - text: |
+        Hapa kuna baadhi ya rasilimali nyingine:
+        🎓 [Mindfulness Techniques for Students](https://positivepsychology.com/mindfulness-for-students/)  
+        📘 [Guide to Beating Study Stress](https://www.topuniversities.com/student-info/health-and-support/7-ways-beat-stress-during-exam-season)  
+        ⚠️ *Maudhui haya yako kwa kiingereza.*
+
+    - text: |
+        Zingatia pia haya:
+        ✅ Andika malengo madogo ya kila siku.
+        ✅ Wasiliana na mshauri shuleni au chuoni.
+        ✅ Kumbuka, wewe si peke yako.
+
+        Unaweza pia kusoma hapa: [University Mental Health Resources](https://www.nami.org/Your-Journey/Teens-Young-Adults/College-Students)  
+        ⚠️ *Maudhui haya yako kwa Kiingereza.*
 
 actions:
-  - utter_greet
-  - utter_goodbye
+  - utter_check_in_continue_financial
+  - utter_check_in_continue
   - action_handle_assessment
+  - action_financial_advice
+  - action_academic_advice
+  - utter_more_resources_academics
+  - utter_academic_followup_tip
+  - utter_acknowledge_exit
+  - utter_financial_advice
+  - utter_more_resources_finance
+  - utter_offer_financial_tips
+
 

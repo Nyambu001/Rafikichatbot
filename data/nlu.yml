@@ -8,11 +8,15 @@ nlu:
        - GAD-7 alama: 5
        - PHQ-9 alama: 14
        - alama yangu ya GAD-7 ni 10
-       
-  - intent: request_test
+
+  - intent: who_are_you
     examples: |
-       - ningependa kuchukua mtihani wa unyongovu
-       - ningependa kuchukua mtihani wa wasiwasi
+      - wewe ni nani?
+      - jina lako ni nani
+      - je wewe ni nani
+      - kazi yako ni gani
+      - jielezee wewe ni nani
+           
 
   - intent: greet
     examples: |
@@ -36,3 +40,165 @@ nlu:
      - Niko na safari, nitatoka sasa
      - Nenda salama, usisahau kunipigia simu
 
+  - intent: deny
+    examples: |
+      - Hapana
+      - sitaki zaidi kwa sasa
+      - imetosha
+      - nitarudi baadaye
+      - ni hayo tu kwa sasa
+
+  - intent: affirm
+    examples: |
+      - Ndiyo
+      - sawa
+      - Ndio, tafadhali endelea
+  - intent: ask_more_help
+    examples: |
+      - Naweza kupata ushauri zaidi
+      - naweza pata msaada zaidi
+      - sijaelewa nieleze zaidi
+      - utanisaidiaje zaidi
+      - Nipatie vidokezo vingine
+      - kuna kingine ninaweza kufanya?
+  - intent: financial_struggles
+    examples: |
+      - Hali yangu ya kifedha imekuwa mbaya sana.
+      - [Hali yangu ya kifedha](financial_status) inanipa stress kila siku.
+      - Sina pesa hata kidogo, sijui nitafanya nini.
+      - Kila siku napambana lakini bado hali ya [fedha](financial_status) inazidi kuwa ngumu.
+      - Nimechoka na [hali yangu ya kifedha](financial_status), sijui pa kuanzia tena.
+      - Naishi kwa shida kwa sababu sina [kipato cha uhakika](income_source).
+      - Sina [kazi ya kudumu](income_source), maisha yanakuwa magumu zaidi.
+      - Hakuna njia ya kupata [kipato](income_source), nimejaribu kila kitu.
+      - Nimehangaika [kutafuta pesa](income_source) lakini sipati njia yoyote.
+      - [Mshahara wangu](income_source) hautoshi hata kugharamia mahitaji ya kila siku.
+
+      # Money & Expense Struggles
+      - Sina hata [senti](money) ya kununua [chakula](expense_type) leo.
+      - [Maisha yanazidi kuwa magumu](life_struggle) kila siku, sijui nifanye nini.
+      - [Vitu muhimu](expense_type) vinazidi kuwa ghali, siwezi kuvimudu.
+      - Sijui nitalipia [ada ya shule](expense_type) ya watoto wangu vipi.
+      - Sina pesa ya kulipia [bima ya afya](expense_type), naogopa nikiugua sitapata matibabu.
+      - Nimeshindwa kulipa [kodi ya nyumba](expense_type), mwenye nyumba anataka kunifukuza.
+      - Gharama za maisha zimepanda, lakini [kipato changu](income_source) hakibadiliki.
+
+      # Job & Income Challenges
+      - Sina [kazi](income_source) wala [biashara](income_source), hali yangu ni mbaya sana.
+      - Nimetuma maombi ya [ajira](income_source) mara nyingi lakini sijapata jibu.
+      - Hakuna [nafasi za kazi](income_source) huku, sijui nitawezaje kuishi.
+      - [Mshahara](income_source) ninaopata ni mdogo sana hauwezi kukidhi mahitaji yangu.
+      - Nilikuwa na [biashara ndogo](income_source) lakini haifanyi vizuri siku hizi.
+      - Sina [kazi ya kudumu](income_source), na ajira za muda hazitoshi kulipa gharama zangu.
+
+      # Debt & Loan Problems
+      - Nina [madeni](debt) mengi, sijui nitawezaje kulipa yote.
+      - [Mikopo](debt) inanibana, sijui nifanye nini.
+      - Nimechukua [deni](debt) ili nipate [chakula](expense_type), lakini sina cha kulipa.
+      - Kila mtu [ananidai](debt) lakini sina cha kuwalipa.
+      - [Benki](institution) imenikatalia [mkopo](debt) kwa sababu sina dhamana yoyote.
+      - [Taasisi za kifedha](institution) haziniamini kwa mikopo.
+      - [Mikopo ya benki](debt) ina riba kubwa sana siwezi kulipa.
+      - Bei ya [pesa za mkopo](debt) imekuwa ghali mno.
+      - Nilikuwa na [mkopo wa biashara](debt) lakini umenilemea, siwezi kulipa tena.
+
+      # Capital & Business Start-Up Issues
+      - Nataka kuanzisha biashara lakini sina [mtaji wa kuanzia](capital).
+      - Sijapata mtu wa kunisaidia kupata [mtaji](capital) wa biashara.
+      - Siwezi kupata [dhamana ya mkopo](capital) ya kuanzisha biashara.
+      - Nimejaribu kuomba msaada kutoka [serikali](institution) lakini sijapata jibu.
+      - [Kila biashara](income_source) ninayoanzisha inaanguka kwa sababu ya ukosefu wa [mtaji](capital).
+
+      # Family & Dependents Struggles
+      - Ningependa kusaidia [familia yangu](support_dependents) lakini sina njia ya kupata [pesa](money).
+      - Nina watoto wa kuwatunza lakini [kipato](income_source) changu hakitoshi.
+      - Kila siku [watoto wangu](support_dependents) wanahitaji [chakula](expense_type) lakini sina pesa ya kununua.
+      - Ningependa kuwasomesha [ndugu zangu](support_dependents) lakini sina [ada yao](expense_type).
+      - [Mke wangu](support_dependents) anategemea mimi lakini sina [kazi](income_source) wala [kipato](income_source).
+      - [Sina uwezo wa kuwasaidia](life_struggle) [wazazi wangu](support_dependents) [kifedha] kama nilivyopanga.
+
+      # Economic & Life Challenges
+      - [Hali ya uchumi ni mbaya](financial_status), kila kitu kinazidi kuwa ghali.
+      - Nilipoteza kazi yangu ghafla na sasa sina chanzo cha [mapato](income_source).
+      - Nina wasiwasi kuhusu kesho kwa sababu sina hakika nitaweza kupata chakula.
+      - [Mahitaji yangu](expense_type) yameongezeka lakini [kipato changu](income_source) kimebaki pale pale.
+      - [Nawaza kuhamia kijijini](life_event) kwa sababu maisha mjini yamekuwa ghali kupita kiasi.
+      - Nimelazimika kuhama nyumba kwa sababu siwezi kulipa [kodi](expense_type).
+      - Nimejaribu kuweka akiba lakini kila mara napata [dharura](expense_type) inayonilazimisha kutumia.
+
+  - intent: academic_pressure
+    examples: |
+      - Ninajitahidi kusoma kwa bidii lakini bado [sipati alama nzuri](bad_grade).
+      - [Walimu wangu](pressure_source) wanatarajia nifanye vizuri kila wakati, [inanilemea sana](education_difficulty).
+      - Mimi ni [mwanafunzi wa mwisho](position) wa darasa langu, [nahisi nimekata tamaa](emotion).
+      - Ninalazimika kupata [alama za juu](good_grade) ili kupata [udhamini wa masomo](achievement_goal).
+      - [Familia yangu](pressure_source) inatarajia niwe [mwanafunzi bora](achievement_goal), lakini ni [vigumu kufanikisha](education_difficulty) hilo.
+      - Ninahisi kuwa [masomo yangu](school_task) ni magumu sana na [siwezi kuyamudu](education_difficulty).
+      - Nimepata [matokeo mabaya](bad_grade) na sasa [nahofia adhabu](emotion) kutoka kwa [wazazi wangu](pressure_source).
+      - Nataka kushinda [shindano la kitaaluma](achievement_goal) lakini ushindani ni mkubwa sana.
+      - Sina muda wa kupumzika kwa sababu ya [masomo mengi](school_task) na [kazi za nyumbani](home_task).
+      - Ninajisikia vibaya [ninaposhindwa kuelewa](education_difficulty) [somo](subject) wakati wenzangu wanaelewa haraka.
+      - Nina [mtihani mkubwa](exam_type) [wiki ijayo](time_frame), lakini [sijajiandaa vya kutosha](education_difficulty).
+      - Mimi hupata [msongo wa mawazo](emotion) kabla ya [mitihani](exam_type), siwezi hata kulala vizuri.
+      - Nikishindwa [mtihani huu](exam_type), nitarudia darasa, na hiyo [inanitia hofu](emotion).
+      - Sina muda wa kujifunza kwa sababu ya [masomo mengi yanayofuatana](school_task).
+      - [Mitihani](exam_type) ni mingi sana kwa [wakati](time_frame) ni kidogo, sijui nianze na ipi.
+      - Napata [msongo mkubwa wa mawazo](emotion) kila ninaposikia kuhusu [mitihani ya taifa](exam_type).
+      - Ninahisi sina kumbukumbu nzuri ya kukariri mambo yote ya [mtihani](exam_type).
+      - [Wazazi wangu](pressure_source) wamesema ni lazima nipate [alama za juu](good_grade) ama [alama za kati](good_grade), la sivyo nitafukuzwa shule.
+      - [Mitihani ya [hesabu](subject)](exam_type) [inanilemea sana](education_difficulty), nahisi kama sitaweza kufaulu.
+      - Nilisoma sana kwa ajili ya [mtihani](exam_type), lakini [matokeo yangu bado ni mabaya](bad_grade).
+      - Nina [kazi nyingi za nyumbani](home_task) lakini muda wa kuzifanya ni [mfupi sana](time_frame).
+      - [Mradi wangu wa shule](school_task) unahitajika [kesho](time_frame), lakini bado sijamaliza.
+      - [Mwalimu wetu](pressure_source) anatoa [majukumu mengi sana](school_task) na hatupati nafasi ya kupumzika.
+      - [Najisikia vibaya](emotion) kwa sababu sikumaliza [kazi ya shule](school_task) kwa wakati.
+      - Kuna [andiko](school_task) ninalohitaji kuandika lakini sijui nitapata wapi muda wa kulikamilisha.
+      - Ninalazimika kufanya kazi [usiku kucha](time_frame) ili kukamilisha [kazi ya shule](school_task).
+      - [Kazi ya makundi](school_task) inanilemea kwa sababu [wanakikundi wengine](pressure_source) hawashiriki.
+      - [Mwalimu wangu](pressure_source) hanikubalii kuwasilisha [kazi](school_task) kwa kuchelewa hata kidogo.
+      - Nilisahau [tarehe ya mwisho](time_frame) ya kuwasilisha [kazi yangu](school_task), sasa nina [wasiwasi mkubwa](emotion).
+      - [Wanafunzi wengine](person_compared_to) darasani wanaonekana kuwa na akili sana kuliko mimi.
+      - [Rafiki yangu](person_compared_to) [anafanya vizuri](good_grade) zaidi yangu, nahisi kama mimi si mwerevu.
+      - [Shule yangu](pressure_source) inasisitiza ushindani mkubwa wa kitaaluma, inanifanya nihisi [presha](emotion).
+      - Nataka kuwa [mwanafunzi bora wa darasa](achievement_goal), lakini wengine ni bora zaidi.
+      - Ninajilinganisha na [wengine](person_compared_to) kila mara na [najihisi kama sifai](emotion).
+      - [Wazazi wangu](pressure_source) wanalinganisha matokeo yangu na ya [kaka yangu](person_compared_to) kila mara.
+      - Najisikia vibaya nikiona [wenzangu](person_compared_to) wanafanikiwa zaidi katika [masomo](school_task) kuliko mimi.
+      - [Walimu](pressure_source) wanawapongeza [wanafunzi wengine](person_compared_to) tu, [ninahisi kama sipendwi](emotion).
+      - [Shule yangu](pressure_source) inawatu wenye vipaji sana, [nahisi kama mimi si wa kiwango hicho](emotion).
+      - Ninataka kushinda [tuzo ya mwanafunzi bora](achievement_goal), lakini [nahofia kushindwa](emotion).
+      - Najifunza kwa muda mrefu sana lakini bado siwezi kukumbuka kila kitu.
+      - Ninajaribu kusoma masaa mengi lakini [nahisi nimechoka sana](emotion).
+      - Nina [shughuli nyingi za shule](school_task) hadi sina muda wa kupumzika.
+      - Najifunza hadi [usiku wa manane](time_frame) kila siku, lakini bado [nahisi sijasoma vya kutosha](emotion).
+      - Najitahidi kugawanya muda kati ya [masomo](school_task) na [maisha binafsi](home_task), lakini ni vigumu sana.
+      - Sina muda wa kutoka na marafiki kwa sababu ya [masomo mengi](school_task).
+      - Napenda michezo lakini siwezi kuicheza kwa sababu ya [ratiba ngumu ya shule](pressure_source).
+      - Najitahidi kuwa na [ratiba ya kusoma](school_task), lakini mara nyingi [nahisi nimeelemewa](emotion).
+      - [Nahisi kuchoka sana](emotion) kwa sababu ya [ratiba yangu yenye shughuli nyingi za kitaaluma](school_task).
+      - Najisikia vibaya kwa sababu [nahisi sifanyi vya kutosha](emotion) kuelekea [malengo yangu ya masomo](achievement_goal).
+      - Kila [muda](time_frame) ninapofikiria kuhusu [matokeo ya mtihani](exam_type), napata [msongo wa mawazo](emotion).
+      - [Wazazi wangu](pressure_source) hawana huruma ninaposhindwa kufanikisha [malengo ya masomo](achievement_goal).
+      - [Wanafunzi wengine](person_compared_to) wanaonekana kama wao hawasumbuki hata kidogo.
+      - Najisikia kama [mimi tu ndiye ninayepitia haya](emotion).
+      - [Mwalimu wangu](pressure_source) hunishusha moyo kila mara ninapojaribu kuelewa [somu gumu](subject).
+      - Nilijaribu kuuliza msaada lakini [walimu](pressure_source) hawakunisaidia.
+      - Nilishindwa [mtihani wa mwisho](exam_type) na sasa [nahisi sina matumaini](emotion).
+      - [Kaka yangu](person_compared_to) alipata alama nzuri na [wazazi](pressure_source) wanalinganisha matokeo yetu kila mara.
+      - Ninahisi kama hakuna mtu anayeona [jitihada zangu](emotion) katika [masomo](school_task).
+      - Ninaandika [ripoti](school_task) ambayo inahitaji muda mwingi lakini nina [muda mchache](time_frame).
+      - Najitahidi kuzingatia [ratiba yangu ya kujifunza](school_task) lakini [najikuta nimechoka](emotion) mara kwa mara.
+      - Nimechelewa kufanya [kazi ya nyumbani](school_task) kwa sababu ya [shughuli nyingi](school_task) shuleni.
+      - Ninahisi nimeelemewa na [majukumu ya shule](school_task) na [matarajio ya wazazi](pressure_source).
+      - [Mtihani wa hesabu](exam_type) unanikosesha usingizi kila [usiku](time_frame).
+      - [Muda wa kupumzika](time_frame) umekuwa mgumu kupata kwa sababu ya [masomo mengi](school_task).
+      - Ninajiona kama [sifai kuwa katika shule hii](emotion).
+      - [Wazazi wangu](pressure_source) hawajui presha ninayopitia kwa sababu ya [masomo](school_task).
+      - Wakati mwingine natamani ningekuwa [mtu mwingine](person_compared_to) ambaye hana [shida hizi za kitaaluma](emotion).
+      - Ninajisikia [kama mzigo kwa familia yangu](emotion) kwa sababu siwezi kupata [alama nzuri](achievement_goal).
+      - Ninajitahidi [kufanya vizuri](good_grade) kwenye [mtihani wa [hesabu](subject)](exam_type).
+      - Nina wasiwasi kuhusu [mtihani wa [hisabati](subject)](exam_type) mwezi ujao.
+      - [Mtihani wa [kingereza](subject)](exam_type) unanikatisha tamaa.
+      - [Mtihani wa [biolojia](subject)](exam_type) ni ngumu sana, nahisi shinikizo.
+      - [somo la hesabu](subject) ni ngumu sana.
+      - [somo la kingereza](subject) inanilemea.

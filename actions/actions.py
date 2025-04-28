@@ -200,4 +200,208 @@ class ActionHandleAssessment(Action):
         return []
 
 
+class ActionFinancialAdvice(Action):
+    def name(self):
+        return "action_financial_advice"
+
+    def run(self, dispatcher, tracker, domain):
+
+        detected_issues = {}
+        for slot in ["debt", "expense_type", "income_source", "financial_status", "capital", "institution", "support_dependents"]:
+            value = tracker.get_slot(slot)
+            if value:
+                detected_issues[slot] = value
+
+
+        advice_map = {
+            "debt": [
+                "Jaribu kupanga malipo yako kwa awamu ili kupunguza mzigo wa madeni.",
+                "Tengeneza bajeti madhubuti ili kuweka akiba kwa ajili ya kulipa madeni yako.",
+                "Fanya mazungumzo na waliokukopesha ili kujadili mipango ya malipo yenye unafuu.",
+                "Epuka kukopa zaidi ikiwa tayari una mzigo mkubwa wa madeni.",
+                "Fikiria kuongeza kipato chako kwa kufanya kazi za muda au mradi mdogo."
+            ],
+            "expense_type": [
+                "Fuatilia matumizi yako kila siku na punguza gharama zisizo za lazima.",
+                "Nunua bidhaa kwa bei ya jumla au tafuta njia za kununua kwa punguzo.",
+                "Ikiwa una changamoto ya kununua chakula, tafuta mipango ya msaada wa chakula au bajeti ipasavyo.",
+                "Nunua vyakula visivyoharibika kwa wingi ili kuokoa gharama kwa muda mrefu.",
+                "Punguza matumizi ya starehe kama vile kula nje mara kwa mara ili kuweka akiba."
+            ],
+            "income_source": [
+                "Jaribu kazi za muda mfupi au freelancing ili kuongeza kipato.",
+                "Fikiria kuanzisha biashara ndogo inayohitaji mtaji mdogo lakini inaweza kukua baadaye.",
+                "Tumia ujuzi wako kufanya kazi za ziada kama ushonaji, uandishi, au teknolojia.",
+                "Tafuta kazi za muda au kazi za mkononi ambazo haziitaji mtaji mkubwa.",
+                "Jifunze ujuzi mpya mtandaoni au kupitia mafunzo ya bure ili kuongeza fursa zako za kazi."
+            ],
+            "financial_status": [
+                "Ikiwa unakabiliwa na hali ngumu ya kifedha, tafuta mshauri wa kifedha kwa mwongozo bora.",
+                "Punguza matumizi yako na angalia vipaumbele vyako vya kifedha.",
+                "Tafuta njia za kuingiza kipato kidogo kidogo badala ya kutegemea mikopo.",
+                "Anza kuweka akiba kidogo kidogo kwa dharura za baadaye."
+            ],
+            "capital": [
+                "Angalia mashirika au taasisi zinazotoa ruzuku kwa wafanyabiashara wadogo.",
+                "Tafuta taasisi zinazotoa mikopo kwa riba nafuu kwa wajasiriamali.",
+                "Panga kuweka akiba kidogo kidogo hadi upate mtaji wa kutosha.",
+                "Jaribu kutafuta mshirika wa biashara ili muanze pamoja na kupunguza gharama za mtaji.",
+                "Fikiria kufanya biashara ndogo ndogo zisizohitaji mtaji mkubwa, kama kuuza bidhaa mtandaoni."
+            ],
+            "institution": [
+                "Ikiwa benki haikukupa mkopo, jaribu mashirika ya kifedha yanayotoa mikopo midogo.",
+                "Angalia taasisi zisizo za kiserikali zinazotoa misaada ya kifedha kwa wafanyabiashara.",
+                "Tafuta ushauri wa kifedha kuhusu njia mbadala za kupata mtaji."
+            ],
+            "support_dependents": [
+                "Ikiwa unasaidia [support_dependents], tafuta mipango ya msaada wa kifedha kwa familia zilizo na changamoto.",
+                "Jaribu kuongeza kipato chako kupitia kazi za muda au biashara ndogo.",
+                "Panga matumizi yako kwa makini ili kuhakikisha mahitaji ya familia yanatimizwa.",
+                "Angalia programu za serikali zinazosaidia familia zilizo na mzigo mkubwa wa kifedha."
+            ]
+        }
+
+
+        if detected_issues:
+            response_parts = []
+            for issue in detected_issues:
+                if issue in advice_map:
+                    advice = random.choice(advice_map[issue])
+                    response_parts.append(f" **{issue.capitalize()}**: {advice}")
+
+            response = "Naelewa hali yako na hapa kuna ushauri:\n\n" + "\n".join(response_parts)
+            dispatcher.utter_message(response.strip())
+        else:
+            dispatcher.utter_message("Naomba unieleze zaidi ili niweze kusaidia vyema.")
+
+        return [SlotSet(slot, None) for slot in detected_issues]  # Reset slots after response
+
+
+class ActionAcademicAdvice(Action):
+    def name(self):
+        return "action_academic_advice"
+
+    def run(self, dispatcher, tracker, domain):
+        detected_issues = {}
+        for slot in ["subject", "exam_type", "bad_grade", "good_grade", "pressure_source", "home_task", "education_difficulty", "time_frame", "achievement_goal", "school_task", "emotion"]:
+            value = tracker.get_slot(slot)
+            if value:
+                detected_issues[slot] = value
+
+        advice_map = {
+            "subject": [
+                "Jaribu kujitahidi zaidi katika {subject} kwa kutumia mbinu bora za kujifunza. Pia unaweza kutazama video zinazohusiana na {subject} mtandaoni.",
+                "Hakikisha unapata muda wa mapumziko wakati wa kujifunza {subject} ili kuepuka uchovu.",
+                "Ikiwa unapata ugumu katika {subject}, jaribu kutumia vyanzo vingine vya kujifunzia kama video au makala.",
+                "Jambo muhimu katika {subject} ni kujielewa kuliko kukariri. Fanya mazoezi zaidi ili kuelewa misingi.",
+                "Ikiwa unashindwa na {subject}, jaribu kujifunza na wenzako ili kuboresha ufahamu wako.",
+                "Hakikisha unafanya mazoezi ya kila siku ili kuboresha ufanisi wako katika {subject}.",
+                "Jifunze mbinu za kupanga wakati ili usikose nafasi ya kusoma {subject}.",
+                "Ikiwa unapata shida katika {subject}, jaribu kufuata ratiba maalum ya kujifunza.",
+                "Unaweza kutumia simu yako kujifunza {subject} kwa kutumia programu za kujifunza.",
+                "Usikate tamaa katika {subject}, kila mtu hufanya makosa, lakini ni muhimu kujifunza kutoka kwa makosa yale."
+            ],
+            "exam_type": [
+                "Kuwa na ratiba ya kujifunza kwa ajili ya {exam_type} ili uwe na uhakika wa kufaulu.",
+                "Usiogope {exam_type}, jitahidi kufahamu kila kipengele cha mtihani kabla ya tarehe ya mtihani.",
+                "Maandalizi bora ndiyo ufunguo wa kufaulu {exam_type}.",
+                "Ratiba ya kujifunza kwa {exam_type} inahitajika ili usikose muda wa kupumzika.",
+                "Jitahidi kuwa na mikakati ya kujifunza ya kina kwa ajili ya {exam_type}.",
+                "Usikate tamaa ukiwa na wasiwasi kuhusu {exam_type}, jifunze mbinu za kupunguza msongo wa mawazo.",
+                "Tafuta mbinu za kujiandaa vizuri kwa {exam_type} kwa kushirikiana na wenzako.",
+                "Jifunze kwa makini na uwe na mikakati ya kukumbuka habari muhimu kwa {exam_type}.",
+                "Pumzika kabla ya {exam_type} ili uwe na akili iliyo safi wakati wa mtihani.",
+                "Jaribu kutatua maswali ya mitihani ya zamani ili kujua aina ya maswali ya {exam_type}."
+            ],
+            "pressure_source": [
+                "Shinikizo kutoka kwa {pressure_source} linaweza kuwa kubwa, lakini unaweza kulimudu kwa kupanga muda wako vizuri.",
+                "Ikiwa {pressure_source} inakuletea shinikizo, jaribu kuchukua muda wa kupumzika na kutafakari.",
+                "Hata kama {pressure_source} inaonekana kuwa na changamoto, unaweza kushinda kwa kuwa na mbinu sahihi.",
+                "Shinikizo kutoka kwa {pressure_source} linaweza kuwa na athari, lakini usawa kati ya kazi na mapumziko ni muhimu.",
+                "Shinikizo la {pressure_source} linahitaji uvumilivu na umakini mkubwa.",
+                "Hakikisha unajitunza ili shinikizo la {pressure_source} lisikuathiri kiafya.",
+                "Ikiwa {pressure_source} inakuletea shinikizo, tafuta msaada kutoka kwa familia au marafiki.",
+                "Licha ya shinikizo kutoka kwa {pressure_source}, jitahidi kutunza akili yako na usikate tamaa.",
+                "Fanya kazi kwa bidii lakini pia jitahidi kupata muda wa kupumzika ili kupunguza athari za {pressure_source}.",
+                "Tumia mbinu za kupunguza msongo kama kupumzika au kutafakari ili kukabiliana na shinikizo kutoka kwa {pressure_source}."
+            ],
+            "bad_grade": [
+                "Usijali kuhusu alama mbaya, kila mtu hupitia changamoto, lakini ni muhimu kujifunza kutokana na makosa.",
+                "Alama mbaya si kipimo cha uwezo wako. Jaribu kufanya kazi zaidi ili kuboresha matokeo yako.",
+                "Usikate tamaa kwa sababu ya alama mbaya, jifunze na tafuta msaada kutoka kwa walimu au marafiki.",
+                "Alama mbaya ni ishara ya kutafuta mbinu bora za kujifunza.",
+                "Alama mbaya ni changamoto, lakini unaweza kuboresha ikiwa utaendelea kufanya kazi kwa bidii.",
+                "Hakuna jambo baya kama alama mbaya, lakini jitahidi kujifunza kutoka kwake.",
+                "Kilicho muhimu si alama mbaya, bali juhudi zako za kuendelea kuboresha.",
+                "Alama mbaya zinaweza kuwa nafasi nzuri ya kujifunza.",
+                "Alama mbaya sio mwisho wa kila kitu; tafuta njia bora za kujifunza.",
+                "Tumia alama mbaya kama changamoto ya kuibuka kuwa bora zaidi."
+            ],
+            "good_grade": [
+                "Hongera kwa alama nzuri! Endelea kufanya kazi nzuri.",
+                "Alama nzuri ni uthibitisho wa juhudi zako. Endelea kujitahidi.",
+                "Ufanisi wako unaonyesha juhudi zako; usikate tamaa.",
+                "Alama nzuri ni matokeo ya kazi ngumu; endelea kuweka malengo ya juu.",
+                "Hongera kwa alama nzuri! Dumisha mwendo huu mzuri.",
+                "Hii ni hatua nzuri, endelea kuongeza juhudi.",
+                "Alama nzuri zinaonyesha uwezo wako mkubwa. Endelea kujiimarisha.",
+                "Ufanisi wako ni thibitisho la uwezo wako. Jitahidi zaidi.",
+                "Kila wakati kuna nafasi ya kuboresha, hata baada ya alama nzuri.",
+                "Hongera! Endelea na mipango yako ya kujifunza."
+            ],
+            "time_frame": [
+                "Ikiwa muda unakulemea, panga ratiba nzuri ya kusoma.",
+                "Panga shughuli zako vizuri ili kufanikisha ndani ya muda uliopangwa.",
+                "Tumia muda wako kwa busara ili kupata mafanikio.",
+                "Tumia mbinu bora za usimamizi wa muda ili usikose fursa za kujifunza.",
+                "Ratiba nzuri ya muda itakusaidia kujifunza kwa ufanisi.",
+                "Epuka kupoteza muda kwa shughuli zisizo muhimu.",
+                "Tumia kila dakika vyema ili kufanikisha malengo yako.",
+                "Panga mapumziko ndani ya ratiba yako ili kuepuka kuchoka.",
+                "Kuwa na nidhamu ya muda huongeza ufanisi wako wa kujifunza.",
+                "Usikate tamaa kwa sababu ya muda mdogo, badala yake, tumia muda uliopo kwa ufanisi."
+            ],
+            "achievement_goal": [
+                "Kwa kufikia malengo yako, jitahidi kuweka mkazo kwenye masomo yako.",
+                "Malengo yanaweza kufikiwa ikiwa utaendelea kujitahidi.",
+                "Jiwekee malengo na ufanye kazi ya kuyatimiza.",
+                "Fanya kazi kwa bidii ili kujivunia mafanikio yako.",
+                "Usikate tamaa hata changamoto zikikuja njiani.",
+                "Endelea kufanya kazi kwa bidii kwani mafanikio yanahitaji juhudi.",
+                "Panga vizuri na kuwa na ratiba ya kuyafikia malengo yako.",
+                "Malengo ni muhimu, endelea kuwa na moyo wa kujitahidi.",
+                "Fanya kazi na ratiba iliyopangwa ili kuyatimiza malengo yako.",
+                "Jitahidi kufikia malengo yako hata wakati wa changamoto."
+            ],
+
+            "education_difficulty": [
+                "Changamoto katika masomo ni jambo la kawaida. Endelea kujitahidi kwa subira na uvumilivu.",
+                "Kuhisi ugumu wakati wa kujifunza ni sehemu ya safari ya ukuaji. Usijilaumu, endelea kusonga mbele.",
+                "Kila mtu hupitia wakati mgumu katika kujifunza. Jipe muda na usikate tamaa.",
+                "Ni sawa kuchanganyikiwa wakati mwingine. Muhimu ni kuendelea kujaribu bila kuacha.",
+                "Juhudi zako zina maana, hata kama matokeo hayaonekani mara moja. Endelea kujifunza kwa bidii.",
+                "Kujifunza kwa mafanikio kunahitaji uvumilivu na mazoezi ya mara kwa mara.",
+                "Kosa ni sehemu ya mchakato wa kujifunza. Jifunze kutokana na makosa na usonge mbele.",
+                "Usijilinganishe na wengine; kila mtu ana safari yake ya kipekee ya kujifunza.",
+                "Kujifunza ni safari, si mbio. Kila hatua ndogo unayochukua ina thamani kubwa.",
+                "Jitahidi kuwa mpole na nafsi yako unapokutana na changamoto. Kila hatua mbele ni ushindi."
+            ],
+
+        }
+
+
+        if detected_issues:
+            response_parts = []
+            for issue, value in detected_issues.items():
+                if issue in advice_map:
+                    advice_template = random.choice(advice_map[issue])
+                    advice = advice_template.format(**{issue: value})  # <-- FORMAT THE TEMPLATE WITH SLOT VALUE
+                    response_parts.append(f"**{issue.capitalize()}**: {advice}")
+
+            response = "Naelewa hali yako na hapa kuna ushauri:\n\n" + "\n".join(response_parts)
+            dispatcher.utter_message(response.strip())
+        else:
+            dispatcher.utter_message("Naomba unieleze zaidi ili niweze kusaidia vyema.")
+
+        return [SlotSet(slot, None) for slot in detected_issues]  # Reset slots after response
 

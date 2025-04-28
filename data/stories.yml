@@ -8,3 +8,71 @@ stories:
   - intent: goodbye
   - action: utter_goodbye
 
+
+- story: Financial struggles - user accepts help
+  steps:
+  - intent: financial_struggles
+  - action: action_financial_advice
+  - action: utter_offer_financial_tips
+  - action: action_listen
+  - intent: affirm
+  - action: utter_financial_advice
+  - action: utter_check_in_continue_financial
+  - action: action_listen
+  - intent: affirm
+  - action: utter_more_resources_finance
+
+- story: Financial struggles - user declines extra help
+  steps:
+  - intent: financial_struggles
+  - action: action_financial_advice
+  - action: utter_offer_financial_tips
+  - action: action_listen
+  - intent: affirm
+  - action: utter_financial_advice
+  - action: utter_check_in_continue_financial
+  - action: action_listen
+  - intent: deny
+  - action: utter_acknowledge_exit
+
+- story: Academic pressure - user declines help
+  steps:
+  - intent: academic_pressure
+  - action: action_academic_advice
+  - action: utter_suggest_coping_academics
+  - action: action_listen
+  - intent: deny
+  - action: utter_acknowledge_exit
+
+- story: Academic pressure help - user accepts continued help
+  steps:
+  - intent: academic_pressure
+  - action: action_academic_advice
+  - action: utter_suggest_coping_academics
+  - intent: affirm
+  - action: utter_academic_followup_tip
+  - action: utter_check_in_continue
+  - action: action_listen
+  - intent: affirm
+  - action: utter_more_resources_academics
+
+- story: Academic pressure help - user does not want to continue with more help in academic
+  steps:
+  - intent: academic_pressure
+  - action: action_academic_advice
+  - action: utter_suggest_coping_academics
+  - intent: affirm
+  - action: utter_academic_followup_tip
+  - action: utter_check_in_continue
+  - action: action_listen
+  - intent: deny
+  - action: utter_acknowledge_exit
+
+- story: Academic pressure - user declines help
+  steps:
+  - intent: academic_pressure
+  - action: action_academic_advice
+  - action: utter_suggest_coping_academics
+  - action: action_listen
+  - intent: deny
+  - action: utter_acknowledge_exit

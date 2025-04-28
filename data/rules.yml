@@ -17,3 +17,17 @@ rules:
   steps:
     - intent: submit_assessment
     - action: action_handle_assessment
+
+- rule: Respond to academic pressure
+  steps:
+  - intent: academic_pressure
+  - action: action_academic_advice
+  - action: utter_suggest_coping_academics
+  - action: action_listen
+
+- rule: Respond to financial struggles
+  steps:
+  - intent: financial_struggles
+  - action: action_financial_advice
+  - action: utter_offer_financial_tips
+  - action: action_listen
