@@ -1,0 +1,44 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-cause",
+      "2": "I-cause",
+      "3": "L-cause",
+      "4": "U-cause",
+      "5": "B-feeling",
+      "6": "I-feeling",
+      "7": "L-feeling",
+      "8": "U-feeling",
+      "9": "B-intensity",
+      "10": "I-intensity",
+      "11": "L-intensity",
+      "12": "U-intensity",
+      "13": "B-symptom",
+      "14": "I-symptom",
+      "15": "L-symptom",
+      "16": "U-symptom",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-cause": 1,
+      "I-cause": 2,
+      "L-cause": 3,
+      "U-cause": 4,
+      "B-feeling": 5,
+      "I-feeling": 6,
+      "L-feeling": 7,
+      "U-feeling": 8,
+      "B-intensity": 9,
+      "I-intensity": 10,
+      "L-intensity": 11,
+      "U-intensity": 12,
+      "B-symptom": 13,
+      "I-symptom": 14,
+      "L-symptom": 15,
+      "U-symptom": 16,
+      "O": 0
+    },
+    "num_tags": 17
+  }
+]
