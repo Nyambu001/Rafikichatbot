@@ -8,3 +8,109 @@ stories:
   - intent: goodbye
   - action: utter_goodbye
 
+- story: Drug abuse - user accepts help
+  steps:
+    - intent: drug_abuse
+    - action: action_drug_abuse_advice
+    - action: utter_offer_drug_abuse_tips
+    - action: action_listen
+    - intent: affirm
+    - action: utter_drug_abuse_tips
+    - action: utter_offer_more_drug_abuse_advice
+    - action: action_listen
+    - intent: affirm
+    - action: utter_more_drug_abuse_advice
+
+- story: Drug abuse - user accepts help and declines extra help
+  steps:
+    - intent: drug_abuse
+    - action: action_drug_abuse_advice
+    - action: utter_offer_drug_abuse_tips
+    - action: action_listen
+    - intent: affirm
+    - action: utter_drug_abuse_tips
+    - action: utter_offer_more_drug_abuse_advice
+    - action: action_listen
+    - intent: deny
+    - action: utter_exit_conversation
+
+- story: Drug abuse - user declines help
+  steps:
+    - intent: drug_abuse
+    - action: action_drug_abuse_advice
+    - action: utter_offer_drug_abuse_tips
+    - action: action_listen
+    - intent: deny
+    - action: utter_exit_conversation
+
+- story: Family relationship issues - user accepts help
+  steps:
+    - intent: family_relationship_issues
+    - action: action_family_relationship_advice
+    - action: utter_offer_family_relationship_tips
+    - action: action_listen
+    - intent: affirm
+    - action: utter_family_relationship_tips
+    - action: utter_offer_more_family_relationship_advice
+    - action: action_listen
+    - intent: affirm
+    - action: utter_more_family_relationship_advice
+
+- story: Family relationship issues - user accepts help and declines extra help
+  steps:
+    - intent: family_relationship_issues
+    - action: action_family_relationship_advice
+    - action: utter_offer_family_relationship_tips
+    - action: action_listen
+    - intent: affirm
+    - action: utter_family_relationship_tips
+    - action: utter_offer_more_family_relationship_advice
+    - action: action_listen
+    - intent: deny
+    - action: utter_exit_conversation
+
+- story: Family relationship issues - user declines help
+  steps:
+    - intent: family_relationship_issues
+    - action: action_family_relationship_advice
+    - action: utter_offer_family_relationship_tips
+    - action: action_listen
+    - intent: deny
+    - action: utter_exit_conversation
+
+- story: Romantic relationship issues - user accepts help
+  steps:
+    - intent: romantic_relationship_issues
+    - action: action_romantic_relationship_advice
+    - action: utter_offer_romantic_relationship_tips
+    - action: action_listen
+    - intent: affirm
+    - action: utter_romantic_relationship_tips
+    - action: utter_offer_more_romantic_relationship_advice
+    - action: action_listen
+    - intent: affirm
+    - action: utter_more_romantic_relationship_advice
+
+- story: Romantic relationship issues - user accepts help and declines extra help
+  steps:
+    - intent: romantic_relationship_issues
+    - action: action_romantic_relationship_advice
+    - action: utter_offer_romantic_relationship_tips
+    - action: action_listen
+    - intent: affirm
+    - action: utter_romantic_relationship_tips
+    - action: utter_offer_more_romantic_relationship_advice
+    - action: action_listen
+    - intent: deny
+    - action: utter_exit_conversation
+
+- story: Romantic relationship issues - user declines help
+  steps:
+    - intent: romantic_relationship_issues
+    - action: action_romantic_relationship_advice
+    - action: utter_offer_romantic_relationship_tips
+    - action: action_listen
+    - intent: deny
+    - action: utter_exit_conversation
+
+

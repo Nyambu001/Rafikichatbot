@@ -8,11 +8,6 @@ nlu:
        - GAD-7 alama: 5
        - PHQ-9 alama: 14
        - alama yangu ya GAD-7 ni 10
-       
-  - intent: request_test
-    examples: |
-       - ningependa kuchukua mtihani wa unyongovu
-       - ningependa kuchukua mtihani wa wasiwasi
 
   - intent: greet
     examples: |
@@ -27,11 +22,262 @@ nlu:
 
   - intent: goodbye
     examples: |
-     - Kwaheri rafiki
-     - Tutaonana baadaye
-     - Badaaye
-     - Kwaheri
-     - Nimechoka, nenda salama
-     - Tutaonana kesho
-     - Niko na safari, nitatoka sasa
-     - Nenda salama, usisahau kunipigia simu
+      - Kwaheri rafiki
+      - Tutaonana baadaye
+      - Badaaye
+      - Kwaheri
+      - Nimechoka, nenda salama
+      - Tutaonana kesho
+      - Niko na safari, nitatoka sasa
+      - Nenda salama, usisahau kunipigia simu
+
+  - intent: affirm
+    examples: |
+      - Ndio
+      - Ndio, ningependa kuendelea
+      - Bila shaka, niko tayari kuzungumzia hilo
+      - Sawa, tunaweza kuanza sasa
+      - Naam, hiyo itanisaidia sana
+      - Ndiyo tafadhali, nataka kujifunza zaidi
+
+  - intent: deny
+    examples: |
+      - La
+      - Hapana
+      - Hapana, sihitaji msaada kwa sasa
+      - La hasha, sitaki kuzungumzia hilo kwa sasa
+      - Samahani, lakini sihitaji msaada zaidi
+      - Hapana asante, nitashughulikia peke yangu
+      - Sidhani kama nahitaji msaada kwa sasa 
+
+  - intent: drug_abuse
+    examples: |
+      - [Sigara zimeniharibu](drug_use) kifua na siwezi kuacha
+      - [Bila tobacco huwa ninakuwa](drug_use) mkali na mwenye hasira
+      - Kila nikikasirika [huwa nakimbilia tumbaku](drug_use)
+      - [Nilianza kuvuta sigara](drug_use) nikiwa mdogo sana
+      - [Matumizi ya tobacco](drug_use) yamenisababisha kukohoa sana
+
+      - Nimezoea [kuvuta bangi](drug_use) kabla ya kulala
+      - [Bangi inanifanya](drug_use) nisahau matatizo yangu
+      - Wakati mwingine mimi [huvuta bangi](drug_use) kazini ili kujituliza
+      - [Bangi imenifanya](drug_use) kuwa mtu wa kujitenga
+      - Siwezi tulia bila [kuvuta bhang](drug_use) angalau mara moja kwa siku
+      - Marafiki wangu wengi ni [watumiaji wa bangi](drug_use)
+
+      - Nimekuwa [nikitumia cocaine](drug_use) kwa miaka miwili sasa
+      - [Nilitumia cocaine](drug_use) kwa mara ya kwanza nilipokuwa chuo
+      - Siku hizi siwezi kufanya kazi [bila cocaine](drug_use)
+      - [Naumia sana](negative_impact) kila nikijaribu kuacha [kutumia cocaine](drug_use)
+      - [Nimeingia kwenye madeni](negative_impact) [kwa sababu ya cocaine](drug_use)
+      - [Cocaine imenifanya](drug_use) [nipoteze kazi](negative_impact) yangu ya zamani
+
+      - Mimi ni [mraibu wa heroin](drug_use) na naona ni ngumu kuacha
+      - Tangu nianze [kutumia heroin](drug_use) maisha yangu yameharibika
+      - [Najidunga heroin](drug_use) kila asubuhi na jioni
+      - [Nimehangaika na afya yangu](negative_impact) kutokana na [matumizi ya heroin](drug_use)
+      - [Nimejaribu kuacha heroini](drug_use) lakini mwili wangu hukataa
+
+      - Mimi ni [mlevi wa pombe](drug_use) na siwezi kuacha
+      - Kila jioni lazima nipitie kwa baa [kupata mvinyo](drug_use)
+      - Situlii nyumbani [bila pombe](drug_use)
+      - Najua [pombe alcohol](drug_use) inaniharibu lakini siwezi kuiacha
+      - [Matumizi ya pombe](drug_use) yananifanya nighadhabike bila sababu
+      - [Alcohol imenifanya](drug_use) nipoteze kazi yangu
+
+      - [Ninatafuna miraa](drug_use) kila siku usiku kucha
+      - Sijui kulala bila [kutumia khat](drug_use)
+      - [Miraa imenifanya](drug_use) nisifanye kazi kwa bidii tena
+      - [Nikikosa miraa](drug_use) huwa naumwa kichwa sana
+      - Natumia pesa nyingi [kununua miraa](drug_use) kila siku
+      
+      - Nimekuwa [nikitumia madawa ya kulevya](drug_use) tangu nikiwa kijana
+      - [Matumizi ya dawa za kulevya](drug_use) yameharibu maisha yangu kabisa
+      - Nilianza kutumia [madawa ya kulevya](drug_use) baada ya kupoteza kazi
+      - Sina tena nidhamu kwa sababu ya [drug abuse](drug_use)
+      - Nimejikuta [nikitegemea dawa za kulevya](drug_use) kila siku
+      - [drug use](drug_use) imenifanya nisiwe na marafiki tena
+
+      - Kuna [dawa fulani nilipewa](drug_use) na rafiki nikawa siwezi kuacha kuitumia
+      - Nimekuwa [nikitumia kemikali fulani](drug_use) ambayo huleta mabadiliko ya akili
+      - Nimekuwa [nikimeza dawa za hospitali](drug_use) kwa njia isiyo sahihi kwa muda sasa
+      - Kuna [dawa za mitaani nazotumia](drug_use) ambazo hata majina sizijui lakini huniletea raha ya muda
+      - Ninapenda [kutumia glue](drug_use) kila ninapotaka kuhisi raha
+
+      - [Marafiki zangu ndio walinionyesha](peer_influence) kutumia bangi
+      - Nilianza [kutumia pombe](drug_use) [kwa sababu marafiki zangu](peer_influence) walikuwa wanatumia
+      - [Nilibembelezwa na wenzangu](peer_influence) nikaamua kujaribu dawa za kulevya
+      - Kila mara [tunapokutana na marafiki](peer_influence) [tunakunywa pombe](drug_use) kupitiliza
+      - Niliingia kwenye [matumizi ya dawa za kulevya](drug_use) kwa sababu ya [shinikizo kutoka kwa marafiki](peer_influence)
+      - [Watu ninao kaa nao hunitia moyo](peer_influence) kutumia dawa za kulevya
+      - Nilitaka [kukubalika kwenye kikundi changu cha marafiki](peer_influence), ndio nikaanza kutumia sigara
+      - Nilikuwa najihisi nimesalia nyuma [kwa sababu marafiki wote](peer_influence) walikuwa wanavuta bangi
+      - [Nilihamasishwa na wenzangu](peer_influence) kuwa dawa hizi zitafanya maisha yawe ya raha
+      - [Marafiki wangu walinipa](peer_influence) dawa hizi mara ya kwanza nikaendelea kutumia
+      - Nilitaka [kukubalika na kikundi cha vijana](peer_influence) hivyo nikaanza kutumia
+      - [Watu ninaotangamana nao huniambia](peer_influence) nitumie dawa za kulevya ili niwe kama wao
+      
+      - Baada ya kumpoteza dada yangu, nilijikuta nikitumia pombe kila usiku [ili nisifikirie machungu hayo](emotional_state)
+      - Nilipoachwa na mpenzi wangu wa muda mrefu, sikuweza [kuhimili maumivu hayo](emotional_state) na [nikakimbilia dawa za kulevya](drug_use)
+      - Siku moja nilirudi nyumbani nikakuta familia yangu haipo tena, na hapo ndipo nilianza kutumia madawa [kwa sababu ya hali hiyo ya upweke na huzuni](emotional_state)
+      - Maisha yalipogeuka ghafla na nikajikuta peke yangu bila msaada, nikaanza [kujiburudisha kwa pombe](drug_use) [kutokana na hisia ya huzuni isiyokoma](emotional_state)
+      
+      - Kila mwisho wa mwezi nilikuwa napata [wasiwasi mkubwa](emotional_state) kuhusu kulipa kodi, hivyo nikaanza kutumia dawa ili kujituliza
+      - [Shinikizo la kuwa mtegemezi wa familia](emotional_state) lilinifanya nianze kutumia pombe kupunguza mawazo
+      - Nilijaribu kila njia kupata kazi bila mafanikio hadi nikachoka na kuanza kutumia dawa za kulevya [kutokana na msongamano wa mawazo](emotional_state)
+      - Kazi yangu mpya ilikuwa na [mazingira yenye shinikizo nyingi](emotional_state), nikaanza kutumia bangi ili nipate utulivu
+      - Nilikuwa nikiteseka kimoyomoyo kwa sababu ya [migogoro isiyoisha nyumbani](emotional_state), nikajikuta nikikunywa pombe kila mara
+      
+      - Nilipohamia mji mpya na [kukosa mtu wa kuzungumza naye](emotional_state), nilianza kunywa pombe
+      - Nilipomaliza shule na kila rafiki yangu akaenda njia tofauti, [nilihisi kama hakuna mtu anayenijali](emotional_state) kwa hiyo nikawa natumia bangi kusahau
+      - Hakukuwa na mtu wa kuelewa hisia zangu, hata familia haikunisikiliza. Hivyo nikakimbilia dawa  kwa sababu ya [kukosa uhusiano wa karibu](emotional_state)
+      - [Nilipohisi kila mtu ananipuuza](emotional_state) na hakuna anayenitafuta, nilianza kutumia bangi kila asubuhi
+      - [Ninapohisi upweke](emotional_state) huwa navuta sigara ili kusahau
+      - Nilipokosa msaada wakati wa matatizo yangu makubwa, nikaanza kutumia kemikali za kulevya ili [nisijisikie peke yangu](emotional_state)
+      - Kila mara nilipokuwa nikikumbana na [ubaguzi kazini](emotional_state), nilijikuta nikitumia dawa kujituliza
+      
+      - Nilipoendelea kudharuliwa na familia yangu, [nilihisi hasira](emotional_state) isiyozimika na nikakimbilia pombe
+      - Siku moja [nilipogombana](emotional_state) na baba yangu vibaya, nilitoka nje moja kwa moja kwenda [kunywa mvinyo](drug_use)
+      - Wakati rafiki yangu alinisaliti kwa jambo la maana, [nilihisi ghadhabu sana](emotional_state) na nikatumia heroin ili kulala
+      - Kila nilipokuwa nikikumbana na kutoelewana, nilitumia bangi kama njia ya [kuepuka kulipuka kwa maneno](emotional_state)
+      - Baada ya kupigwa bila kosa lolote, niliamua kuanza kutumia pombe kama njia ya [kuponya hasira yangu](emotional_state)
+      
+      - Baada ya kugundua kwamba mpenzi wangu alikuwa na uhusiano na mwingine, [moyo wangu ulichoka kabisa](emotional_state) na nikakimbilia pombe
+      - Niliweka matumaini makubwa kwa kazi ile, lakini nilipokataliwa bila sababu, [nilikata tamaa kabisa](emotional_state) na kuanza kunywa pombe kila siku
+      - Nilipokosa nafasi chuoni licha ya juhudi zote, [niliona kama maisha hayana maana tena](emotional_state) na nikajikuta nikitumia bangi
+      - Siku moja nilisikia mpenzi wangu anasema hajanipenda kamwe. [Hiyo ilinivunja kabisa](emotional_state) na nikaamua kutumia pombe ili kujifariji
+      - Nilishindwa kufikia matarajio ya maisha yangu. Hii [iliathiri sana moyo wangu](emotional_state) na nikaanza kutumia dawa za kulevya
+   
+      - Nilianza kutumia pombe mara kwa mara [kwa ajili ya starehe binafsi](enjoyment) hadi ikawa sehemu ya maisha yangu
+      - Kila wikendi huwa natumia bangi [kwa furaha ya sherehe](enjoyment), sasa siwezi kuacha
+      - Awali nilikuwa natumia dawa za kulevya [ili kujifurahisha](enjoyment)
+      - [Burudani ya usiku ilinifanya](enjoyment) nianze kutumia madawa ya kulevya mara kwa mara
+      - Kutumia miraa ni [njia yangu ya kufurahia maisha](enjoyment)
+      - Matumizi ya bangi [kwa starehe na kujivinjari](enjoyment) yalianza kama utani hadi nikajikuta siwezi kuishi bila hiyo hali
+      - Nilianza kutumia pombe [kwa kustarehe baada ya kazi](enjoyment)
+      - Kutumia dawa za kulevya [wakati wa burudani na maadhimisho](enjoyment) kumekuwa jambo la kawaida
+      - [Kujifurahisha tu](enjoyment) kulifanya nianze kutumia cocaine, lakini sasa ni uraibu
+      - Nilikuwa nikitumia sigara [kwa raha](enjoyment), bila kujua ningeishia kuwa mraibu wa kweli
+      
+      - Kutokana na uraibu wangu wa dawa za kulevya, [niliwatenga marafiki na familia](negative_impact)
+      - [Nilipoteza heshima katika jamii](negative_impact) baada ya watu kugundua natumia dawa
+      - Matumizi ya bangi yalisababisha [nifukuzwe kwenye nyumba ya familia](negative_impact)
+      - [Uhusiano wangu na wapendwa ulivunjika](negative_impact) kwa sababu ya uraibu wa pombe
+      - Kutumia cocaine kila siku kulinifanya [nishindwe kushiriki shughuli za kijamii](negative_impact)
+      - Nilianza [kupuuza majukumu ya kifamilia](negative_impact) kutokana na utegemezi wa dawa
+      - [Nilifutwa kazi baada ya meneja kugundua](negative_impact) kuwa nimekuwa nikitumia dawa za kulevya kwa muda mrefu
+ 
+      - Kutumia heroin kwa muda mrefu kumesababisha [kupungua kwa afya yangu ya mwili](negative_impact)
+      - [Nimekuwa na matatizo ya kupumua](negative_impact) kutokana na kuvuta bangi kila siku
+      - [Pombe imeniletea](drug_use) [vidonda vya tumbo na matatizo ya ini](negative_impact)
+      - [Nilikonda kupita kiasi na kupoteza nguvu](negative_impact) kwa sababu ya matumizi ya dawa
+      - Kutumia madawa ya kulevya kumesababisha [kushuka kwa kinga ya mwili wangu](negative_impact)
+      
+      - Nilipatikana na dawa za kulevya na [nikafungwa kwa miezi sita](negative_impact)
+      - [Nilifutwa kazi kwa sababu ya kesi ya dawa za kulevya](negative_impact) iliyokuwa mahakamani
+      - [Polisi walinikamata na nikashtakiwa](negative_impact) kwa kumiliki bangi
+      - [Nimekuwa na kesi nyingi mahakamani](negative_impact) kwa sababu ya uraibu wa dawa za kulevya
+      - Nilijikuta [nikihukumiwa kifungo cha miaka mingi](negative_impact) kutokana na [matumizi haramu ya dawa](drug_use)
+
+  - intent: family_relationship_issues
+    examples: |    
+      - [wazazi wangu](family_relationship)
+      - [ndugu yangu](family_relationship)
+      - [dada yangu](family_relationship)
+      - [baba yangu](family_relationship)
+      - [mama yangu](family_relationship)
+      - [kaka yangu](family_relationship)
+      - [wazazi wetu](family_relationship)
+      - [ndungu zangu](family_relationship)
+      - [familia yangu](family_relationship)
+      - [kifamilia](family_relationship)
+      
+      - Ninahisi shinikizo kwa sababu [wazazi wangu](family_relationship) [wanataka nifanye](family_expectations) kazi fulani ninayoichukia
+      - Mara nyingi nahisi kama ninapaswa kutimiza [matarajio ya kifamilia](family_expectations) yasiyokuwa yangu
+      - [Wazazi wangu](family_relationship) [wanatarajia niwe](family_expectations) na maisha bora zaidi yao na ninahisi mzigo
+      - Kuna [shinikizo kubwa kutoka kwa familia yangu](family_expectations) kuhusu ndoa na watoto nisivyo taka
+      - Kila mara ninasikia lawama kwa kushindwa kufikia [viwango wazazi walivyoweka](family_expectations) vyenye masharti
+      - [Familia yangu](family_relationship) [inatarajia niwe](family_expectations) daktari baada ya kumaliza masomo yangu
+      - Wazazi wangu [wanataka niwe](family_expectations) wa kwanza kupata shahada katika familia yetu
+      - [Familia yangu](family_relationship) [inanitegemea kuchukua](family_expectations) biashara ya baba kama kazi yangu ya maisha
+      - [Ndugu zangu](family_relationship) [wanalinganishwa nami](family_expectations) nami kila mara kuhusu mafanikio yao kitaaluma
+      - [Familia yetu](family_relationship) [inaamini kuwa](family_expectations) mafanikio ya kweli ni kuwa na mali na magari makubwa
+     
+      - Kila mara [mimi na [kaka yangu](family_relationship) tunagombana](family_conflict) kuhusu urithi wa ardhi ya familia 
+      - [Kuna mivutano mingi kati yangu na dada yangu](family_conflict) kwa sababu ya kutoelewana kuhusu majukumu ya nyumbani 
+      - [Nimepoteza imani kwa baadhi ya ndugu zangu](family_conflict) kwa sababu walinidanganya kuhusu masuala ya kifamilia 
+      - [Kuna chuki kubwa kwa sababu wazazi wetu wanapendelea kaka yetu](family_conflict) kuliko sisi wengine 
+      - [Mahusiano yangu na ndugu zangu yameharibika](family_conflict) kwa sababu ya upendeleo unaoonyeshwa na wazazi wetu 
+      - Migogoro inazidi kuongezeka kwa sababu [ndugu zangu hawaniheshimu tena](family_conflict) kama zamani 
+      - [Kutoaminiana kati yangu na baba yangu](family_conflict) kumeharibu kabisa mawasiliano yetu 
+      - [Kuna mvutano mkubwa kati yangu na wazazi wangu](family_conflict) kwa sababu hawaamini maamuzi ninayofanya kwa maisha yangu 
+
+      - [Wazazi wangu walitalakiana](family_separation) nilipokuwa na umri mdogo, na tangu hapo [nimekua nikiishi mbali na baba yangu](family_separation)
+      - Tangu [mama yangu ahamie nchi nyingine](family_separation), [tumekosa mawasiliano ya karibu kama familia](family_separation)
+      - Baada ya [ugomvi mkubwa wa kifamilia](family_conflict), [ndugu yangu mkubwa aliacha kuwasiliana nasi](family_separation) kabisa
+      - Najihisi [kutengwa na familia yangu](family_separation) kwa sababu hatuelewani tena kihisia kama zamani
+      - [Baba yangu aliachana na mama yangu](family_separation) na akaanzisha familia mpya bila kutujulisha sisi watoto wake
+      - [Kutengana na wazazi wangu](family_separation) kulifanya nikue nikijihisi sina sehemu ya kuitegemea
+      - [Familia yetu iligawanyika](family_separation) baada ya migogoro ya kifamilia na kila mtu akaenda njia yake
+      - [Ndugu zangu waliamua kuondoka nchini na sasa hatuna tena uhusiano wa karibu](family_separation)
+      - [Hisia za kujitenga na familia yangu](family_separation) zimenifanya nihisi kuwa mgeni hata ninapokuwa nyumbani
+      - Baada ya [wazazi wangu kuachana](family_separation), nililazimika kuishi na bibi na babu badala ya wazazi wangu
+      
+      - [Wazazi wangu wananiamulia kila jambo](family_control), kuanzia kazi ninayofanya hadi mtu ninayepaswa kuoana naye
+      - Sina uhuru wa kufanya maamuzi kuhusu maisha yangu kwa sababu [kila kitu lazima kipitishwe na familia yangu](family_control)
+      - [Familia yangu inanilazimisha](family_control) kushikilia mila na desturi ambazo siamini tena
+      - Nahisi kufungwa [katika maisha niliyopangiwa na familia yangu](family_control) badala ya kuishi kwa mapenzi yangu mwenyewe
+      - [Kila uamuzi kuhusu masomo yangu ulifanywa na wazazi wangu](family_control) bila kuniuliza maoni yangu
+      - [Wazazi wangu hawakubali uchaguzi wangu](family_control) wa kazi kwa sababu wanataka nifanye kazi wanayoona inafaa
+      - [Familia yangu inanizuia kuwa](family_control) na marafiki ninaowapenda kwa sababu hawawapendelei
+      - [Familia yangu inanibana](family_control) kila mara, hata kuhusu mahali ninapoweza kuishi au watu ninaoweza kuwa nao karibu
+      - Kila mara [ninalazimishwa kufuata mila na desturi za familia yetu](family_control) bila kuuliza maswali
+      
+      - Nilipokuwa nikihitaji msaada wa kihisia, [familia yangu haikuwahi kuwa pale](family_neglect) kwa ajili yangu
+      - Nilipopitia changamoto shuleni, [hakuna mtu katika familia yangu aliyenisaidia au kunipa moyo](family_neglect)
+      - Katika familia yetu, [hisia na matatizo ya watoto hayakupewa kipaumbele](family_neglect) kabisa
+      - Wakati wa matatizo ya afya ya akili, [familia yangu ilichagua kuninyamazia](family_neglect) badala ya kunisaidia
+      - [Familia yangu haikunisaidia wala kuniuliza hali yangu](family_neglect) hata wakati nilipokuwa nikihangaika na matatizo mazito
+      - [Hakuna mtu katika familia yangu aliyewahi kuonyesha kujali](family_neglect) nilipopitia vipindi vya huzuni au kushindwa
+      - Nilijifunza kushughulikia matatizo yangu peke yangu kwa sababu [sikuwa na mtu wa kunisaidia nyumbani](family_neglect)
+      - Wakati mwingine [nahisi kama familia yangu ilinisahau kabisa](family_neglect), hata sikumbuki tukizungumza mambo yangu ya kibinafsi
+
+  - intent: romantic_relationship_issues
+    examples: |
+      - [mpenzi wangu](romantic_relationship)
+      - [uhusiano wa kimapenzi](romantic_relationship)
+      - [uhusiano wetu wa kimapenzi](romantic_relationship)
+      
+      - [Nahisi mpenzi wangu ana mambo anayoficha](romantic_trust_and_jealousy) kwa sababu hawezi kunijibu maswali yangu kwa uwazi
+      - Kila mara [ninahisi hofu kwamba mpenzi wangu anaweza kunisaliti](romantic_trust_and_jealousy) kwa sababu ya tabia zake za siri
+      - [Ukosefu wa uaminifu kati yangu na mpenxi wangu](romantic_trust_and_jealousy) umesababisha mimi kuwa na mashaka kila mara anapochelewa kurudi nyumbani
+      - [Ninapata wivu mkubwa ninapomuona mpenzi wangu](romantic_trust_and_jealousy) akizungumza na watu wengine wa jinsia tofauti
+      - [Najihisi kuwa na wasiwasi kwa sababu mpenzi wangu haoneshi wazi dhamira yake ya kuwa mwaminifu kwangu](romantic_trust_and_jealousy)
+      - [Kuna mashaka mengi kati yetu kwa sababu ya historia ya mpenzi wangu](romantic_trust_and_jealousy) ya kuwa na mahusiano ya zamani yaliyovunjika kwa usaliti
+
+      - Kila ninapojaribu kuelezea hisia zangu, [mpenzi wangu anaonekana kutokuwa na hamu ya kunisikiliza](romantic_communication_issues)
+      - Mawasiliano yetu kama wapenzi yamekuwa ya juu juu tu, [hatuzungumzi mambo ya kina wala mahitaji yetu ya kihisia](romantic_communication_issues)
+      - Ninajihisi mpweke kwa sababu kila ninapotaka kuzungumza kuhusu matatizo yetu, [mpenzi wangu huchagua kunyamaza](romantic_communication_issues)
+      - Tunapokuwa na matatizo, [badala ya kuzungumza, mpenzi wangu huamua kunipuuza](romantic_communication_issues) kwa siku kadhaa
+      - Nahisi kama sauti yangu haina maana [katika uhusiano wa kimapenzi wetu kwa sababu mawazo yangu hayawezi kusikilizwa](romantic_communication_issues)
+      - [Mimi na menzi wangu hatuwezi kuzungumza kwa utulivu bila kurushiana lawama na kulaumiana](romantic_communication_issues) hata kwenye mambo madogo
+      - [Mpenzi wangu anaona aibu kuzungumza kuhusu hisia zake](romantic_communication_issues) na mara nyingi huficha maumivu yake
+
+      - [Mimi na mpenzi wangu yumekuwa tukizozana sana kuhusu maisha ya baadaye](romantic_conflict) mpaka sasa hatujui kama uhusiano wetu una mwelekeo mzuri
+      - [Migogoro yangu na mpenzi wangu](romantic_conflict) imekuwa mingi kiasi kwamba sasa tunazungumza mara kwa mara kuhusu kuvunja uhusiano
+      - [Ninahisi kama mimi na mpenzi wangu hatuwezi kuafikiana kuhusu mambo muhimu](romantic_conflict) kama ndoa na watoto, na hilo linatishia uhusiano wetu
+      - [Tuna ugomvi mkubwa kwa sababu mpenzi wangu hana uhakika](romantic_conflict) kama anataka kuwa katika mahusiano ya muda mrefu
+      - [Uhusiano wetu wa kimapenzi unaelekea ukingoni](romantic_conflict) kwa sababu ya migogoro isiyoisha kuhusu dhamira ya maisha ya baadaye
+
+      - Nahisi kama [mpenzi wangu hanioneshi tena upendo wala kujali](romantic_affection_and_attention) jinsi alivyofanya hapo awali
+      - [Mimi na mpenzi wangu hatupangi tena muda wa kuwa pamoja](romantic_affection_and_attention), na kila mtu yuko busy na shughuli zake binafsi
+      - [Mara nyingi nahitaji kusikia maneno ya upendo kutoka kwa mpenzi wangu](romantic_affection_and_attention) lakini yeye huwa kimya
+      - [Mpenzi wangu anaepuka kunionyesha mapenzi hadharani](romantic_affection_and_attention) hata kwa ishara ndogo kama kushika mkono
+      - [Ninahitaji uthibitisho wa mara kwa mara kutoka kwa mpenzi wangu kuwa bado ananipenda na kunihitaj](romantic_affection_and_attention)
+      - [Kukosa mawasiliano ya kihisia na ukosefu wa mapenzi ya wazi](romantic_affection_and_attention) kunafanya uhusiano wetu kuwa mbaya sana
+
+      - [Mpenzi wangu anataka nimjulishe kila hatua yangu](romantic_control) hata kama sina kitu cha kuficha
+      - Najihisi kama nimefungwa katika uhusiano huu kwa sababu [mpenzi wangu haniruhusu](romantic_control) kuwa na uhuru wa kijamii
+      - Kila ninapojaribu kufanya maamuzi binafsi, [lazima nipate idhini ya mpenzi wangu kwanza](romantic_control)
+      - [Mpenzi wangu anataka kudhibiti](romantic_control) marafiki ninaoweza kuwa nao na wale ninaopaswa kuwaepuka
+      - [Kuna masharti mengi katika uhusiano wetu wa kimapenzi](romantic_control) ambayo yananifanya nihisi kuwa chini ya uangalizi mkali

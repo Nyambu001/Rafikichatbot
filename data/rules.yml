@@ -16,3 +16,25 @@ rules:
   steps:
     - intent: submit_assessment
     - action: action_handle_assessment
+
+- rule: Respond to drug abuse
+  steps:
+    - intent: drug_abuse
+    - action: action_drug_abuse_advice
+    - action: utter_offer_drug_abuse_tips
+    - action: action_listen
+
+- rule: Respond to family relationship issues
+  steps:
+    - intent: family_relationship_issues
+    - action: action_family_relationship_advice
+    - action: utter_offer_family_relationship_tips
+    - action: action_listen
+
+- rule: Respond to romantic relationship issues
+  steps:
+    - intent: romantic_relationship_issues
+    - action: action_romantic_relationship_advice
+    - action: utter_offer_romantic_relationship_tips
+    - action: action_listen
+

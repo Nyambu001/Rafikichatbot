@@ -3,65 +3,118 @@ version: "3.1"
 intents:
   - greet
   - goodbye
-  - financial_struggles
-  - academic_pressure
+  - affirm
+  - deny
   - submit_assessment
-
-
+  - drug_abuse
+  - family_relationship_issues
+  - romantic_relationship_issues
 
 entities:
-  - support_dependents
-  - financial_status
-  - capital
-  - income_source
-  - institution
-  - intensity
-  - expense_type
-  - debt
+  - drug_use
+  - peer_influence
+  - emotional_state
+  - enjoyment
+  - negative_impact
+  - family_relationship
+  - family_expectations
+  - family_conflict
+  - family_neglect
+  - family_separation
+  - family_control
+  - romantic_relationship
+  - romantic_trust_and_jealousy
+  - romantic_communication_issues
+  - romantic_conflict
+  - romantic_affection_and_attention
+  - romantic_control
 
 slots:
-  expense_type:
+  drug_use:
     type: text
     mappings:
       - type: from_entity
-        entity: expense_type
-  financial_status:
+        entity: drug_use
+  peer_influence:
     type: text
     mappings:
       - type: from_entity
-        entity: financial_status
-  support_dependents:
+        entity: peer_influence
+  emotional_state:
     type: text
     mappings:
       - type: from_entity
-        entity: support_dependents
-  capital:
+        entity: emotional_state
+  enjoyment:
     type: text
     mappings:
       - type: from_entity
-        entity: capital
-  debt:
+        entity: enjoyment
+  negative_impact:
     type: text
     mappings:
       - type: from_entity
-        entity: debt
-  intensity:
+        entity: negative_impact
+  family_relationship:
     type: text
     mappings:
       - type: from_entity
-        entity: intensity
-  income_source:
+        entity: family_relationship
+  family_expectations:
     type: text
     mappings:
       - type: from_entity
-        entity: income_source
-  institution:
+        entity: family_expectations
+  family_conflict:
     type: text
     mappings:
-    - type: from_entity
-      entity: institution
-
-
+      - type: from_entity
+        entity: family_conflict
+  family_neglect:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: family_neglect
+  family_separation:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: family_separation
+  family_control:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: family_control
+  romantic_relationship:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: romantic_relationship
+  romantic_trust_and_jealousy:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: romantic_trust_and_jealousy
+  romantic_communication_issues:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: romantic_communication_issues
+  romantic_conflict:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: romantic_conflict
+  romantic_affection_and_attention:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: romantic_affection_and_attention
+  romantic_control:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: romantic_control
 
 responses:
   utter_greet:
@@ -76,8 +129,151 @@ responses:
     - text: "Kwaheri! Ninakutakia kila la heri."
     - text: "Tutaonana kesho, ni furaha yangu kukusaidia."
 
+  utter_exit_conversation:
+    - text: "Asante kwa kushiriki nami. Ukihitaji usaidizi, niko hapa kukusaidia."
+    - text: "Nashukuru kwa mazungumzo yetu. Ukiwa tayari au ukihitaji msaada mwingine, usisite kunijulisha."
+    - text: "Ni vizuri kuchukua muda wako. Niko hapa kila wakati utakapohitaji kuzungumza tena."
+    - text: "Asante kwa kuwa wazi. Safari ya kujitunza ni ya binafsi na ya kipekee — nipo hapa unapohitaji msaada zaidi."
+
+  utter_offer_drug_abuse_tips:
+    - text: "Je, ungependa nipate kukushirikisha vidokezo vya kusaidia kukabiliana na matumizi ya dawa za kulevya?"
+    - text: "Ningependa kushiriki nawe baadhi ya vidokezo vya kukabiliana na matumizi ya dawa za kulevya. Je, ungependa kuvisikia?"
+    - text: "Kama ungependa, naweza kutoa baadhi ya vidokezo vya msaada kuhusu matumizi ya dawa za kulevya."
+    - text: "Je, unataka nipendekeze vidokezo vinavyoweza kusaidia katika kukabiliana na matumizi ya dawa za kulevya?"
+
+  utter_drug_abuse_tips:
+    - text: |
+        Hapa kuna vidokezo vinavyoweza kusaidia katika kukabiliana na matumizi ya dawa za kulevya:
+        - Tafuta njia mbadala za kupunguza msongo wa mawazo kama mazoezi au kuzungumza na rafiki wa kuaminika.
+        - Epuka maeneo au watu wanaokuchochea kutumia dawa za kulevya.
+        - Anzisha shughuli mpya kama michezo au kujifunza ujuzi mpya ili kujaza muda wako.
+    - text: |
+        Baadhi ya vidokezo vya kusaidia kukabiliana na matumizi ya dawa za kulevya ni:
+        - Andika malengo yako ya kibinafsi na uyakumbuke kila siku.
+        - Tafuta msaada kutoka kwa vikundi vya msaada au mshauri wa kitaalamu.
+        - Punguza upweke kwa kujihusisha na familia na marafiki wanaokuunga mkono
+    - text: |
+        Unaweza kujaribu vidokezo hivi kukabiliana na matumizi ya dawa za kulevya:
+        - Jifunze kutambua vichocheo vinavyokusukuma kutumia na upange mbinu za kuviepuka.
+        - Endelea kujikumbusha thamani yako na ndoto zako za baadaye.
+        - Fanya maamuzi madogo ya afya kila siku, kama kula vizuri na kupata usingizi wa kutosha.
+    - text: |
+        Vidokezo vya msaada katika safari ya kukabiliana na matumizi ya dawa za kulevya:
+        - Tafuta mtu wa kuaminika wa kuzungumza naye unapohisi kushawishika.
+        - Tunga ratiba ya kila siku inayokuweka bize na shughuli chanya.
+        - Kuwa na subira na safari yako; mabadiliko mazuri huchukua muda.
+
+  utter_offer_more_drug_abuse_advice:
+    - text: "Je, ungependa kupata vidokezo vingine zaidi vya kusaidia kukabiliana na matumizi ya dawa za kulevya?"
+    - text: "Ninaweza kushiriki vidokezo zaidi kuhusu kukabiliana na matumizi ya dawa za kulevya. Je, ungependa kuvisikia?"
+    - text: "Kama ungependa, kuna vidokezo vingine vya msaada ninavyoweza kushiriki nawe kuhusu matumizi ya dawa za kulevya."
+    - text: "Je, unahitaji vidokezo vya ziada vya kusaidia katika safari yako ya kukabiliana na matumizi ya dawa za kulevya?"
+
+  utter_more_drug_abuse_advice:
+    - text: "Safari ya kuacha matumizi ya dawa za kulevya ni ya kipekee kwa kila mtu, na ni muhimu kujikumbusha kuwa kila hatua ndogo ni mafanikio makubwa."
+    - text: "Kujenga maisha yenye maana na shughuli za kujijenga huweza kusaidia kupunguza hamu ya kurudia matumizi ya dawa."
+    - text: "Kumbuka kuwa kujisamehe na kuendelea mbele ni sehemu muhimu ya mchakato wa kupona kutokana na matumizi ya dawa za kulevya."
+    - text: "Kujizunguka na watu wanaokuunga mkono na kukuamini kunaweza kuwa msingi wa mafanikio katika safari ya kupona."
+
+  utter_offer_family_relationship_tips:
+    - text: "Je, ungependa kushirikiana nami kupata vidokezo vya kusaidia kushughulikia changamoto za mahusiano ya kifamilia?"
+    - text: "Ninaweza kushiriki baadhi ya vidokezo vya kusaidia katika matatizo ya mahusiano ya kifamilia. Je, ungependa kuvisikia?"
+    - text: "Kama ungependa, naweza kukupa vidokezo vya kukabiliana na changamoto za mahusiano ya kifamilia."
+    - text: "Je, unataka nipendekeze baadhi ya mbinu zinazoweza kusaidia katika kushughulikia matatizo ya kifamilia?"
+
+  utter_family_relationship_tips:
+    - text: |
+        Hapa kuna vidokezo vya kushughulikia changamoto za mahusiano ya kifamilia:
+        - Jaribu kuwasiliana kwa uwazi na kwa heshima bila lawama.
+        - Sikiliza maoni na hisia za wanafamilia wengine kwa makini.
+        - Tafuta muda wa ubora wa kuwa pamoja kama familia bila usumbufu wa teknolojia.
+    - text: |
+        Baadhi ya mbinu za kusaidia mahusiano ya kifamilia ni:
+        - Eleza hisia zako kwa utulivu badala ya kuonyesha hasira.
+        - Tafuta nafasi ya kufanya shughuli za pamoja zinazoburudisha familia.
+        - Jifunze kusamehe makosa madogo ili kujenga mazingira ya amani.
+    - text: |
+        Unaweza kujaribu vidokezo hivi katika kuboresha mahusiano ya kifamilia:
+        - Tengeneza mazingira salama ya kuzungumza masuala magumu bila hofu.
+        - Kumbuka kuthamini na kuonyesha shukrani kwa juhudi za kila mmoja.
+        - Weka mipaka yenye afya kuhusu heshima na majukumu ndani ya familia.
+    - text: |
+        Vidokezo vya kusaidia mahusiano ya kifamilia vinaweza kujumuisha:
+        - Panga mikutano ya familia ili kujadili mambo muhimu kwa pamoja.
+        - Epuka kutolea hukumu kabla ya kuelewa mtazamo wa mwingine.
+        - Jitahidi kujifunza mbinu za kutatua migogoro kwa amani na kwa busara.
+
+  utter_offer_more_family_relationship_advice:
+    - text: "Je, ungependa kusikia vidokezo zaidi vya kusaidia katika changamoto za mahusiano ya kifamilia?"
+    - text: "Kama ungependa, nina vidokezo zaidi vya kusaidia kushughulikia matatizo ya kifamilia. Ungependa kuvisikia?"
+    - text: "Ningependa kushiriki nawe vidokezo vingine zaidi kuhusu kuboresha mahusiano ya kifamilia. Je, uko tayari?"
+    - text: "Je, ungependa nipendekeze vidokezo vya ziada vya kusaidia katika mahusiano ya kifamilia?"
+
+  utter_more_family_relationship_advice:
+    - text: "Mahusiano ya kifamilia yanahitaji muda, nia ya kweli, na juhudi kutoka kwa kila mwanajamii ili kurejesha uhusiano mzuri."
+    - text: "Kujifunza kukubaliana na tofauti katika familia kunaweza kusaidia kujenga mazingira ya heshima na uelewano."
+    - text: "Wakati mwingine, kuchukua nafasi ya kusikiliza bila kutoa suluhisho kunaweza kuwa msaada mkubwa kwa mshikamano wa kifamilia."
+    - text: "Familia yenye afya hujengwa kwa uvumilivu, huruma, na kujitoa kwa kila mmoja bila masharti."
+
+  utter_offer_romantic_relationship_tips:
+    - text: "Je, ungependa nipate kukushirikisha vidokezo vya kusaidia katika changamoto za mahusiano ya kimapenzi?"
+    - text: "Ninaweza kutoa baadhi ya vidokezo vya msaada kuhusu matatizo ya mahusiano ya kimapenzi. Je, ungependa kuvisikia?"
+    - text: "Kama ungependa, tunaweza kuangalia baadhi ya vidokezo vya kusaidia kushughulikia changamoto za mapenzi."
+    - text: "Je, unataka nikupe vidokezo vya kukabiliana na matatizo yanayohusiana na mahusiano ya kimapenzi?"
+
+  utter_romantic_relationship_tips:
+    - text: |
+        Hapa kuna vidokezo vya kushughulikia changamoto za mahusiano ya kimapenzi:
+        - Jenga mawasiliano ya wazi na yenye kuelewana na mwenzi wako.
+        - Toa muda na uangalifu wa dhati kwa mahitaji ya mwenzi wako.
+        - Zungumzeni kuhusu matarajio yenu kwa uhusiano bila hofu.
+    - text: |
+        Baadhi ya mbinu za kusaidia mahusiano ya kimapenzi ni:
+        - Kumbuka kuthamini na kuonyesha shukrani kwa mambo madogo anayotenda mwenzi wako.
+        - Tafuta muda wa pekee wa kuwa pamoja, hata kama ni kwa shughuli ndogo.
+        - Endeleeni kujifunza kuhusu hisia na mahitaji ya kila mmoja kadri muda unavyosonga.
+    - text: |
+        Unaweza kujaribu vidokezo hivi ili kuboresha mahusiano ya kimapenzi:
+        - Sikiliza bila kukatiza wakati mwenzi wako anazungumza.
+        - Kuwa mkweli kuhusu hisia zako kwa njia ya heshima na uwazi.
+        - Kuwa tayari kujifunza na kubadilika pamoja na mwenzi wako.
+    - text: |
+        Vidokezo vya kusaidia mahusiano ya kimapenzi vinaweza kuwa:
+        - Jifunze mbinu za kusuluhisha migogoro kwa njia ya amani na kuheshimiana.
+        - Epukeni kulaumu kila mara; badala yake zungumzieni suluhisho pamoja.
+        - Kuwa na subira katika kujenga uhusiano wa kudumu na imara.
+
+  utter_offer_more_romantic_relationship_advice:
+    - text: "Je, ungependa kusikia vidokezo zaidi vya kusaidia kushughulikia changamoto za mahusiano ya kimapenzi?"
+    - text: "Kama ungependa, nina vidokezo vya ziada kuhusu kuboresha mahusiano ya kimapenzi. Je, ungependa kuvisikia?"
+    - text: "Ninaweza kushiriki vidokezo vingine zaidi kuhusu kuimarisha mahusiano ya kimapenzi. Je, uko tayari kuyasikia?"
+    - text: "Je, unahitaji vidokezo zaidi vya kusaidia katika safari yako ya mahusiano ya kimapenzi?"
+
+  utter_more_romantic_relationship_advice:
+    - text: "Mahusiano ya kimapenzi yanastawi kupitia uaminifu wa kila siku, si maneno makubwa tu bali vitendo vidogo vya upendo na uaminifu."
+    - text: "Kukubali kwamba mwenzi wako ni mwanadamu anayekosea kama wewe hujenga msingi wa uvumilivu na msamaha katika uhusiano."
+    - text: "Uhusiano mzuri hauji kwa bahati; hujengwa kwa mawasiliano ya kweli, heshima, na jitihada za kila siku kutoka kwa pande zote mbili."
+    - text: "Kukua pamoja katika mahusiano ya kimapenzi kunahitaji utayari wa kila mmoja kujifunza, kukua, na kusaidiana katika changamoto na mafanikio."
+
 actions:
   - utter_greet
   - utter_goodbye
+  - utter_exit_conversation
   - action_handle_assessment
+  - action_drug_abuse_advice
+  - utter_offer_drug_abuse_tips
+  - utter_drug_abuse_tips
+  - utter_offer_more_drug_abuse_advice
+  - utter_more_drug_abuse_advice
+  - action_family_relationship_advice
+  - utter_offer_family_relationship_tips
+  - utter_family_relationship_tips
+  - utter_offer_more_family_relationship_advice
+  - utter_more_family_relationship_advice
+  - action_romantic_relationship_advice
+  - utter_offer_romantic_relationship_tips
+  - utter_romantic_relationship_tips
+  - utter_offer_more_romantic_relationship_advice
+  - utter_more_romantic_relationship_advice
+
 
