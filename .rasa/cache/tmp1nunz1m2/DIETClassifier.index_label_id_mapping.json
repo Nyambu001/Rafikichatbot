@@ -1,0 +1,10 @@
+{
+  "0": "affirm",
+  "1": "deny",
+  "2": "express_anxiety",
+  "3": "express_depression",
+  "4": "goodbye",
+  "5": "greet",
+  "6": "request_test",
+  "7": "submit_assessment"
+}

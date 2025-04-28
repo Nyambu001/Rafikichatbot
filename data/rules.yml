@@ -17,3 +17,17 @@ rules:
   steps:
     - intent: submit_assessment
     - action: action_handle_assessment
+
+- rule: Respond to express_depression
+  steps:
+    - intent: express_depression
+    - action: action_handle_depression
+    - action: utter_offer_handle_depression_tips
+    - action: action_listen
+
+- rule: Respond to express_anxiety
+  steps:
+    - intent: express_anxiety
+    - action: action_handle_anxiety
+    - action: utter_offer_handle_anxiety_tips
+    - action: action_listen

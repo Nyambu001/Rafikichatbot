@@ -1,0 +1,81 @@
+{
+  "type": "MaxHistoryTrackerFeaturizer",
+  "state_featurizer": {
+    "action_texts": [],
+    "entity_tag_specs": [],
+    "feature_states": {
+      "intent": {
+        "affirm": 0,
+        "back": 1,
+        "deny": 2,
+        "express_anxiety": 3,
+        "express_depression": 4,
+        "goodbye": 5,
+        "greet": 6,
+        "nlu_fallback": 7,
+        "out_of_scope": 8,
+        "request_test": 9,
+        "restart": 10,
+        "session_start": 11,
+        "submit_assessment": 12
+      },
+      "action_name": {
+        "action_listen": 0,
+        "action_restart": 1,
+        "action_session_start": 2,
+        "action_default_fallback": 3,
+        "action_deactivate_loop": 4,
+        "action_revert_fallback_events": 5,
+        "action_default_ask_affirmation": 6,
+        "action_default_ask_rephrase": 7,
+        "action_two_stage_fallback": 8,
+        "action_unlikely_intent": 9,
+        "action_back": 10,
+        "...": 11,
+        "action_extract_slots": 12,
+        "utter_greet": 13,
+        "utter_goodbye": 14,
+        "action_handle_assessment": 15,
+        "action_handle_depression": 16,
+        "action_handle_anxiety": 17,
+        "utter_offer_handle_anxiety_tips": 18,
+        "utter_handle_anxiety_tips": 19,
+        "utter_offer_more_handle_anxiety_advice": 20,
+        "utter_more_handle_anxiety_advice": 21,
+        "action_handle_depression_advice": 22,
+        "utter_offer_handle_depression_tips": 23,
+        "utter_handle_depression_tips": 24,
+        "utter_offer_more_handle_depression_advice": 25,
+        "utter_more_handle_depression_advice": 26,
+        "utter_exitConversation": 27
+      },
+      "entities": {
+        "abuse": 0,
+        "academicPressure": 1,
+        "familyIssues": 2,
+        "financialIssues": 3,
+        "peerPressure": 4,
+        "relationshipIssues": 5,
+        "sickness": 6,
+        "socialMedia": 7,
+        "societalPressure": 8,
+        "stressor": 9
+      },
+      "slots": {
+        "familyIssues_0": 0,
+        "stressor_0": 1,
+        "financialIssues_0": 2,
+        "relationshipIssues_0": 3,
+        "abuse_0": 4,
+        "sickness_0": 5,
+        "academicPressure_0": 6,
+        "societalPressure_0": 7,
+        "peerPressure_0": 8,
+        "socialMedia_0": 9
+      },
+      "active_loop": {}
+    }
+  },
+  "remove_duplicates": true,
+  "max_history": 10
+}

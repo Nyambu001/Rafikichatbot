@@ -8,3 +8,75 @@ stories:
   - intent: goodbye
   - action: utter_goodbye
 
+- story: Handle anxiety with identified cause -user accepts help
+  steps:
+  - intent: express_anxiety
+  - action: action_handle_anxiety
+  - action: utter_offer_handle_anxiety_tips
+  - action: action_listen
+  - intent: affirm
+  - action: utter_handle_anxiety_tips
+  - action: utter_offer_more_handle_anxiety_advice
+  - action: action_listen
+  - intent: affirm
+  - action: utter_more_handle_anxiety_advice
+
+- story: Handle anxiety with identified cause -user accepts help and declines extra help
+  steps:
+  - intent: express_anxiety
+  - action: action_handle_anxiety
+  - action: utter_offer_handle_anxiety_tips
+  - action: action_listen
+  - intent: affirm
+  - action: utter_handle_anxiety_tips
+  - action: utter_offer_more_handle_anxiety_advice
+  - action: action_listen
+  - intent: deny
+  - action: utter_exitConversation
+
+- story: Handle anxiety  -user declines help
+  steps:
+  - intent: express_anxiety
+  - action: action_handle_anxiety
+  - action: utter_offer_handle_anxiety_tips
+  - action: action_listen
+  - intent: deny
+  - action: utter_exitConversation
+
+
+- story: Handle depression - user accepts help
+  steps:
+  - intent: express_depression
+  - action: action_handle_depression
+  - action: utter_offer_handle_depression_tips
+  - action: action_listen
+  - intent: affirm
+  - action: utter_handle_depression_tips
+  - action: utter_offer_more_handle_depression_advice
+  - action: action_listen
+  - intent: affirm
+  - action: utter_more_handle_depression_advice
+
+- story: Handle depression - user accepts help and declines extra help
+  steps:
+  - intent: express_depression
+  - action: action_handle_depression
+  - action: utter_offer_handle_depression_tips
+  - action: action_listen
+  - intent: affirm
+  - action: utter_handle_depression_tips
+  - action: utter_offer_more_handle_depression_advice
+  - action: action_listen
+  - intent: deny
+  - action: utter_exitConversation
+
+- story: Handle depression - user declines help
+  steps:
+  - intent: express_depression
+  - action: action_handle_depression
+  - action: utter_offer_handle_depression_tips
+  - action: action_listen
+  - intent: deny
+  - action: utter_exitConversation
+
+

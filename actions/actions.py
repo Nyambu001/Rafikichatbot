@@ -199,5 +199,237 @@ class ActionHandleAssessment(Action):
         dispatcher.utter_message(text=full_response)
         return []
 
+class ActionExpressDepression(Action):
+    def name(self):
+        return "action_handle_depression"
+    def run(self, dispatcher, tracker, domain):
+        detected_issues = {}
+
+        for slot in ["familyIssues","stressor","relationshipIssues","financialIssues","abuse","sickness"]:
+            value=tracker.get_slot(slot)
+            if value:
+                detected_issues[slot]=value
+
+        advice_map={
+            "familyIssues": [
+                "Kukumbana na changamoto za kifamilia si jambo rahisi, na hisia zako zina thamani kubwa.",
+                "Ni kawaida kabisa kuhisi huzuni unapokumbwa na matatizo ya kifamilia.",
+                "Unastahili nafasi ya kupumua na kujitunza hata unapopitia changamoto za nyumbani.",
+                "Mawazo na hisia zako kuhusu familia yako ni halali na ya muhimu.",
+                "Hakuna kosa katika kuhisi kuumizwa au kuchanganyikiwa na masuala ya familia.",
+                "Kupitia matatizo ya kifamilia kunaweza kuwa mzigo mkubwa, na wewe una nguvu za kustahimili.",
+                "Ni sawa kabisa kuhisi uzito wa mambo yanayotokea nyumbani.",
+                "Hisia zako ni sehemu ya ukweli wako, na ni sahihi kabisa kuzihisi.",
+                "Huhitaji kujilaumu kwa jinsi mambo ya kifamilia yanavyokuathiri.",
+                "Wewe ni wa thamani hata katika nyakati za sintofahamu ndani ya familia.",
+                "Ni ujasiri mkubwa kushughulika na changamoto za kifamilia kila siku.",
+                "Wewe si peke yako katika hisia hizi; zinatambuliwa na kuheshimiwa.",
+                "Ni kawaida kutamani upendo, msaada, na uelewa kutoka kwa familia.",
+                "Kukabiliana na familia yenye changamoto hakupunguzi thamani yako kama mtu.",
+                "Wewe ni mwenye thamani hata kama hali ya nyumbani haiko kamilifu."
+            ],
+            "financialIssues": [
+                "Kukabili changamoto za kifedha kunaweza kuwa ngumu sana, na hisia zako zinatambuliwa.",
+                "Ni kawaida kuhisi hofu au wasiwasi kuhusu hali ya kifedha.",
+                "Hakuna aibu katika kuhisi uzito wa changamoto za kifedha.",
+                "Unafanya kadri ya uwezo wako katika hali ngumu, na hiyo ni ya kupongezwa.",
+                "Kujihisi umeelemewa na mambo ya kifedha si kosa; ni hisia halali.",
+                "Hali ya kifedha haifafanui thamani yako kama mtu.",
+                "Kupitia hali ya kifedha yenye changamoto haimaanishi kuwa umefeli.",
+                "Hisia zako kuhusu pesa na maisha ni sahihi na zenye heshima.",
+                "Ni kawaida kuhisi kuchanganyikiwa unapopambana na hali ngumu za kifedha.",
+                "Ni sawa kabisa kutamani msaada au utulivu wa kifedha.",
+                "Una haki ya kuhisi unahitaji usalama na uthabiti kifedha.",
+                "Changamoto za kifedha haziwezi kupunguza thamani ya upendo wako wa ndani.",
+                "Wewe ni wa thamani hata unapopitia wakati mgumu wa kifedha.",
+                "Kuhisi uzito wa deni au ukosefu si ishara ya kutokuwa na thamani.",
+                "Una nguvu ya ajabu kwa kuendelea mbele hata katikati ya changamoto hizi."
+            ],
+            "relationshipIssues": [
+                "Kuhisi maumivu katika uhusiano ni kawaida na hisia zako ni halali kabisa.",
+                "Hakuna kosa katika kuhisi huzuni au kuchanganyikiwa kuhusu mahusiano.",
+                "Unastahili kupendwa kwa upendo wa kweli na wa heshima.",
+                "Ni vigumu kubeba maumivu ya mahusiano, lakini hisia zako zina umuhimu.",
+                "Ni sawa kuhisi kuvunjika moyo unapohisi kuwa mahusiano hayaendi sawa.",
+                "Mioyo yetu inaumia tunapopitia changamoto za mahusiano, na hiyo ni kawaida.",
+                "Unaruhusiwa kuhisi uchungu unapopoteza uhusiano au imani.",
+                "Wewe ni wa thamani, hata kama mtu mwingine hakutambua hivyo.",
+                "Kuvunjika kwa mahusiano hakufanyi kuwa mwenye thamani kidogo.",
+                "Unastahili huruma na heshima katika kila uhusiano unaoujenga.",
+                "Kuhisi maumivu au kukatishwa tamaa ni sehemu ya uzoefu wa upendo wa kweli.",
+                "Ni sawa kuwa na siku za huzuni unapotafakari kuhusu mahusiano yaliyopita.",
+                "Hisi zako hazihitaji kuhalalishwa kwa mtu yeyote. Zinajitosheleza.",
+                "Kupoteza mwelekeo katika uhusiano si udhaifu; ni hali ya kawaida katika maisha.",
+                "Wewe bado ni mtu mzima, mwenye thamani na anayestahili upendo wa kweli."
+
+            ],
+            "abuse": [
+                "Hakuna mtu anayestahili kufanyiwa vibaya, na wewe si wa kulaumiwa kwa yaliyotokea.",
+                "Ni kawaida kuhisi huzuni, hofu au hasira baada ya kukumbana na unyanyasaji.",
+                "Hisia zako kuhusu unyanyasaji ni halali na zinastahili kusikilizwa.",
+                "Wewe ni mwenye thamani kubwa, hata kama mwingine alikukosea.",
+                "Kuteseka kutokana na unyanyasaji hakupunguzi utu wako.",
+                "Wewe si makosa ya yaliyokutokea. Wewe ni mhanga ambaye anastahili huruma na msaada.",
+                "Ni sawa kabisa kuhisi kuchanganyikiwa au kuumizwa na uzoefu wa unyanyasaji.",
+                "Kuna nguvu kubwa katika kutambua maumivu yako na kuyakubali.",
+                "Wewe ni wa thamani hata kama mwingine alikujaribu kukufanya uhisi sivyo.",
+                "Ni haki kabisa kuhisi huzuni unapokumbuka mambo mabaya yaliyotokea.",
+                "Hisia zako ni muhimu na zinapaswa kuheshimiwa bila masharti.",
+                "Kupona kutokana na unyanyasaji si rahisi, na ni sawa kuchukua muda wako.",
+                "Kila hatua ya kukubali hisia zako ni ishara ya nguvu ya ajabu ndani yako.",
+                "Unastahili mapenzi, heshima na usalama katika maisha yako."
+
+            ],
+            "sickness": [
+                "Kuhisi huzuni au kuchoka kutokana na ugonjwa ni hali ya kawaida kabisa.",
+                "Wewe si ugonjwa wako; wewe ni zaidi ya hali yako ya kimwili.",
+                "Ni sawa kuhisi kuchanganyikiwa au huzuni unapokumbana na changamoto za kiafya.",
+                "Mwili wako unapopitia machungu, ni kawaida pia kwa moyo na akili kuhisi uzito.",
+                "Unastahili huruma yako mwenyewe wakati mwili wako unapopitia magumu.",
+                "Kupitia ugonjwa hakupunguzi thamani yako au utu wako.",
+                "Wewe ni mwenye thamani hata unapopitia wakati mgumu wa kiafya.",
+                "Hisia zako za uchovu, huzuni au wasiwasi ni halali kabisa.",
+                "Ni kawaida kabisa kutamani kupona haraka na kuhisi kukata tamaa wakati mwingine.",
+                "Ni sawa kuchukua muda wa kuhisi kila hisia bila kujihukumu.",
+                "Mwili wako unapambana kwa njia yake, na hisia zako ni sehemu ya safari hiyo.",
+                "Unastahili mapumziko, upendo na huruma katika safari yako ya afya.",
+                "Kila hisia unayopitia inaonyesha nguvu yako ya ndani.",
+                "Kupitia ugonjwa haimaanishi kuwa wewe ni dhaifu; inaonyesha ujasiri wako wa ajabu.",
+                "Wewe ni wa thamani bila kujali hali ya afya unayopitia."
+
+            ],
+            "stressor": [
+                "Msongo wa mawazo ni hali ya kawaida, hasa unapobeba majukumu mengi.",
+                "Ni sawa kuhisi kuchoka unapokabiliwa na hali zinazokulemea.",
+                "Kuhisi msongo haimaanishi umeshindwa; ni ishara ya ubinadamu wako.",
+                "Hisia zako zinaonyesha jinsi unavyowajali wengine na maisha yako.",
+                "Kujisikia mzito chini ya shinikizo ni jambo la kawaida kabisa.",
+                "Ni vyema kutambua kuwa unahisi msongo; huo ni mwanzo wa kujijali zaidi.",
+                "Huna sababu ya kujihisi mnyonge kwa kuwa na siku ngumu.",
+                "Hisia zako za kuchoshwa na msukosuko ni za kawaida na zinaheshimiwa.",
+                "Kupitia hali ya msongo si udhaifu; ni ushahidi wa nguvu zako za kupambana.",
+                "Ni sawa kabisa kuchukua muda wa kutulia unapohisi mzigo wa akili.",
+                "Unastahili huruma yako mwenyewe unapohisi umeelemewa.",
+                "Msongo wa mawazo haukufanyi kuwa mtu mbaya; unakufanya kuwa binadamu wa kawaida.",
+                "Unajali sana, na hiyo mara nyingi huleta msongo. Ni sehemu ya moyo wako wa kipekee.",
+                "Ni jambo la busara kutambua kuwa unahitaji kupumzika unapobeba mengi."
+
+            ]
+        }
+
+        if detected_issues:
+            response_parts=[]
+            for issue in detected_issues:
+                if issue in advice_map:
+                    advice=random.choice(advice_map[issue])
+                    response_parts.append(f" **{issue.capitalize()}**: {advice}")
+
+            response="Naelewa hali yako na hapa kuna ushauri:\n\n" + "\n".join(response_parts)
+            dispatcher.utter_message(response.strip())
+        else:
+            dispatcher.utter_message("Naomba unieleze zaidi ili niweze kusaidia vyema.")
+
+        return[SlotSet(slot,None) for slot in detected_issues]
+
+class ActionExpressAnxiety(Action):
+    def name(self):
+        return "action_handle_anxiety"
+    def run(self,dispatcher,tracker, domain):
+        detectedIssues = {}
+
+        for slot in ["societalPressure","academicPressure","peerPressure","socialMedia"]:
+            value=tracker.get_slot(slot)
+            if value:
+                detectedIssues[slot]=value
+
+        advice_map={
+            "peerPressure": [
+                "Ni kawaida kuhisi shinikizo kutoka kwa marafiki, na hiyo haimaanishi kuwa wewe ni dhaifu.",
+                "Unaruhusiwa kuwa tofauti na marafiki zako. Wewe bado ni wa thamani bila kujibadilisha.",
+                "Kuhisi shinikizo la rika ni jambo linalowapata wengi. Hali yako inaeleweka na si ya aibu.",
+                "Kukataa kufanya mambo usiyotaka hakupunguzi thamani yako. Wewe bado ni mtu wa kipekee na mwenye nguvu.",
+                "Hisia zako kuhusu shinikizo kutoka kwa rika ni halali. Ni vizuri kuzitambua bila kujihukumu.",
+                "Kumbuka kuwa huna haja ya kuthibitisha chochote kwa mtu yeyote. Wewe unatosha jinsi ulivyo.",
+                "Ni jambo la kawaida kutaka kukubalika, lakini si lazima kujibadilisha ili kupewa nafasi.",
+                "Wewe si peke yako katika kuhisi shinikizo. Wengi hupitia hali kama hiyo.",
+                "Kujisikia tofauti na wengine haikufanyi kuwa wa chini. Wewe ni wa thamani kwa upekee wako.",
+                "Ni ujasiri mkubwa kusema 'hapana' hata pale ambapo wengine wanakushinikiza. Umefanya jambo la maana.",
+                "Unastahili kuwa na marafiki wanaokupenda jinsi ulivyo, si kwa kukulazimisha kubadilika.",
+                "Ni sawa kuchagua njia yako binafsi, hata kama si kila mtu ataielewa.",
+                "Kukataa shinikizo la rika ni ishara ya nguvu ya ndani na kujiheshimu.",
+                "Hisia zako ni muhimu. Ustawi wako wa kihisia unapaswa kuja kwanza kabla ya matarajio ya wengine."
+
+            ],
+            "societalPressure": [
+                "Kuhisi shinikizo kutoka kwa jamii ni jambo la kawaida na si kosa lako.",
+                "Ni ngumu kubeba matarajio ya watu wengi, na hisia zako zinaheshimiwa.",
+                "Unastahili kuchaguliwa kwa thamani yako halisi, si kwa matarajio ya jamii.",
+                "Matarajio ya wengine hayawezi kufuta uzuri wa wewe kuwa wewe mwenyewe.",
+                "Ni sawa kuhisi kuchoka kwa kubeba maoni na matarajio ya kila mtu.",
+                "Hakuna haja ya kujihisi mnyonge kwa kutofikia viwango vya jamii.",
+                "Wewe ni wa thamani, hata kama njia yako ni tofauti na matarajio ya wengine.",
+                "Unapojitahidi kuwa wewe halisi, tayari unafanya kitu cha thamani kubwa.",
+                "Ni kawaida kabisa kuhisi presha ya kuendana na jamii.",
+                "Hisia zako zinatambulika na zinaheshimika kwa kila hatua unayopiga.",
+                "Ni sawa kuchagua wewe mwenyewe badala ya matarajio ya nje.",
+                "Unaruhusiwa kuwa tofauti, na hiyo ni zawadi si kasoro.",
+                "Moyo wako unastahili kuwa huru kutokana na mizigo ya matarajio ya watu.",
+                "Kujitunza mwenyewe mbele ya shinikizo la jamii ni tendo la ujasiri mkubwa.",
+                "Unastahili kupendwa kwa vile ulivyo, si kwa kile unachotakiwa kuwa."
+            ],
+            "academicPressure": [
+                "Kuhisi shinikizo la kitaaluma ni kawaida, na hisia zako ni halali.",
+                "Unajali mafanikio yako, na hiyo ni ishara ya kujitolea, si udhaifu.",
+                "Kuchoka au kuishiwa nguvu hakufanyi kuwa mdhaifu.",
+                "Ni sawa kutamani mapumziko unapobeba mzigo wa masomo.",
+                "Unastahili huruma yako mwenyewe unapokumbana na presha ya kitaaluma.",
+                "Hali yako ya sasa haifafanui mafanikio yako ya baadaye.",
+                "Ni sawa kuhisi huzuni au kuchanganyikiwa unapokosa matokeo uliyotarajia.",
+                "Unastahili kuthaminiwa kwa bidii yako, si tu kwa mafanikio yake.",
+                "Ni kawaida kabisa kuhisi shinikizo kubwa unapotafuta mafanikio.",
+                "Hutakiwi kuwa mkamilifu ili kustahili kuthaminiwa.",
+                "Bidii yako ni ya thamani, hata kama hauoni matokeo mara moja.",
+                "Ni ujasiri kuendelea kujifunza hata unapopitia ugumu.",
+                "Hisia zako kuhusu masomo zina umuhimu mkubwa na zinapaswa kusikilizwa.",
+                "Ni kawaida kuhisi kuchoka katika safari ya elimu.",
+                "Una thamani hata nje ya daraja au cheti."
+            ],
+            "socialMedia": [
+
+                "Kuhisi presha kutokana na mitandao ya kijamii ni hali ya kawaida katika dunia ya sasa.",
+                "Wewe ni wa thamani hata bila kulinganisha maisha yako na ya wengine mtandaoni.",
+                "Mitandao ya kijamii mara nyingi haionyeshi ukweli wote, na hiyo si kosa lako.",
+                "Hisia zako zinahesabika hata unapohisi kutotosha mtandaoni.",
+                "Ni kawaida kabisa kuhisi kuchoka au kuchanganyikiwa kutokana na mitandao.",
+                "Unastahili kuchukulia hisia zako kwa huruma unapokumbana na maudhui magumu mtandaoni.",
+                "Mitandao haifafanui thamani yako wala mafanikio yako.",
+                "Kujihisi tofauti au kuathiriwa na mitandao si udhaifu, ni ubinadamu.",
+                "Hisia zako za kutokuwa wa kutosha ni za kawaida, lakini hazifafanui uhalisia wako.",
+                "Una haki ya kuhisi unavyohisi kuhusu kile unachokiona mtandaoni.",
+                "Ni sawa kabisa kuchukua muda wa kujitenga na mitandao kwa ajili ya amani yako ya akili.",
+                "Wewe ni zaidi ya picha, likes, au comments.",
+                "Hisia zako zina thamani kubwa, hata katika ulimwengu wa kidigitali.",
+                "Ni ujasiri mkubwa kulinda afya yako ya akili dhidi ya shinikizo la mitandao.",
+                "Wewe ni wa kipekee na wa thamani, bila kujali picha unazoona au hadithi unazosikia."
+            ],
+
+        }
+
+        if detectedIssues:
+            response_parts=[]
+            for issue in detectedIssues:
+                if issue in advice_map:
+                    advice=random.choice(advice_map[issue])
+                    response_parts.append(f" **{issue.capitalize()}**: {advice}")
+
+            response="Naelewa hali yako na hapa kuna ushauri:\n\n" + "\n".join(response_parts)
+            dispatcher.utter_message(response.strip())
+        else:
+            dispatcher.utter_message("Naomba unieleze zaidi ili niweze kusaidia vyema.")
+
+        return[SlotSet(slot,None) for slot in detectedIssues]
+
+
+
 
 

@@ -36,3 +36,275 @@ nlu:
      - Niko na safari, nitatoka sasa
      - Nenda salama, usisahau kunipigia simu
 
+  - intent: affirm
+    examples: |
+      - Ndio
+      - Ndio, ningependa kuendelea
+      - Bila shaka, niko tayari kuzungumzia hilo
+      - Sawa, tunaweza kuanza sasa
+      - Naam, hiyo itanisaidia sana
+      - Ndiyo tafadhali, nataka kujifunza zaidi
+
+  - intent: deny
+    examples: |
+      - La
+      - Hapana
+      - Hapana, sihitaji msaada kwa sasa
+      - La hasha, sitaki kuzungumzia hilo kwa sasa
+      - Samahani, lakini sihitaji msaada zaidi
+      - Hapana asante, nitashughulikia peke yangu
+      - Sidhani kama nahitaji msaada kwa sasa
+
+  - intent: express_depression
+    examples: |
+      - Ninahisi huzuni kwa sababu ya [ugomvi na wazazi](familyIssues).  
+      - [Nimepoteza mzazi wangu](familyIssues) na ninahisi maisha hayana maana tena.   
+      - [Nyumbani kuna migogoro mingi](familyIssues), na inanifanya nisiwe na furaha.   
+      - Kila siku [ninakosana na ndugu zangu](familyIssues), na inanifanya kujihisi mpweke.   
+      - [Wazazi wangu hawaelewani](familyIssues), na hali hii inaniumiza sana.
+      - [Nyumbani kuna ugomvi wa kila mara](familyIssues), siwezi kupata amani.
+      - [Wazazi wangu hawaniamini](familyIssues), nahisi sina thamani.
+      - [Kila siku kuna mzozo nyumbani](familyIssues), nahisi nimechoka na maisha.
+      - [Nimepoteza mzazi wangu](familyIssues), na huzuni imenizidi.
+      - [Kutoelewana na ndugu zangu](familyIssues) kunanifanya nijihisi mpweke.
+      - [Mama na baba wanagombana kila wakati](familyIssues), na hiyo inanilemea kiakili.
+      - [Sina mtu wa kuzungumza naye nyumbani](familyIssues), najihisi peke yangu.
+      - [Familia yangu hainielewi](familyIssues), na hiyo inanifanya nijihisi mnyonge.
+      - [Kukosa upendo nyumbani](familyIssues) kunanifanya nijihisi sifai.
+      - [Nimechoka na matusi kutoka kwa wazazi](familyIssues), nahisi sina thamani.
+      - [Ninapigwa nyumbani](familyIssues), na hiyo inanifanya nijihisi duni.
+      - [Kila mara ninalaumiwa kwa kila kitu nyumbani](familyIssues), nahisi nimelemewa.
+      - [Kukosa msaada kutoka kwa familia](familyIssues) kunanifanya nijihisi mpweke.
+      - [Nimefukuzwa nyumbani](familyIssues), sina pa kwenda.
+      - [Familia yangu hainijali](familyIssues), nahisi sifai.
+      - [Kila mara kuna kelele na matusi nyumbani](familyIssues), siwezi kupata utulivu.
+      - [Nimechoka kuishi katika mazingira ya vurugu](familyIssues), nahisi nimevunjika moyo.
+      - [Sina mtu wa kunisikiliza nyumbani](familyIssues), nahisi mpweke.
+      - [Kutoelewana na familia yangu](familyIssues) kunanifanya nijihisi sina thamani.
+      - [Nimepoteza matumaini ya kupata amani nyumbani](familyIssues), nahisi nimekata tamaa.      
+      - [Masomo yananilemea](stressor), ninahisi nimechoka kabisa.   
+      - [Shinikizo la maisha](stressor) linafanya nisiwe na amani.  
+      - [Nina kazi nyingi lakini](stressor) naona kama siwezi kuzimudu.   
+      - Kila siku [nahisi nimelemewa na majukumu](stressor). 
+      - [Nawaza sana kuhusu maisha yangu ya baadaye](stressor), nahisi siwezi kufanikisha chochote.
+      - [Nimelemewa na mawazo](stressor), siwezi kulala usiku.
+      - [Kila siku nawaza sana kuhusu maisha yangu](stressor), nahisi nimechoka.
+      - [Shinikizo la maisha](stressor) linanifanya nijihisi sina matumaini.
+      - [Nimechoka kufikiria kuhusu matatizo yangu](stressor), nahisi nimekata tamaa.
+      - [Kazi imenizidi](stressor), siwezi kupata muda wa kupumzika.F
+      - [Masomo yananipa msongo wa mawazo](stressor), nahisi nimelemewa.
+      - [Kila siku nahisi kama maisha hayana maana](stressor), nimechoka.
+      - [Nimepoteza hamu ya kufanya mambo niliyopenda](stressor), nahisi huzuni.
+      - [Mawazo mengi yananisumbua](stressor), siwezi kupata utulivu.
+      - [Kila kitu kinanilemea](stressor), nahisi sina nguvu ya kuendelea.
+      - [Nimechoka na maisha haya](stressor), nahisi sina matumaini.
+      - [Kila siku ni kama mzigo mpya](stressor), nahisi nimelemewa.
+      - [Nahisi kama akili yangu imejaa mawazo](stressor), siwezi kufikiria vizuri.
+      - [Nimepoteza mwelekeo wa maisha](stressor), nahisi huzuni.
+      - [Kila siku ni vita na mawazo yangu](stressor), nimechoka.
+      - [Nimelemewa na majukumu](stressor), siwezi kuendelea.
+      - [Nahisi kama maisha yamenishinda](stressor), nimekata tamaa.
+      - [Kila mara nahisi huzuni isiyoelezeka](stressor), nimechoka.
+      - [Nimepoteza hamu ya kuishi](stressor), nahisi sina maana.
+      - [Mawazo yananisumbua kila wakati](stressor), siwezi kupata amani.
+      - [Mpenzi wangu aliniacha](relationshipIssues), na ninahisi sina thamani tena.   
+      - [Marafiki zangu wamenigeuka](relationshipIssues), nahisi mpweke.   
+      - Kila mara [ninagombana na mpenzi wangu](relationshipIssues), na inanifanya nijihisi vibaya.   
+      - [Nilidanganywa kwenye mahusiano](relationshipIssues), na sasa siwezi kumwamini mtu yeyote.   
+      - [Ninahisi kutengwa na kila mtu](relationshipIssues), kama sina marafiki wa kweli.
+      - [Nilipoachwa na mpenzi wangu](relationshipIssues) nilihisi kama dunia imenipiga. 
+      - [Marafiki zangu wameanza kuniepuka](relationshipIssues) bila sababu, na inaniumiza. 
+      - [Nilipendana sana na mtu](relationshipIssues), lakini akanitenda vibaya. 
+      - Kila [nikitafuta mahusiano, naishia kuumizwa](relationshipIssues) tu. 
+      - [Sina mtu wa kunielewa kihisia](relationshipIssues), nahisi mpweke kabisa. 
+      - [Nimepigwa na mpenzi wangu](relationshipIssues), lakini bado nampenda. 
+      - [Nilimwamini sana mpenzi wangu, lakini alinisaliti](relationshipIssues). 
+      - Nahisi [sina marafiki wa kweli](relationshipIssues) tena. 
+      - [Nimegombana na rafiki yangu](relationshipIssues) wa karibu, sijui nifanye nini. 
+      - Nilikuwa kwenye [uhusiano wa sumu](relationshipIssues), lakini bado nashindwa kuondoka.
+      - Ninahisi kukataliwa kila [ninapojaribu kuanzisha urafiki mpya](relationshipIssues). 
+      - [Mpenzi wangu hanisikii](relationshipIssues) wala kuniangalia tena. 
+      - [Mahusiano yangu yote huishia](relationshipIssues) kwenye maumivu. 
+      - Watu wanaonizunguka [hawaonyeshi upendo wala msaada](relationshipIssues). 
+      - [Mpenzi wangu aliniondokea ghafla](relationshipIssues) bila maelezo. 
+      - [Sina mtu wa kuzungumza naye](relationshipIssues) kuhusu hisia zangu. 
+      - Naumia kuona [watu wengine kwenye mahusiano yenye furaha](relationshipIssues). 
+      - Nahisi [kutengwa na kila mtu ninaempenda](relationshipIssues). 
+      - [Mahusiano yangu na ndugu pia si mazuri](relationshipIssues), tunagombana kila mara. 
+      - Nimechoka na [migogoro ya kihisia](relationshipIssues) inayojirudia kwenye maisha yangu. 
+      - Sina kazi, na [hali yangu ya kifedha inanitia huzuni](financialissues).   
+      - Kila siku [nawaza nitapata wapi pesa](financialissues) za kulipia mahitaji yangu.  
+      - [Gharama za maisha](financialissues) zimekuwa kubwa sana, na siwezi kuzimudu.   
+      - [Madeni yamenizidi](financialissues), nahisi nimelemewa.  
+      - Familia yangu [inategemea mimi kifedha](financialissues), lakini siwezi kuwasaidia. 
+      - Kila siku [nawaza kuhusu pesa](financialissues), na inaniumiza akili. 
+      - [Nashindwa kulipia ada](financialissues) ya shule wala mahitaji yangu ya msingi. 
+      - Nimejaribu kila [njia kupata kipato](financialissues) lakini bado maisha ni magumu. 
+      - Familia yangu inanitegemea lakini mimi mwenyewe [sina chochote](financialissues). 
+      - [Madeni yamenizidi](financialissues) na sijui nianzie wapi. 
+      - Nimehangaika sana [kutafuta kazi bila mafanikio](financialissues).  
+      - Marafiki wameanza kunidharau kwa [sababu sina fedha](financialissues). 
+      - [Nimeshindwa kulipia bili zangu](financialissues) na hali inazidi kuwa mbaya. 
+      - [Sina hela](financialissues) ya kununua hata nguo nzuri ya kuvaa. 
+      - Nahisi kutengwa kwa sababu siwezi kuendana na maisha ya wenzangu [kwa sababau sina fedha](financialissues). 
+      - Sijui hata nitakula nini leo, [hali ya kifedha inanilemea sana](financialissues). 
+      - Naishi kwa wasiwasi kila siku kwa [sababu ya pesa](financialissues). 
+      - [Sina hata nauli](financialissues) ya kwenda kwenye interview ya kazi. 
+      - Natamani ningekuwa na [uwezo wa kifedha](financialissues) kusaidia familia. 
+      - Wakati mwingine [najihisi bure kwa sababu sina kipato](financialissues). 
+      - Wazazi wangu wanatarajia sana [kutoka kwangu, lakini sina uwezo wa kifedha](financialissues). 
+      - Nahisi [kukata tamaa kwa sababu kila jambo linahitaji hela](financialissues). 
+      - Nimechoka [kuomba msaada wa kifedha kila mara](financialissues). 
+      - Nimekuwa [nikidhulumiwa shuleni](abuse), nahisi sina amani. 
+      - Nimepitia [unyanyasaji wa kihisia](abuse) kwa muda mrefu, na ninahisi nimechoka. 
+      - Mtu wa familia yangu [amenifanyia vitendo vibaya](abuse), na siwezi kuzungumza na mtu yeyote. 
+      - Nahisi sina sauti, [kila mtu ananinyanyasa](abuse). 
+      - [Nimepitia manyanyaso kazini](abuse), na ninahisi nimepoteza nguvu ya kuendelea.
+      - [Nimekuwa nikidhulumiwa](abuse) kwa muda mrefu hadi nimekata tamaa. 
+      - Nyumbani [napitia unyanyasaji wa maneno](abuse) kila siku. 
+      - [Nimepigwa na mtu wa karibu nami](abuse), lakini siwezi kusema popote. 
+      - Nahisi kama [sina sauti, kila mtu ananionea](abuse). 
+      - Shuleni [wananiita majina mabaya](abuse) na inanifanya nijihisi vibaya. 
+      - Nimekuwa [nikinyanyaswa mtandaoni](abuse) na nahisi kama sifai. 
+      - Kila [ninapojaribu kujieleza, watu hunikandamiza](abuse). 
+      - Nimevumilia [unyanyasaji wa kihisia](abuse) kwenye mahusiano yangu. 
+      - Nilipitia [unyanyasaji wa kingono](abuse) na sijawahi kuzungumza. 
+      - Nahisi nimevunjwa kabisa na [matendo ya watu dhidi yangu](abuse). 
+      - [Nilidhulumiwa nilipokuwa mdogo](abuse) na bado inaniumiza hadi leo. 
+      - [Watu hunitumia vibaya](abuse) kwa sababu nanyamaza sana. 
+      - Nahisi nimejifungia [kimya kwa sababu ya maumivu ya unyanyasaji](abuse). 
+      - Sijiamini tena baada ya [kupitia mambo mabaya kwa watu ninaowaamini](abuse). 
+      - Nimekuwa [nikifuatwa na mtu ninayemwogopa kila siku](abuse). 
+      - Familia yangu haioni kama [unyanyasaji ninaopitia ni tatizo](abuse). 
+      - Sina mahali pa kukimbilia kila [ninaponyanyaswa](abuse). 
+      - Nimechoka [kuishi kwa hofu](abuse) kila siku. 
+      - Najihisi kuwa sifai kwa sababu ya [unyanyasaji nilionao](abuse). 
+      - Kila [jambo baya ninalofanyiwa](abuse) linanifanya niwe na huzuni kubwa. 
+      - [Nimekuwa mgonjwa](sickness) kwa muda mrefu, nahisi sina tumaini tena.   
+      - [Nimekuwa mgonjwa](sickness) kwa muda mrefu, nahisi sina tumaini tena.   
+      - [Nimekuwa mgonjwa](sickness) kwa muda mrefu, nahisi sina tumaini tena.   
+      - [Afya yangu inaendelea kudhoofika](sickness), nahisi maisha hayana maana.  
+      - Kila siku ninakosa usingizi, na [inaniondolea nguvu kabisa](sickness). 
+      - [Nahisi mwili wangu hauna nguvu](sickness), sijui nifanye nini.  
+      - [Kuwa na ugonjwa wa muda mrefu](sickness) kunanifanya nijihisi mpweke na kutengwa.
+      - [Ugonjwa wangu wa muda mrefu](sickness) unanikosesha matumaini ya kuendelea. 
+      - Nahisi [mwili wangu umedhoofika](sickness) kabisa. 
+      - Kila siku [ninajikuta nikikosa nguvu](sickness) kabisa. 
+      - Siwezi kufanya shughuli nyingi kwa [sababu ya afya yangu](sickness). 
+      - [Ugonjwa unanifanya](sickness) nijisikie kama mzigo kwa wengine.
+      - [Afya yangu imeharibika](sickness) kiasi kwamba nahisi kama nimepotea. 
+      - [Dawa ninazotumia zinaathiri afya yangu](sickness) ya akili pia. 
+      - Najihisi [mpweke sana kwa sababu ya hali yangu kiafya](sickness). 
+      - [Nimepoteza matumaini ya kupona](sickness) tena. 
+      - [Kila siku ni maumivu](sickness), na hakuna anayejua jinsi ninavyoteseka. 
+      - Sijisikii kama mimi tena kwa [sababu ya ugonjwa huu](sickness). 
+      - [Ugonjwa umenifanya niachane](sickness) na mambo niliyoyapenda. 
+      - Nahisi [afya yangu ndio inaniangusha](sickness) kila mara. 
+      - Kila [daktari niliyemuona hana suluhisho](sickness) la hali yangu. 
+      - Nahisi kukata tamaa kwa [sababu afya yangu haiimariki](sickness). 
+      - Sijawahi kuwa na amani [tangu nilipoanza kuumwa na mwili](sickness). 
+      - Nahisi maisha yamepoteza maana [kwa sababu ya ugonjwa](sickness). 
+
+
+  - intent: express_anxiety
+    examples: |
+      - [Masomo yamenizidi](academicPressure), kila siku nina wasiwasi sijui kama nitafaulu.  
+      - [Nawaza sana kuhusu mitihani](academicPressure), nahisi kama sitaweza kufanikisha malengo yangu.   
+      - Walimu na wazazi wangu [wanatarajia nifanye vizuri shuleni](academicPressure), lakini mimi nahisi nimelemewa.    
+      - [Kazi za shule ni nyingi sana](academicPressure), sina muda wa kupumzika hata kidogo.    
+      - Nahisi hofu kila wakati [nikiwaza kuhusu siku yangu ya kuwasilisha mradi darasani](academicPressure).
+      - Ninapata msongo mkubwa kwa sababu ya [masomo](academicPressure).
+      - Kila siku naamka nikiwa na [hofu ya kufeli mtihani](academicPressure).
+      - [Shinikizo la kufanya vizuri shuleni](academicPressure) linanifanya nisilale vizuri.
+      - Nawaza sana kuhusu [matokeo yangu ya shule](academicPressure), siwezi kupata amani.
+      - [Mzigo wa kazi za shule](academicPressure) ni mwingi mno, nahisi nimelemewa.
+      - Nimechoka na [matayarisho ya mtihani](academicPressure) kila siku.
+      - [Walimu wanatupa kazi nyingi sana](academicPressure), nahisi siwezi kumudu.
+      - Nahisi [shule imenishinda](academicPressure), akili yangu imejaa msongo.
+      - Nimehangaika na [usomeaji wa kila siku](academicPressure) hadi nimeanza kuumwa.
+      - [Kukosa muda wa kupumzika kwa sababu ya masomo](academicPressure) kunanipa wasiwasi.
+      - Ninahisi kama [nikifeli shuleni sitafikia ndoto zangu](academicPressure).
+      - Kila mtu [anategemea nifanye vizuri shuleni](academicPressure), lakini mimi ninajihisi sifai.
+      - [Masomo yananibana](academicPressure), sina hata muda wa maisha binafsi.
+      - Nawaza sana kuhusu [alama zangu mbaya shuleni](academicPressure), hadi najihisi haina maana kusoma.
+      - [Mashindano ya kitaaluma shuleni](academicPressure) yananitia hofu kubwa.
+      - Ninajilaumu kila siku kwa [kutokufanya vizuri darasani](academicPressure). 
+      - [Nimepoteza motisha ya kusoma](academicPressure) kwa sababu kila kitu kinahisi kigumu.
+      - [Kushindwa kuelewa masomo](academicPressure) kunanifanya nijihisi mjinga.
+      - [Mitihani ya kila mara](academicPressure) inanipa msongo mwingi sana.
+      - Wazazi wangu [wanatarajia nifanye vizuri](societalPreesure) sana maishani, lakini nina hofu sitaweza. 
+      - Kila mtu [anatarajia nifanikiwe mapema](societalPreesure), lakini mimi bado najitafuta.    
+      - [Jamii inanilazimisha kufuata mila na desturi](societalPreesure) ambazo sihisi ni zangu.    
+      - [Nahisi presha kubwa ya kuoa mapema](societalPreesure) kwa sababu ya matarajio ya familia.   
+      - Watu [wananilazimisha kuwa mtu niliye tofauti](societalPreesure) na mimi mwenyewe.
+      - Watu wananishinikiza kuwa na [maisha fulani, lakini siwezi kuyamudu](societalPreesure). 
+      - [Jamii inanitarajia kuolewa mapema](societalPreesure), lakini mimi bado siko tayari. 
+      - [Kila mtu ananiuliza lini nitapata kazi](societalPreesure) nzuri, na inanitia wasiwasi. 
+      - [Ninalazimika kufuata mila ambazo siamini](societalPreesure), na nahisi nimebanwa. 
+      - Wazazi wangu [wanataka nichague taaluma fulani](societalPreesure), lakini mimi napenda kitu tofauti.
+      - Marafiki zangu [wananiambia niwe kama fulani](societalPreesure), na inanifanya nijihisi duni. 
+      - Kila mtu ananiangalia kama nimefeli kwa sababu [sijafikia matarajio yao](societalPreesure). 
+      - Nahisi [sina uhuru wa kuchagua maisha yangu mwenyewe](societalPreesure) kwa sababu ya matarajio ya jamii. 
+      - [Wazazi wangu wanataka niwe daktari](societalPreesure), lakini mimi nataka kitu tofauti. 
+      - Kila siku nahisi [shinikizo la kuwa mtu niliye tofauti](societalPreesure) na mimi mwenyewe. 
+      - [Jamii inaniona kama mtu asiye na mafanikio](societalPreesure) kwa sababu sijaoa bado. 
+      - Ninahisi kukosa thamani kwa sababu [sijaweza kufikia matarajio ya familia yangu](societalPreesure). 
+      - Wazazi wangu [wanalinganisha mafanikio yangu na](societalPreesure) ya ndugu zangu, na inanitia huzuni. 
+      - Kila mtu [ananiambia nifanye jambo fulani](societalPreesure), lakini moyo wangu hauko hapo. 
+      - Nahisi kama [siwezi kuwa mimi mwenyewe kwa sababu ya matarajio ya wengine](societalPreesure). 
+      - Wazazi wangu [hawakubali chaguo langu la maisha](societalPreesure), na inanifanya nijihisi mpweke. 
+      - Jamii inaniona kama mtu asiye na mwelekeo kwa [sababu sijafuata njia yao](societalPreesure). 
+      - Nahisi [nimelemewa na matarajio ya watu](societalPreesure) walioko karibu nami. 
+      - Nahisi [shinikizo kubwa kufanya mambo nisiyotaka ili nisije nikatengwa na marafiki](peerPressure).   
+      - [Wenzangu wanataka nivute bangi lakini sijisikii](peerPressure) kufanya hivyo.   
+      - Natamani nisihisi [shinikizo la kuonekana bora kama wenzangu](peerPressure) kila mara.   
+      - Sina [uwezo wa kuvaa mavazi ya bei ghali kama marafiki zangu](peerPressure), na inanifanya nijihisi vibaya.   
+      - Watu[ ]wananishinikiza kubadilika ili nikubalike kwenye kundi lao](peerPressure).
+      - [Marafiki wananishinikiza](peerPressure) kufanya mambo ambayo siyataki.
+      - Nahisi vibaya [nikiwakatalia marafiki, naogopa kutengwa](peerPressure).
+      - Wengine [wananilazimisha niende sehemu zisizofaa, lakini sina nguvu ya kusema hapana](peerPressure).
+      - [Napata presha ya kuvaa kama wenzangu](peerPressure), hata kama sina uwezo.
+      - [Ninaiga tabia za marafiki](peerPressure) ili tu nikubalike.
+      - Ninajua [siyo sahihi kutumia dawa za kulevia, lakini wenzangu wananisukuma](peerPressure) nifanye hivyo.
+      - [Nahisi sitoshi kwenye kundi letu](peerPressure) kwa sababu sifanyi kama wao.
+      - [Kutengwa na marafiki](peerPressure) kunaniweka katika hali ya wasiwasi mkubwa.
+      - Wengine wananiambia [nibadilishe muonekano wangu ili nikubalike](peerPressure).
+      - Kila [nikikataa kushiriki katika mambo fulani](peerPressure), naonekana kama mtu asiye na msimamo.
+      - Nahisi [ninaishi maisha ya uongo kwa sababu ya kujipendekeza kwa marafiki](peerPressure).
+      - [Marafiki wananicheka](peerPressure) kila nikifanya kitu tofauti na wao.
+      - [Presha ya kikundi](peerPressure) inanifanya nijione mdogo.
+      - Wakati mwingine najikuta [ninafanya mambo nisiyopenda ili tu nisiwachwe nyuma](peerPressure).
+      - [Kushindana na marafiki](peerPressure) kunaleta shinikizo la ajabu.
+      - [Sikubaliani nao lakini siwezi kusema](peerPressure), na hilo linanipa wasiwasi.
+      - [Nimebadilika sana kwa sababu ya marafiki](peerPressure), nahisi nimepotea.
+      - Nahisi kama [marafiki wananiathiri vibaya](peerPressure), lakini siwezi kuachana nao.
+      - [Presha ya kuwa kama wenzangu](peerPressure) imenifanya nianze kukosa amani kabisa.
+      - Kila mara [nikiingia mtandaoni, nahisi maisha yangu hayaendi vizuri](socialMedia) kama ya wengine.   
+      - [Nawaza sana kuhusu maoni ya watu mtandaoni](socialMedia) juu yangu, nahisi presha kubwa.   
+      - Mara nyingi [najihisi mbaya nikiona watu wakionyesha maisha mazuri mtandaoni](socialMedia).  
+      - Kila mtu [anapata likes nyingi, lakini mimi hakuna anayeniangalia](socialMedia), inanifanya nijihisi sifai.   
+      - Nimekuwa nikinyanyaswa mtandaoni, na [ninahisi hofu kila wakati ninapotaka kuingia kwenye mitandao](socialMedia) ya kijamii.
+      - [Mitandao ya kijamii](socialMedia) inanifanya nijihisi duni.
+      - Kila [nikiangalia Instagram, nahisi kama maisha yangu ni bure](socialMedia).
+      - [Kulinganisha maisha yangu na wengine mtandaoni](socialMedia) kunanivunja moyo.
+      - [Napata maneno ya kuniumiza kwenye mitandao](socialMedia) kila siku.
+      - [Unyanyasaji mtandaoni](socialMedia) umeniathiri kisaikolojia.
+      - Ninapata msongo kila mara ninapoona [wengine wakifanikiwa zaidi kwenye mitandao](socialMedia).
+      - Nahisi sina maana kwa sababu [maisha yangu hayaonekani kuwa mazuri mtandaoni](socialMedia).
+      - [Mitandao inanilazimisha kuwa mtu nisiyekuwa](socialMedia).
+      - Nahisi [presha ya kuposti vitu vizuri](socialMedia) kila mara ili nikubalike.
+      - [Kukosa likes na comments](socialMedia) kunaniathiri sana kisaikolojia.
+      - Nimeanza [kujichukia kwa sababu ya maoni mabaya mtandaoni](socialMedia).
+      - [Mitandao imenifanya niwe na hofu ya kutokubalika](socialMedia).
+      - Najihisi [kama sifikii viwango vya wenzangu wanaoonekana mtandaoni](socialMedia).
+      - [Maisha ya watu mtandaoni](socialMedia) yananifanya niwaze sana kuhusu maisha yangu.
+      - Nimepoteza kujiamini kwa sababu ya [picha za watu wakivutia mtandaoni](socialMedia).
+      - [Kila mtu anaonekana na furaha mtandaoni](socialMedia) ila mimi sivyo, hiyo inaniletea huzuni.
+      - Nahisi siwezi [kuwa kama watu ninaowaona kwenye TikTok](socialMedia).
+      - [Napata maoni ya kejeli kwenye posti zangu](socialMedia), na hio inanitesa.
+      - [Kila siku najilinganisha na wengine mtandaoni](socialMedia), na najihisi sifai.
+      - [Kutegemea mitandao kwa uthibitisho](socialMedia) kunaniweka katika msongo wa mawazo.
+
+
+      
+      

@@ -2,24 +2,38 @@ recipe: default.v1
 
 assistant_id: 20241127-194350-nearest-cymbal
 
-language: "sw"
-pipeline:
-- name: "WhitespaceTokenizer"
-- name: "LanguageModelFeaturizer"
-  model_name: "bert"      # Multilingual model that includes Swahili
-  model_weights: "bert-base-multilingual-cased"
-- name: "DIETClassifier"
-  epochs: 100
-  constrain_similarities: true
+language: sw
 
+pipeline:
+  - name: WhitespaceTokenizer
+
+  - name: LanguageModelFeaturizer
+    model_name: "bert"
+    model_weights: "bert-base-multilingual-cased"
+    cache_dir: null
+
+  - name: RegexFeaturizer
+
+  - name: LexicalSyntacticFeaturizer
+
+  - name: EntitySynonymMapper
+
+  - name: DIETClassifier
+    epochs: 100
+    constrain_similarities: true
+    learning_rate: 0.002
+    batch_size: [32, 64]
+    random_seed: 42
+    entity_recognition: true
+
+  - name: FallbackClassifier
+    threshold: 0.2
+    ambiguity_threshold: 0.1
 
 policies:
-- name: MemoizationPolicy
-- name: RulePolicy
-- name: UnexpecTEDIntentPolicy
-  max_history: 5
-  epochs: 100
-- name: TEDPolicy
-  max_history: 5
-  epochs: 100
-  constrain_similarities: true
+  - name: RulePolicy
+  - name: MemoizationPolicy
+  - name: TEDPolicy
+    max_history: 10
+    epochs: 100
+    constrain_similarities: True

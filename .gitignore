@@ -13,6 +13,8 @@ settings_local.py
 # Virtual environment
 rasa_env/
 venv/
+venv_django/
+venv_rasa/
 
 # Ignore system files
 Thumbs.db

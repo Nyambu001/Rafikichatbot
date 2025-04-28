@@ -3,9 +3,80 @@ version: "3.1"
 intents:
   - greet
   - goodbye
+  - submit_assessment
+  - request_test
+  - express_depression
+  - express_anxiety
+  - deny
+  - affirm
 
+entities:
+  - familyIssues
+  - stressor
+  - relationshipIssues
+  - financialIssues
+  - abuse
+  - sickness
+  - academicPressure
+  - societalPressure
+  - peerPressure
+  - socialMedia
 
+slots:
+  familyIssues:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: familyIssues
 
+  stressor:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: stressor
+
+  financialIssues:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: financialIssues
+
+  relationshipIssues:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: relationshipIssues
+
+  abuse:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: abuse
+  sickness:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: sickness
+  academicPressure:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: academicPressure
+  societalPressure:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: societalPressure
+  peerPressure:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: peerPressure
+  socialMedia:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: socialMedia
 
 
 responses:
@@ -21,8 +92,139 @@ responses:
     - text: "Kwaheri! Ninakutakia kila la heri."
     - text: "Tutaonana kesho, ni furaha yangu kukusaidia."
 
+  utter_exitConversation:
+    - text: "Asante kwa kushirikiana nami. Kumbuka kuwa hauko peke yako. Ukihitaji msaada zaidi, niko hapa."
+    - text: "Nashukuru kwa mazungumzo yetu. Jali afya yako ya kiakili na uendelee kujitunza."
+    - text: "Kumbuka kuwa kila hatua ya kujijali ni hatua muhimu. Ukihitaji msaada tena, niko tayari kusaidia."
+    - text: "Umenifanya nihisi fahari kushirikiana nawe leo. Tafadhali endelea kujipa nafasi ya kupumzika na kuponya."
+
+
+  utter_offer_handle_anxiety_tips:
+    - text: "Je, ungependa kupata vidokezo vya kukusaidia kupunguza msongo wa mawazo?"
+    - text: "Ningependa kushiriki mbinu za kukusaidia kudhibiti wasiwasi. Je, uko tayari?"
+    - text: "Tunaweza kuchunguza njia rahisi za kukabiliana na wasiwasi. Ungependa kuendelea?"
+    - text: "Je, unahitaji msaada wa vidokezo vya kupunguza hisia za wasiwasi uliyonayo sasa?"
+
+  utter_handle_anxiety_tips:
+    - text: |
+        Hapa kuna vidokezo vya kusaidia kukabiliana na wasiwasi:
+        - Jaribu kufanya mazoezi ya kupumua kwa kina unapohisi wasiwasi.
+        - Fanya mazoezi ya mindfulness au kutafakari kila siku.
+        - Punguza matumizi ya vichocheo kama kahawa au sukari nyingi.
+
+    - text: |
+        Vidokezo vya kusaidia kudhibiti wasiwasi ni:
+        - Andika orodha ya mambo unayoweza kudhibiti na yale usiyoweza.
+        - Fanya mazoezi ya mwili kama kutembea, yoga, au kukimbia kwa mwendo wa pole.
+        - Panga siku yako mapema ili kupunguza msongamano wa mawazo.
+
+    - text: |
+        Unaweza kujaribu vidokezo hivi kwa ajili ya wasiwasi:
+        - Tafuta muda wa kupumzika kila siku hata kama ni kwa dakika chache.
+        - Eleza hisia zako kwa mtu wa kuaminika badala ya kuzibeba mwenyewe.
+        - Jitahidi kuishi katika hali ya sasa badala ya kuhangaika sana kuhusu mambo yajayo.
+
+    - text: |
+        Vidokezo vya kusaidia kushughulikia wasiwasi ni:
+        - Amini kuwa si kila fikra ya hofu lazima iwe kweli.
+        - Tafuta mbinu zako binafsi za kupunguza msongo, kama kusikiliza muziki wa utulivu.
+        - Punguza matarajio yasiyo halisi kwa nafsi yako na mazingira yanayokuzunguka.
+
+    - text: |
+        Njia nyingine za kudhibiti wasiwasi:
+        - Kumbuka kwamba si lazima ukamilishe kila kitu kwa ukamilifu; jaribu bora yako.
+        - Jipe ruhusa ya kusema "hapana" unapohisi umeelemewa.
+        - Shirikiana na mtaalamu wa afya ya akili ikiwa wasiwasi unakuwa mzito sana.
+
+
+
+  utter_offer_more_handle_anxiety_advice:
+    - text: "Je, ungependa kupata ushauri zaidi wa kukusaidia kudhibiti msongo wa mawazo?"
+    - text: "Nina vidokezo vingine vya kukusaidia kujisikia vizuri. Ungependa kusikia zaidi?"
+    - text: "Tungeweza kuchunguza njia nyingine za kukuwezesha kukabiliana na wasiwasi. Je, tuendelee?"
+    - text: "Niko hapa kwa msaada zaidi. Ungependa kupata mbinu zaidi za kudhibiti hisia zako?"
+
+  utter_more_handle_anxiety_advice:
+    - text: "Kujihusisha na shughuli unazozifurahia kama kusoma, kuchora au kutembea kunaweza kusaidia kutuliza akili."
+    - text: "Kumbuka, Mwongozo wa Kitaifa wa Afya ya Akili nchini Kenya (2024) unapendekeza kutafuta msaada mapema. Unaweza kuupata hapa: https://mental.health.go.ke/download/national-clinical-guidelines-for-management-of-common-mental-disorders/
+    ⚠️ *Mawaidha haya yako kwa kingereza*"
+    - text: "Kutafuta muktadha chanya, kama kuangalia filamu za kuvutia au kuzungumza na marafiki, kunaweza kupunguza wasiwasi."
+    - text: "Kujifundisha mazoezi ya kuzingatia sasa (mindfulness) kunaweza kusaidia akili yako kupumzika."
+    - text: "Kujipa malengo madogo ya kila siku kunaweza kusaidia kujenga hisia za mafanikio na kupunguza wasiwasi."
+
+  utter_offer_handle_depression_tips:
+    - text: "Je, ungependa kupokea vidokezo vya kukusaidia kukabiliana na hisia za unyogovu?"
+    - text: "Ninaweza kushiriki mbinu rahisi za kusaidia kupunguza unyogovu. Je, unataka kuendelea?"
+    - text: "Je, ungependa kupata msaada wa vitendo ili kukabiliana na hisia hizi nzito?"
+    - text: "Tunaweza kuchunguza njia za kusaidia kuboresha hali yako ya kihisia. Ungependa kusikia?"
+
+  utter_handle_depression_tips:
+    - text: |
+        Hapa kuna vidokezo vya kusaidia kukabiliana na msongo wa mawazo:
+        - Fanya mazoezi ya mwili angalau mara chache kwa wiki ili kuimarisha hali ya hisia zako.
+        - Jaribu kulala na kuamka kwa ratiba inayofanana kila siku.
+        - Andika hisia zako kwenye shajara ili kujielewa vyema zaidi.
+
+    - text: |
+        Vidokezo vya kusaidia kushughulikia msongo wa mawazo ni:
+        - Tafuta muda wa kufanya shughuli unazozipenda hata kama ni ndogo.
+        - Zungumza na mtu wa kuaminika kuhusu hisia zako.
+        - Jitahidi kula mlo wenye lishe bora kila siku.
+
+    - text: |
+        Unaweza kujaribu njia hizi kusaidia kukabiliana na msongo wa mawazo:
+        - Punguza matumizi ya simu na mitandao ya kijamii kama yanaongeza msongo.
+        - Tengeneza orodha ya mambo unayothamini maishani.
+        - Jipe muda wa kupumzika bila kuhisi hatia.
+
+    - text: |
+        Vidokezo vya kusaidia hali ya msongo wa mawazo ni:
+        - Kumbuka kuwa hisia mbaya si za kudumu; zinapita kwa muda.
+        - Tafuta msaada wa kitaalamu ikiwa hisia zako ni nzito sana.
+        - Fanya mazoezi ya kupumua kwa kina unapohisi kupoteza mwelekeo.
+
+    - text: |
+        Njia nyingine za kukabiliana na msongo wa mawazo:
+        - Tengeneza ratiba ndogo ya malengo ya kila siku.
+        - Shirikiana na vikundi vya msaada vya afya ya akili.
+        - Jisamehe unapojisikia kwamba hujafanikisha kila kitu.
+
+
+
+  utter_offer_more_handle_depression_advice:
+    - text: "Je, ungependa kusikia ushauri zaidi wa kukusaidia kukabiliana na hisia za unyogovu ?"
+    - text: "Nina mbinu zaidi ambazo zinaweza kusaidia hali yako. Ungependa kuendelea?"
+    - text: "Tungeweza kujadili njia zaidi za kujenga nguvu zako za ndani. Je, uko tayari?"
+    - text: "Kuna vidokezo vingine vinavyoweza kusaidia. Ungependa nisambaze zaidi?"
+
+  utter_more_handle_depression_advice:
+    - text: "Kumbuka, Mwongozo wa Kitaifa wa Afya ya Akili nchini Kenya (2024) unapendekeza kutafuta msaada mapema. Unaweza kuupata hapa:  https://mental.health.go.ke/download/national-clinical-guidelines-for-management-of-common-mental-disorders/ 
+    ⚠️ *Mawaidha haya yako kwa kingereza*"
+    - text: "Kama unahisi upweke au huzuni ya muda mrefu, kujiunga na vikundi vya msaada kama vile vinavyotolewa na Mental 360 kunaweza kusaidia. Tafuta maelezo zaidi hapa: https://mental360.or.ke/our-programs/
+    ⚠️ *Mawaidha haya yako kwa kingereza*"
+    - text: "Iwapo unahitaji kuzungumza sasa hivi, unaweza kupiga Mental 360 Helpline 0770 360 360 au kuwasiliana na Befrienders Kenya kwa msaada wa dharura."
+    - text: "Safari ya kupona kutokana na msongo wa mawazo inaweza kuwa ya polepole, lakini kila hatua unayochukua ni ya thamani kubwa."
+    - text: "Ni sawa kuhisi vibaya wakati mwingine; muhimu ni kujipa nafasi ya kupona bila kujihukumu."
+    - text: "Kujitunza kwa kupumzika vya kutosha, kula lishe bora na kuwa na mazoezi mepesi ni sehemu muhimu za kuimarisha afya ya akili. Unaweza kupata vidokezo zaidi hapa: [Verywell Health-Depression Coping Skills: Steps to Managing Symptoms](https://www.verywellhealth.com/coping-skills-for-depression-8426424)
+              ⚠️ *Mawaidha haya yako kwa kingereza*"
+    - text: "Msongo wa mawazo haukufafanui wewe kama mtu; wewe ni zaidi ya changamoto unazopitia sasa."
+    - text: "Kupata msaada si ishara ya udhaifu, bali ni hatua ya ujasiri na upendo kwa nafsi yako."
+    - text: "Kumbuka kuwa hauko peke yako katika safari hii; msaada na matumaini bado yapo."
+
 actions:
   - utter_greet
   - utter_goodbye
   - action_handle_assessment
+  - action_handle_depression
+  - action_handle_anxiety
+  - utter_offer_handle_anxiety_tips
+  - utter_handle_anxiety_tips
+  - utter_offer_more_handle_anxiety_advice
+  - utter_more_handle_anxiety_advice
+  - action_handle_depression_advice
+  - utter_offer_handle_depression_tips
+  - utter_handle_depression_tips
+  - utter_offer_more_handle_depression_advice
+  - utter_more_handle_depression_advice
+
 
