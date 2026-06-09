@@ -17,7 +17,7 @@ Natural Language Processing (NLP)
 Machine Learning concepts (basic level)
 JSON / training data 
 Django
-React
+Javascript 
 🧠 How It Works
 User types a message
 The system processes the text using NLP techniques
