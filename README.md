@@ -1,37 +1,62 @@
-🧠 Mental Health Chatbot (NLP Project)
+Rafiki Chatbot (AI Mental Health Assistant)
 📌 Overview
-This project is a simple AI-powered chatbot designed to provide basic emotional support and mental health guidance through natural language conversations.
-It was built using Python and Natural Language Processing (NLP) techniques as part of my learning journey in Data Science and Artificial Intelligence.
-🎯 Purpose
-Mental health support is often limited or inaccessible in many communities.
-This chatbot aims to demonstrate how AI can be used to provide basic conversational support and awareness.
+Rafiki Chatbot is a conversational AI system designed to provide basic emotional support and mental health guidance through natural language conversations.
+It uses Natural Language Processing (NLP) techniques to understand user input and generate supportive responses.
+This project is part of my learning journey in Data Science, Artificial Intelligence, and NLP applications.
+
+🎯 Problem Statement
+Many people struggle with stress, anxiety, and emotional challenges but may not always have immediate access to support.
+This chatbot explores how AI can be used to:
+Provide basic conversational support
+Improve accessibility to emotional assistance
+Demonstrate NLP applications in real-world social problems
+
 💡 Features
-Simple conversational chatbot
-NLP-based intent understanding
+AI-powered conversational chatbot
+NLP-based intent recognition
 Basic emotional support responses
 Lightweight and easy to run
-Beginner-friendly AI project
+Beginner-friendly architecture
+Expandable for future AI improvements
+
 🛠️ Tech Stack
 Python
 Natural Language Processing (NLP)
-Machine Learning concepts (basic level)
-JSON / training data 
-Django
-Javascript 
+Machine Learning (basic intent classification)
+JSON / dataset-based training
+Django 
+
 🧠 How It Works
-User types a message
-The system processes the text using NLP techniques
-The chatbot identifies intent
-A relevant response is returned to the user
+User sends a text message
+System processes input using NLP
+Intent is identified (e.g. sadness, stress, greeting)
+Bot selects an appropriate response
+Response is returned to the user
+
+📁 Project Structure
+Bash
+Rafikichatbot/
+│
+├── data/              # Training data / intents
+├── model/             # NLP or ML model logic
+├── chatbot/           # Core chatbot
+├── templates/         # UI 
+├── static/            # Frontend assets
+└── README.md
+
 🚀 Future Improvements
-Improve NLP accuracy using advanced models
+Improve NLP accuracy using deep learning models
 Add sentiment analysis
-Support Coastal Swahili language better
-Add voice interaction
-Deploy as a web or mobile app
+Support Coastal Swahili language
+Add voice-based interaction
+Deploy as a web app or mobile app
+Integrate mental health resources
+
 ⚠️ Disclaimer
-This chatbot is not a replacement for professional mental health services.
-It is designed for educational and awareness purposes only.
+This chatbot is for educational purposes only and is not a replacement for professional mental health support.
+
 👩‍💻 Author
 Mathematics & Computer Science Graduate
-Aspiring Data Scientist & AI Enthusiast
+Aspiring Data Scientist & AI Engineer
+GitHub: https://github.com/Nyambu001
+LinkedIn: https://www.linkedin.com/in/irene-irungu-918076255
